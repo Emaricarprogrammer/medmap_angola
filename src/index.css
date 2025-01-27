@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 /* ... */
+body {
+  font-family: "Inter";
+}
+.font-title {
+  font-family: "Space Grotesk";
+}
 
 @layer base {
   :root {
