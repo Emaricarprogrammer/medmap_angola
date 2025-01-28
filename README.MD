@@ -1,6 +1,6 @@
 # MED-MAP (FRONT)
 
-## Instruções para Executar um Projeto React
+## Instruções para Executar O Projecto.
 
 Este guia irá ajudá-lo a executar um projeto React no seu ambiente local.
 
@@ -12,6 +12,8 @@ Antes de começar, certifique-se de que você tenha as seguintes ferramentas ins
   `
 
 ## Passos para Executar o Projeto
+
+Após concluir a instação do node.js:
 
 1. **Clone o repositório**
 

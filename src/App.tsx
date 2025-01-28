@@ -7,7 +7,7 @@ export function App() {
   return (
     <>
       <HelmetProvider>
-        <Helmet titleTemplate="%s | med-map" />
+        <Helmet titleTemplate="%s / med-map" />
         <Toaster
           style={{
             fontFamily: "Inter",

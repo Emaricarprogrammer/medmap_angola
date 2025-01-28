@@ -5,6 +5,7 @@
 /* ... */
 body {
   font-family: "Inter";
+  overflow: hidden;
 }
 .font-title {
   font-family: "Space Grotesk";
