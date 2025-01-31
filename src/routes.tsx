@@ -7,6 +7,7 @@ import { PharmacyLayout } from "./_layouts/pharmacy";
 import { Medicinals } from "./_pages/app/pharmacy/medicinals/medicinal";
 import { Deposits } from "./_pages/app/pharmacy/deposits/deposit";
 import { Pendings } from "./_pages/app/pharmacy/pendings/pending";
+import { PharmacyProfile } from "./_pages/app/pharmacy/profile/profile";
 
 export const routes = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const routes = createBrowserRouter([
       { path: "/medicamentos", element: <Medicinals /> },
       { path: "/depositos", element: <Deposits /> },
       { path: "/pendentes", element: <Pendings /> },
+      { path: "/perfil", element: <PharmacyProfile /> },
     ],
   },
   {
