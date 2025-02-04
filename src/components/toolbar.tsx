@@ -1,6 +1,7 @@
 import { Search, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface ToolbarProps {
   legend: string;
@@ -18,10 +19,12 @@ export function Toolbar({ legend, children }: ToolbarProps) {
         <Search className="h-8 w-8" />
         <Settings className="h-8 w-8" />
 
-        <Avatar>
-          <AvatarImage src="/avatar.png" />
-          <AvatarFallback>HS</AvatarFallback>
-        </Avatar>
+        <Link to="/perfil">
+          <Avatar>
+            <AvatarImage src="/avatar.png" />
+            <AvatarFallback>HS</AvatarFallback>
+          </Avatar>
+        </Link>
       </div>
     </div>
   );
