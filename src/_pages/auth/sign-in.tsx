@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
-import { Lock, AtSign, Loader, LogIn } from "lucide-react";
+import { Lock, AtSign, LogIn, Loader2 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -22,8 +22,6 @@ const signInScheme = z.object({
 type SignInData = z.infer<typeof signInScheme>;
 
 export function SignIn() {
-  /*   const navigate = useNavigate(); */
-
   const {
     register,
     handleSubmit,
@@ -96,7 +94,7 @@ export function SignIn() {
             <Button className="w-full font-bold" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
-                  <Loader className="animate-spin" />
+                  <Loader2 className="animate-spin" />
                   <span>Verificando credencias...</span>
                 </>
               ) : (
@@ -106,6 +104,16 @@ export function SignIn() {
                 </>
               )}
             </Button>
+          </div>
+
+          <div className="text-left flex items-center gap-2">
+            <span>Esqueceu sua senha?</span>
+            <Link
+              to="/recovery-password"
+              className="text-emerald-600 font-bold"
+            >
+              Recuperar credencias
+            </Link>
           </div>
         </form>
       </Card>

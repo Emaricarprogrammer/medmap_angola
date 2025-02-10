@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
-import { User, Lock, Barcode, ArrowRight, AtSign, Loader } from "lucide-react";
+import { User, Lock, Barcode, ArrowRight, AtSign, Loader2 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Link, useNavigate } from "react-router-dom";
@@ -35,8 +35,6 @@ export function SignUp() {
   });
 
   async function handleSignUp(data: SignUpData) {
-    console.log(data);
-
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       toast.success("Conta cadastrada com sucesso!", {
@@ -138,7 +136,7 @@ export function SignUp() {
             <Button className="w-full font-bold" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
-                  <Loader className="animate-spin" />
+                  <Loader2 className="animate-spin" />
                   <span>Processando Pedido...</span>
                 </>
               ) : (

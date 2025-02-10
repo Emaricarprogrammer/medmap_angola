@@ -8,6 +8,7 @@ import { Medicinals } from "./_pages/app/pharmacy/medicinals/medicinal";
 import { Deposits } from "./_pages/app/pharmacy/deposits/deposit";
 import { Pendings } from "./_pages/app/pharmacy/pendings/pending";
 import { PharmacyProfile } from "./_pages/app/pharmacy/profile/profile";
+import { RecoveryPassWord } from "./_pages/auth/recovery-password";
 
 export const routes = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ export const routes = createBrowserRouter([
     children: [
       { path: "/sign-in", element: <SignIn /> },
       { path: "/sign-up", element: <SignUp /> },
+      { path: "/recovery-password", element: <RecoveryPassWord /> },
     ],
   },
 ]);
