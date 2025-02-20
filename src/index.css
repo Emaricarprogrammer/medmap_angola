@@ -4,11 +4,10 @@
 
 /* ... */
 body {
-  font-family: "Inter";
-  overflow: hidden;
+  font-family: 'Inter', sans-serif;
 }
 .font-title {
-  font-family: "Space Grotesk";
+  font-family: 'Space Grotesk', Arial;
 }
 
 @layer base {

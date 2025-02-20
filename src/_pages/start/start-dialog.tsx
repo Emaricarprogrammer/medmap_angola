@@ -1,20 +1,20 @@
-import { Logo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
+import { Logo } from '@/components/logo';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { UserPlus, HeartHandshake, BookDown } from "lucide-react";
-import { Link } from "react-router-dom";
+} from '@/components/ui/dialog';
+import { UserPlus, HeartHandshake, BookDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function StartDialog() {
   return (
@@ -49,7 +49,7 @@ export function StartDialog() {
 
               <CardFooter>
                 <Button className="w-[170px]">
-                  <Link to="/sign-up">Criar conta</Link>
+                  <Link to="/auth/sign-up">Criar conta</Link>
                 </Button>
               </CardFooter>
             </Card>
@@ -66,7 +66,7 @@ export function StartDialog() {
 
               <CardFooter>
                 <Button className="w-[170px]">
-                  <Link to="/sign-up">Criar conta</Link>
+                  <Link to="/auth/sign-up">Criar conta</Link>
                 </Button>
               </CardFooter>
             </Card>

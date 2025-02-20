@@ -1,22 +1,22 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
-import { Lock, AtSign, LogIn, Loader2 } from "lucide-react";
-import { Logo } from "@/components/logo";
-import { Card, CardHeader } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@radix-ui/react-label';
+import { Lock, AtSign, LogIn, Loader2 } from 'lucide-react';
+import { Logo } from '@/components/logo';
+import { Card, CardHeader } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-import { Helmet } from "react-helmet-async";
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { Helmet } from 'react-helmet-async';
 
 const signInScheme = z.object({
-  email: z.string().email("Introduza um e-mail válido!"),
+  email: z.string().email('Introduza um e-mail válido!'),
   password: z
     .string()
-    .min(6, "Introduza uma palavra-passe de no mínimo 6 dígitos!"),
+    .min(6, 'Introduza uma palavra-passe de no mínimo 6 dígitos!'),
 });
 
 type SignInData = z.infer<typeof signInScheme>;
@@ -35,20 +35,20 @@ export function SignIn() {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast.success("Login realizado com Sucesso!", {});
+      toast.success('Login realizado com Sucesso!', {});
     } catch {
-      toast.error("Ops! Falha ao fazer Login.");
+      toast.error('Ops! Falha ao fazer Login.');
     }
   }
 
   return (
     <>
       <Helmet title="Fazer Login" />
-      <Card className="w-[480px] h-[500px] p-8">
+      <Card className="w-[480px] h-[600px] p-12">
         <CardHeader>
           <Logo />
           <div>
-            Ainda não possui uma conta?{" "}
+            Ainda não possui uma conta?{' '}
             <Link to="/sign-up" className="text-primary font-bold">
               Crie uma
             </Link>
@@ -67,7 +67,7 @@ export function SignIn() {
               type="email"
               placeholder="seu@email.com"
               className="bg-neutral-50"
-              {...register("email")}
+              {...register('email')}
             />
             <span className="text-rose-600 text-sm text-left ">
               {errors.email && errors.email.message}
@@ -83,11 +83,17 @@ export function SignIn() {
               type="text"
               placeholder="*** *** ***"
               className="bg-neutral-50"
-              {...register("password")}
+              {...register('password')}
             />
             <span className="text-rose-600 text-sm text-left ">
               {errors.password && errors.password.message}
             </span>
+          </div>
+
+          <div className="text-left">
+            <Link to="/recovery-password" className="text-primary font-bold">
+              Esqueci minha senha
+            </Link>
           </div>
 
           <div className="w-full">
@@ -104,16 +110,6 @@ export function SignIn() {
                 </>
               )}
             </Button>
-          </div>
-
-          <div className="text-left flex items-center gap-2">
-            <span>Esqueceu sua senha?</span>
-            <Link
-              to="/recovery-password"
-              className="text-emerald-600 font-bold"
-            >
-              Recuperar credencias
-            </Link>
           </div>
         </form>
       </Card>

@@ -1,10 +1,10 @@
-import { Logo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
+import { Logo } from '@/components/logo';
+import { Button } from '@/components/ui/button';
 
-import { User } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
-import { StartDialog } from "./start-dialog";
-import { Helmet } from "react-helmet-async";
+import { User } from 'lucide-react';
+import { Link, NavLink } from 'react-router-dom';
+import { StartDialog } from './start-dialog';
+import { Helmet } from 'react-helmet-async';
 
 export function Landing() {
   return (
@@ -32,7 +32,7 @@ export function Landing() {
 
             <div className="flex gap-4 items-center justify-center">
               <Button size="lg">
-                <Link to="/sign-in" className="flex gap-1 items-center">
+                <Link to="/auth/sign-in" className="flex gap-1 items-center">
                   <User className="h-4 w-4" />
                   <span>Entrar</span>
                 </Link>
@@ -50,9 +50,9 @@ export function Landing() {
           </div>
 
           <div className="flex items-center justify-between gap-8">
-            <NavLink to="">Termos & condições</NavLink>
-            <NavLink to="">Guia</NavLink>
-            <NavLink to="">Cookies</NavLink>
+            <NavLink to="#">Termos & condições</NavLink>
+            <NavLink to="#">Guia</NavLink>
+            <NavLink to="#">Cookies</NavLink>
           </div>
         </footer>
       </main>
