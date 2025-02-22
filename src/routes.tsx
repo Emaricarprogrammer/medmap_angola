@@ -5,14 +5,14 @@ import { Landing } from './_pages/start/start';
 import { AuthLayout } from './_layouts/auth';
 import { SignUp } from './_pages/auth/sign-up';
 import { SignIn } from './_pages/auth/sign-in';
+import { Recovery } from './_pages/auth/recovery';
+import { ResetPassword } from './_pages/auth/reset-password';
 
 import { PharmacyLayout } from './_layouts/pharmacy';
 import { Medicinals } from './_pages/app/pharmacy/medicinals/medicinal';
 import { Deposits } from './_pages/app/pharmacy/deposits/deposit';
 import { Pendings } from './_pages/app/pharmacy/pendings/pending';
 import { PharmacyProfile } from './_pages/app/pharmacy/profile/profile';
-import { Recovery } from './_pages/auth/recovery';
-import { ResetPassword } from './_pages/auth/reset-password';
 
 export const routes = createBrowserRouter([
   {
