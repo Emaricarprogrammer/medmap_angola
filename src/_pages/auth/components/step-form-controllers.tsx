@@ -12,16 +12,21 @@ export function StepFormControllers({
   onPrevious,
 }: StepFormControllersProps) {
   return (
-    <div className="flex justify-end gap-4 mt-4">
+    <div className="flex justify-between gap-4 mt-4">
       {stepForm !== 1 && (
-        <Button type="button" variant="secondary" onClick={onPrevious}>
+        <Button
+          type="button"
+          className="rounded-full"
+          variant="secondary"
+          onClick={onPrevious}
+        >
           <ArrowLeft />
           <span>Voltar</span>
         </Button>
       )}
 
       {stepForm < 3 && (
-        <Button type="button" onClick={onNext}>
+        <Button type="button" className="rounded-full" onClick={onNext}>
           <ArrowRight />
           <span>Próximo</span>
         </Button>

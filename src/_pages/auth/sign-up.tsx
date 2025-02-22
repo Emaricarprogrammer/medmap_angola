@@ -25,12 +25,14 @@ export function SignUp() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { isSubmitting, errors },
   } = useForm<SignUpData>({
     resolver: zodResolver(signUpScheme),
   });
 
   async function handleSignUp(data: SignUpData) {
+    console.log(data);
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       toast.success('Conta cadastrada com sucesso!', {
@@ -49,7 +51,7 @@ export function SignUp() {
   return (
     <>
       <Helmet title="Cadastrar-se" />
-      <Card className="w-[480px] h-[690px] py-6 px-12">
+      <Card className="w-[480px] h-[690px] py-6 px-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
         <CardHeader>
           <Logo />
           <div>
@@ -65,7 +67,11 @@ export function SignUp() {
           onSubmit={handleSubmit(handleSignUp)}
         >
           {stepForm === 1 && (
-            <PersonalDataStep register={register} errors={errors} />
+            <PersonalDataStep
+              register={register}
+              errors={errors}
+              control={control}
+            />
           )}
           {stepForm === 2 && (
             <LocationDataStep register={register} errors={errors} />
@@ -76,7 +82,11 @@ export function SignUp() {
 
           {stepState === 'finished' && (
             <div className="w-full">
-              <Button className="w-full font-bold" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                className="w-full font-bold rounded-full"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="animate-spin" />

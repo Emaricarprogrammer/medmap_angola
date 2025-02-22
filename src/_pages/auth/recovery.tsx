@@ -1,4 +1,4 @@
-import { Lock, AtSign, LogIn, Loader2 } from 'lucide-react';
+import { Lock, AtSign, LogIn, Loader2, ArrowLeft, Mail } from 'lucide-react';
 
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
@@ -7,54 +7,46 @@ import { Label } from '@radix-ui/react-label';
 import { Card, CardHeader } from '@/components/ui/card';
 
 import { Helmet } from 'react-helmet-async';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SignInData, signInScheme } from '@/schemas/sign-in';
+import { RecoveryData, recoveryScheme } from '@/schemas/recovery';
 import { toast } from 'sonner';
 
-export function SignIn() {
-  const [params] = useSearchParams();
-
+export function Recovery() {
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
-  } = useForm<SignInData>({
-    resolver: zodResolver(signInScheme),
-    defaultValues: {
-      email: params.get('email') || '',
-    },
+  } = useForm<RecoveryData>({
+    resolver: zodResolver(recoveryScheme),
   });
 
-  async function handleSignIn(data: SignInData) {
-    console.log(data);
-
+  async function handleSendRecoveryMail(data: RecoveryData) {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast.success('Login realizado com Sucesso!');
+      toast.success(
+        `Enviamos um email de recuperação de credencias para ${data.email}`,
+      );
     } catch {
-      toast.error('Ops! Falha ao fazer Login.');
+      toast.error('Ops! Falha ao enviar.');
     }
   }
 
   return (
     <>
-      <Helmet title="Fazer Login" />
+      <Helmet title="Email de Recuperação" />
       <Card className="w-[480px] h-[600px] p-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
         <CardHeader>
           <Logo />
-          <div>
-            Ainda não possui uma conta?{' '}
-            <Link to="/auth/sign-up" className="text-primary font-bold">
-              Crie uma
-            </Link>
+          <div className="text-foreground font-bold">
+            Recupere as suas credencias de acesso a plataforma
           </div>
         </CardHeader>
         <form
           className="flex flex-col gap-6"
-          onSubmit={handleSubmit(handleSignIn)}
+          onSubmit={handleSubmit(handleSendRecoveryMail)}
         >
           <div className="flex flex-col gap-2">
             <Label className="flex items-center text-foreground/60 ml-2 gap-1">
@@ -63,38 +55,13 @@ export function SignIn() {
             </Label>
             <Input
               type="email"
-              placeholder="seu@email.com"
+              placeholder="e-mail cadastrado na plataforma"
               className="bg-neutral-50/50"
               {...register('email')}
             />
             <span className="text-rose-600 text-sm text-left ">
               {errors.email && errors.email.message}
             </span>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <Label className="flex items-center text-foreground/60 ml-2 gap-1">
-              <Lock className="w-4 h-4" />
-              <span>Palavra passe</span>
-            </Label>
-            <Input
-              type="password"
-              placeholder="*** *** ***"
-              className="bg-neutral-50/50"
-              {...register('password')}
-            />
-            <span className="text-rose-600 text-sm text-left ">
-              {errors.password && errors.password.message}
-            </span>
-          </div>
-
-          <div className="text-left">
-            <Link
-              to="/auth/recovery"
-              className="text-primary font-bold text-sm"
-            >
-              Esqueci minha senha
-            </Link>
           </div>
 
           <div className="w-full">
@@ -105,15 +72,25 @@ export function SignIn() {
               {isSubmitting ? (
                 <>
                   <Loader2 className="animate-spin" />
-                  <span>Verificando credencias...</span>
+                  <span>Enviando...</span>
                 </>
               ) : (
                 <>
-                  <LogIn />
-                  <span>Fazer Login</span>
+                  <Mail />
+                  <span>Enviar</span>
                 </>
               )}
             </Button>
+          </div>
+
+          <div className="text-left">
+            <Link
+              to="/auth/sign-in"
+              className="text-primary font-bold text-sm flex items-center gap-1"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Voltar para Login
+            </Link>
           </div>
         </form>
       </Card>

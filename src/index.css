@@ -6,9 +6,6 @@
 body {
   font-family: 'Inter', sans-serif;
 }
-.font-title {
-  font-family: 'Space Grotesk', Arial;
-}
 
 @layer base {
   :root {

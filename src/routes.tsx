@@ -1,15 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
+
 import { Landing } from './_pages/start/start';
+
 import { AuthLayout } from './_layouts/auth';
 import { SignUp } from './_pages/auth/sign-up';
 import { SignIn } from './_pages/auth/sign-in';
+
 import { PharmacyLayout } from './_layouts/pharmacy';
 import { Medicinals } from './_pages/app/pharmacy/medicinals/medicinal';
 import { Deposits } from './_pages/app/pharmacy/deposits/deposit';
 import { Pendings } from './_pages/app/pharmacy/pendings/pending';
 import { PharmacyProfile } from './_pages/app/pharmacy/profile/profile';
-import { RecoveryPassWord } from './_pages/auth/recovery-password';
-import { DeposityLayout } from './_layouts/deposits';
+import { Recovery } from './_pages/auth/recovery';
+import { ResetPassword } from './_pages/auth/reset-password';
 
 export const routes = createBrowserRouter([
   {
@@ -20,6 +23,7 @@ export const routes = createBrowserRouter([
     path: '/pharmacy',
     element: <PharmacyLayout />,
     children: [
+      { path: '', element: <Medicinals /> },
       { path: 'medicinals', element: <Medicinals /> },
       { path: 'deposits', element: <Deposits /> },
       { path: 'pendings', element: <Pendings /> },
@@ -32,7 +36,8 @@ export const routes = createBrowserRouter([
     children: [
       { path: 'sign-in', element: <SignIn /> },
       { path: 'sign-up', element: <SignUp /> },
-      { path: 'recovery-password', element: <RecoveryPassWord /> },
+      { path: 'recovery', element: <Recovery /> },
+      { path: 'reset-password', element: <ResetPassword /> },
     ],
   },
 ]);
