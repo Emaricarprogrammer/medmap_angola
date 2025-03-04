@@ -14,7 +14,7 @@ export function Medicinals() {
           legend="Medicamentos"
         />
 
-        <div className="py-16 h-[40rem] max-xl:py-8 grid grid-cols-2 gap-8 max-xl:grid-cols-1 overflow-y-scroll">
+        <div className="py-16 h-[40rem] max-xl:h-[52rem] max-sm:h-[40rem]  max-xl:py-8 grid grid-cols-2 gap-8 max-xl:grid-cols-1 overflow-y-scroll">
           <MedicialCard />
           <MedicialCard />
           <MedicialCard />

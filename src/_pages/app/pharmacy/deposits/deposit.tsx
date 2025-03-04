@@ -14,7 +14,7 @@ export function Deposits() {
           legend="Depósitos"
         />
 
-        <div className="py-16 h-[40rem] overflow-y-scroll max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
+        <div className="py-16 h-[40rem] max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
           <DepositCard />
           <DepositCard />
           <DepositCard />

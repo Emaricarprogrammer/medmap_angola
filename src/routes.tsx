@@ -19,6 +19,18 @@ export const routes = createBrowserRouter([
     path: '/',
     element: <Landing />,
   },
+
+  {
+    path: '/auth',
+    element: <AuthLayout />,
+    children: [
+      { path: 'sign-in', element: <SignIn /> },
+      { path: 'sign-up', element: <SignUp /> },
+      { path: 'recovery', element: <Recovery /> },
+      { path: 'reset-password', element: <ResetPassword /> },
+    ],
+  },
+
   {
     path: '/pharmacy',
     element: <PharmacyLayout />,
@@ -28,16 +40,6 @@ export const routes = createBrowserRouter([
       { path: 'deposits', element: <Deposits /> },
       { path: 'pendings', element: <Pendings /> },
       { path: 'profile', element: <PharmacyProfile /> },
-    ],
-  },
-  {
-    path: '/auth',
-    element: <AuthLayout />,
-    children: [
-      { path: 'sign-in', element: <SignIn /> },
-      { path: 'sign-up', element: <SignUp /> },
-      { path: 'recovery', element: <Recovery /> },
-      { path: 'reset-password', element: <ResetPassword /> },
     ],
   },
 ]);

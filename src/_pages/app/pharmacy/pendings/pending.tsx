@@ -14,7 +14,7 @@ export function Pendings() {
           legend="Pendentes"
         />
 
-        <div className="py-16 h-[40rem] overflow-y-scroll  max-xl:py-8 grid grid-cols-4 gap-8 max-xl:grid-cols-2">
+        <div className="py-16 h-[40rem] max-xl:h-[52rem] max-sm:h-[40rem]  overflow-y-scroll  max-xl:py-8 grid grid-cols-4 gap-8 max-xl:grid-cols-2 max-sm:grid-cols-1">
           <PendingCard />
           <PendingCard />
           <PendingCard />

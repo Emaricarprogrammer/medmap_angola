@@ -51,7 +51,7 @@ export function ResetPassword() {
       <Card className="w-[480px] h-[600px] p-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
         <CardHeader>
           <Logo />
-          <div className="text-foreground font-bold">
+          <div className="text-foreground">
             Ao repor a sua palavra passe certifique que será fácil de lembrar
           </div>
         </CardHeader>
