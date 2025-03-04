@@ -1,8 +1,8 @@
-import { Package } from "lucide-react";
+import { Package } from 'lucide-react';
 
 export function PendingCard() {
   return (
-    <div className="bg-white h-64 p-8 flex flex-col justify-between gap-2 rounded-xl">
+    <div className="bg-white h-64 p-8 flex flex-col border-2 justify-between gap-2 rounded-xl">
       <div className="flex items-center justify-end text-white w-fit p-2 bg-neutral-900 border rounded-full">
         <Package className="h-10 w-10" />
       </div>

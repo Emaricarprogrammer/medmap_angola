@@ -1,4 +1,4 @@
-import { Lock, AtSign, LogIn, Loader2, ArrowLeft, Mail } from 'lucide-react';
+import { AtSign, Loader2, ArrowLeft, Mail } from 'lucide-react';
 
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
@@ -40,7 +40,7 @@ export function Recovery() {
       <Card className="w-[480px] h-[600px] p-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
         <CardHeader>
           <Logo />
-          <div className="text-foreground font-bold">
+          <div className="text-foreground font-normal">
             Recupere as suas credencias de acesso a plataforma
           </div>
         </CardHeader>
@@ -86,7 +86,7 @@ export function Recovery() {
           <div className="text-left">
             <Link
               to="/auth/sign-in"
-              className="text-primary font-bold text-sm flex items-center gap-1"
+              className="text-primary font-semibold text-sm flex items-center gap-1"
             >
               <ArrowLeft className="w-4 h-4" />
               Voltar para Login

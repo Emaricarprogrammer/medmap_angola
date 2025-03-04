@@ -1,9 +1,9 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Phone, Map, Package, MapPin } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Phone, Map, Package, MapPin } from 'lucide-react';
 
 export function ProfileHeader() {
   return (
-    <div className="flex flex-col gap-2 w-full shadow-sm bg-white p-4 rounded-md">
+    <div className="flex flex-col gap-2 w-full  bg-white  shadow-lg p-4 rounded-md">
       <div className="flex items-center gap-4">
         <Avatar className="h-16 w-16">
           <AvatarImage src="/profile.png" />
@@ -16,7 +16,7 @@ export function ProfileHeader() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mt-4">
+      <div className="grid grid-cols-4 gap-4 mt-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
         <div className="bg-neutral-800 p-5 flex flex-col gap-2 justify-between text-white rounded-md">
           <strong className="flex font-normal">140</strong>
           <div className="text-white/60 font-light flex items-center justify-between">

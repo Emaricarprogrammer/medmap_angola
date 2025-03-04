@@ -1,7 +1,7 @@
-import { Toolbar } from "@/components/toolbar";
-import { Helmet } from "react-helmet-async";
-import { CircleDashed } from "lucide-react";
-import { PendingCard } from "./pending-card";
+import { Toolbar } from '@/components/toolbar';
+import { Helmet } from 'react-helmet-async';
+import { CircleDashed } from 'lucide-react';
+import { PendingCard } from './pending-card';
 
 export function Pendings() {
   return (
@@ -14,7 +14,7 @@ export function Pendings() {
           legend="Pendentes"
         />
 
-        <div className="py-16 grid grid-cols-4 gap-8">
+        <div className="py-16 h-[40rem] overflow-y-scroll  max-xl:py-8 grid grid-cols-4 gap-8 max-xl:grid-cols-2">
           <PendingCard />
           <PendingCard />
           <PendingCard />

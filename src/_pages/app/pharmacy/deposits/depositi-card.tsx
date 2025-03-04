@@ -1,10 +1,10 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Package } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Package } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function DepositCard() {
   return (
-    <div className="bg-white h-64 p-8 flex flex-col justify-between gap-2 rounded-xl">
+    <div className="bg-white h-64 p-8 flex flex-col justify-between gap-2 rounded-xl border-2">
       <Avatar>
         <AvatarImage src="/profile.png" />
         <AvatarFallback>HF</AvatarFallback>

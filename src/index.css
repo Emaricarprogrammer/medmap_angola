@@ -4,7 +4,10 @@
 
 /* ... */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Helvetica Ne', sans-serif;
+}
+::-webkit-scrollbar {
+  width: 7px;
 }
 
 @layer base {

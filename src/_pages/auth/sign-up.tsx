@@ -56,7 +56,7 @@ export function SignUp() {
           <Logo />
           <div>
             Já possui uma conta?{' '}
-            <Link to="/auth/sign-in" className="text-primary font-bold">
+            <Link to="/auth/sign-in" className="text-primary">
               Entrar
             </Link>
           </div>

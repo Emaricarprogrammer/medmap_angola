@@ -45,10 +45,10 @@ export function SignIn() {
       <Card className="w-[480px] h-[600px] p-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
         <CardHeader>
           <Logo />
-          <div>
+          <div className="font-normal">
             Ainda não possui uma conta?{' '}
-            <Link to="/auth/sign-up" className="text-primary font-bold">
-              Crie uma
+            <Link to="/auth/sign-up" className="text-primary">
+              Crie uma conta
             </Link>
           </div>
         </CardHeader>
@@ -89,10 +89,7 @@ export function SignIn() {
           </div>
 
           <div className="text-left">
-            <Link
-              to="/auth/recovery"
-              className="text-primary font-bold text-sm"
-            >
+            <Link to="/auth/recovery" className="text-primary text-sm">
               Esqueci minha senha
             </Link>
           </div>

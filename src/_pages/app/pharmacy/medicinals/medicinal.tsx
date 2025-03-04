@@ -1,7 +1,7 @@
-import { Toolbar } from "@/components/toolbar";
-import { MedicialCard } from "./medicinal-card";
-import { Helmet } from "react-helmet-async";
-import { Thermometer } from "lucide-react";
+import { Toolbar } from '@/components/toolbar';
+import { MedicialCard } from './medicinal-card';
+import { Helmet } from 'react-helmet-async';
+import { Thermometer } from 'lucide-react';
 
 export function Medicinals() {
   return (
@@ -14,7 +14,13 @@ export function Medicinals() {
           legend="Medicamentos"
         />
 
-        <div className="py-16 grid grid-cols-2 gap-8">
+        <div className="py-16 h-[40rem] max-xl:py-8 grid grid-cols-2 gap-8 max-xl:grid-cols-1 overflow-y-scroll">
+          <MedicialCard />
+          <MedicialCard />
+          <MedicialCard />
+          <MedicialCard />
+          <MedicialCard />
+          <MedicialCard />
           <MedicialCard />
           <MedicialCard />
           <MedicialCard />

@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Button } from '@/components/ui/button';
+import { DialogContent, DialogTitle } from '@/components/ui/dialog';
 import {
   Caravan,
   Hospital,
@@ -7,20 +7,20 @@ import {
   Package,
   Plus,
   ShoppingBag,
-} from "lucide-react";
+} from 'lucide-react';
 
 export function EncomendDialog() {
   return (
     <DialogContent>
       <DialogTitle>Faça a sua encomenda ou reserva</DialogTitle>
 
-      <div className="border gap-8 rounded-sm flex items-center justify-between">
+      <div className="border gap-8 rounded-sm flex items-center justify-between max-sm:flex-col">
         <img className="w-36 h-36" src="/medicial.png" />
 
         <div className="flex p-6 flex-col gap-4 bg-neutral-100">
           <div className="flex flex-col gap-2">
             <strong className="font-bold text-xl text-foreground">
-              Paracetamol -{" "}
+              Paracetamol -{' '}
               <span className="font-normal text-neutral-500 text-sm">
                 34 Lâminas
               </span>

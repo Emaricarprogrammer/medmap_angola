@@ -1,7 +1,7 @@
-import { Toolbar } from "@/components/toolbar";
-import { HandPlatter } from "lucide-react";
-import { Helmet } from "react-helmet-async";
-import { DepositCard } from "./depositi-card";
+import { Toolbar } from '@/components/toolbar';
+import { HandPlatter } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { DepositCard } from './depositi-card';
 
 export function Deposits() {
   return (
@@ -14,7 +14,7 @@ export function Deposits() {
           legend="Depósitos"
         />
 
-        <div className="py-16 grid grid-cols-4 gap-4">
+        <div className="py-16 h-[40rem] overflow-y-scroll max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
           <DepositCard />
           <DepositCard />
           <DepositCard />

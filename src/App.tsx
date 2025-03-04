@@ -10,7 +10,7 @@ export function App() {
         <Helmet titleTemplate="%s | medmap" />
         <Toaster
           style={{
-            fontFamily: 'Inter',
+            fontFamily: 'Inters',
             fontWeight: 'bold',
           }}
           richColors

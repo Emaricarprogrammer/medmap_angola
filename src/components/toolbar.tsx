@@ -9,15 +9,15 @@ interface ToolbarProps {
 }
 export function Toolbar({ legend, children }: ToolbarProps) {
   return (
-    <div className="w-full p-4 flex items-center justify-between bg-white shadow-sm rounded-xl">
-      <div className="flex items-center gap-2">
+    <div className="w-full border p-4 flex items-center justify-between max-sm:mt-16 bg-white shadow-sm rounded-xl">
+      <div className="flex items-center gap-2 max-sm:gap-1">
         {children}
         <span>{legend}</span>
       </div>
 
-      <div className="flex items-center justify-between gap-8 text-neutral-400">
-        <Search className="h-8 w-8" />
-        <Settings className="h-8 w-8" />
+      <div className="flex items-center justify-between gap-8 max-sm:gap-4 text-neutral-400">
+        <Search className="h-7 w-7" />
+        <Settings className="h-7 w-7" />
 
         <Link to="/pharmacy/profile">
           <Avatar>
