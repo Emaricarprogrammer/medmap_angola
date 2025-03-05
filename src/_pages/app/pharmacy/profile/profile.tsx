@@ -13,7 +13,7 @@ export function PharmacyProfile() {
       <div className="w-full">
         <Toolbar
           children={<User className="text-primary h-8 w-8" />}
-          legend="Perfil de Santa Catarina Lda"
+          legend="Santa Catarina Lda"
         />
         <div className="py-8 w-full">
           <ProfileHeader />

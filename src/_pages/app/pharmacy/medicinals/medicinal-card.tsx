@@ -41,7 +41,7 @@ export function MedicialCard() {
             <EncomendDialog />
           </Dialog>
 
-          <div className="flex items-center gap-2 text-foreground cursor-pointer hover:opacity-60">
+          <div className="flex items-center gap-2 text-foreground cursor-pointer text-sm hover:opacity-60">
             <MessageCircle className="h-5 w-5" />
             <span>Mensagem</span>
           </div>

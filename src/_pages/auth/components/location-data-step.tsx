@@ -2,18 +2,26 @@ import { Label } from '@/components/ui/label';
 import { Info, Map, MapPin } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { FormStepProps } from '@/schemas/sign-up';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 export function LocationDataStep({ register, errors }: FormStepProps) {
-  function handleGeoLocation() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      let { latitude } = position.coords;
-      let { longitude } = position.coords;
+  const [Userlatitude, setUserLatitude] = useState(0);
+  const [Userlongitude, setUserLongitude] = useState(0);
 
-      //Esses Dados Serão Preenchidos Automaticamente
-      // quando essa função for chamada!
-      console.log('Latitude: ', latitude);
-      console.log('Longitude: ', longitude);
-    });
+  async function handleGeoLocation() {
+    try {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude } = position.coords;
+        const { longitude } = position.coords;
+
+        setUserLatitude(latitude);
+        setUserLongitude(longitude);
+      });
+    } catch {
+      toast.error('Ops! Erro ao obter localização');
+      console.log('Erro');
+    }
   }
 
   return (
@@ -24,10 +32,10 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           <span>Logradouro</span>
         </Label>
         <Input
-          type="text"
+          type="number"
           placeholder="Logradouro"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('logradouro')}
+          {...register('logradouro', { valueAsNumber: true })}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.logradouro &&
@@ -41,10 +49,10 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           <span>Rua</span>
         </Label>
         <Input
-          type="text"
+          type="number"
           placeholder="Nº da Rua"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('streetNumber')}
+          {...register('streetNumber', { valueAsNumber: true })}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.streetNumber &&
@@ -61,7 +69,8 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           </Label>
           <Input
             type="number"
-            placeholder="Longitude"
+            placeholder="Latitude"
+            value={Userlatitude && Userlatitude}
             className="bg-neutral-50 placeholder:text-neutral-500"
             {...register('latitude', { valueAsNumber: true })}
           />
@@ -79,7 +88,8 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           </Label>
           <Input
             type="number"
-            placeholder="Latitude"
+            placeholder="Longitude"
+            value={Userlongitude && Userlongitude}
             className="bg-neutral-50 placeholder:text-neutral-500"
             {...register('longitude', { valueAsNumber: true })}
           />
