@@ -9,6 +9,30 @@ body {
 ::-webkit-scrollbar {
   width: 7px;
 }
+.font-mono {
+  font-family: 'Space Grotesk';
+}
+@keyframes typing {
+  0% {
+    width: 0%;
+    visibility: hidden;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: white;
+  }
+}
+.animate-typing {
+  animation: typing 4s steps(30) infinite, blink 1s infinite;
+}
 
 @layer base {
   :root {

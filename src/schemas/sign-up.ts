@@ -3,11 +3,12 @@ import { z } from 'zod';
 
 export const signUpScheme = z.object({
   company: z.string().min(1, 'Firma inválido!'),
-  nif: z.string().min(1, 'NIF inválido!'),
+  nif: z.string().min(10, 'NIF inválido!'),
   entity: z.enum(['pharmacy', 'deposit'], { message: '' }),
   city: z.string().min(3, 'Preenha este campo!'),
 
-  streetNumber: z.string({ message: 'Preencha este campo!' }),
+  street: z.string({ message: 'Preencha este campo!' }),
+  streetNumber: z.number({ message: 'Preencha este campo!' }),
   logradouro: z.string({ message: 'Preencha este campo!' }),
   latitude: z.number({ message: 'Coordenada inválida!' }),
   longitude: z.number({ message: 'Coordenada inválida!' }),

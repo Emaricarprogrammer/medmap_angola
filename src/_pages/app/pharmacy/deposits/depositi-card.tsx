@@ -21,7 +21,7 @@ export function DepositCard() {
       </div>
 
       <footer className="text-primary">
-        <Link to="">Visitar</Link>
+        <Link to="/pharmacy/profile">Visitar</Link>
       </footer>
     </div>
   );

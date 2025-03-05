@@ -75,6 +75,22 @@ export function ResetPassword() {
             </span>
           </div>
 
+          <div className="flex flex-col gap-2">
+            <Label className="flex items-center text-foreground/60 ml-2 gap-1">
+              <Lock className="w-4 h-4" />
+              <span>Nova Palavra Passe</span>
+            </Label>
+            <Input
+              type="password"
+              placeholder="*** *** ***"
+              className="bg-neutral-50/50"
+              {...register('newPassWord')}
+            />
+            <span className="text-rose-600 text-sm text-left ">
+              {errors.newPassWord && errors.newPassWord.message}
+            </span>
+          </div>
+
           <div className="w-full">
             <Button
               className="w-full font-bold rounded-full"

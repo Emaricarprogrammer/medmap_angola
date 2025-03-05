@@ -1,5 +1,5 @@
 import { Label } from '@/components/ui/label';
-import { Info, Map, MapPin } from 'lucide-react';
+import { Info, Map, MapPin, WifiOff } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { FormStepProps } from '@/schemas/sign-up';
 import { useState } from 'react';
@@ -10,18 +10,20 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
   const [Userlongitude, setUserLongitude] = useState(0);
 
   async function handleGeoLocation() {
-    try {
-      navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
         const { latitude } = position.coords;
         const { longitude } = position.coords;
 
         setUserLatitude(latitude);
         setUserLongitude(longitude);
-      });
-    } catch {
-      toast.error('Ops! Erro ao obter localização');
-      console.log('Erro');
-    }
+      },
+      () => {
+        toast.error('Ops! Erro ao Obter a localização', {
+          icon: <WifiOff />,
+        });
+      },
+    );
   }
 
   return (
@@ -32,10 +34,10 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           <span>Logradouro</span>
         </Label>
         <Input
-          type="number"
-          placeholder="Logradouro"
+          type="text"
+          placeholder="Ex: avenida 21 de janeiro"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('logradouro', { valueAsNumber: true })}
+          {...register('logradouro')}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.logradouro &&
@@ -49,8 +51,26 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           <span>Rua</span>
         </Label>
         <Input
+          type="text"
+          placeholder="Ex: Kikagil"
+          className="bg-neutral-50 placeholder:text-neutral-500"
+          {...register('street')}
+        />
+        <span className="text-rose-600 text-sm font-light text-left ">
+          {errors.street &&
+            typeof errors.street.message === 'string' &&
+            errors.street.message}
+        </span>
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <Label className="flex items-center text-foreground/60 ml-2 gap-1">
+          <Info className="w-4 h-4" />
+          <span>Nº da Rua</span>
+        </Label>
+        <Input
           type="number"
-          placeholder="Nº da Rua"
+          placeholder="Ex: Kikagil"
           className="bg-neutral-50 placeholder:text-neutral-500"
           {...register('streetNumber', { valueAsNumber: true })}
         />

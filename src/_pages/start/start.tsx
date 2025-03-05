@@ -11,19 +11,21 @@ export function Landing() {
       <Helmet title="Início" />
 
       <main
-        className="bg-cover bg-center h-screen flex flex-col text-center items-center py-20"
+        className="bg-cover bg-center h-screen flex flex-col text-center items-center py-28"
         style={{ backgroundImage: "url('/main-bg.png')" }}
       >
-        <div>
+        <div className="max-xl:flex max-xl:items-center max-xl:flex-col max-xl:gap-6 max-xl:justify-center max-xl:h-screen">
           <Logo />
 
-          <div className="mt-24 max-lg:mt-8 flex flex-col gap-6 items-center max-lg:w-96">
-            <header className="text-4xl font-bold tracking-wide w-fit max-lg:text-3xl">
+          <div className="mt-24 max-xl:mt-0 flex flex-col gap-6 items-center max-xl:w-96">
+            <header className="w-max  text-4xl font-mono tracking-wide max-lg:text-3xl">
               <h1 className="max-lg:hidden">Medicamentos ao ceu alcance:</h1>
-              <h2>Encontre os Depósitos Mais Próximos</h2>
+              <h2 className="animate-typing border-r-primary border-r-5 overflow-hidden whitespace-nowrap ">
+                Encontre os Depósitos Mais Próximos
+              </h2>
             </header>
 
-            <article className="w-[800px] max-lg:w-fit text-xl text-foreground/80 tracking-wide max-lg:text-lg">
+            <article className="w-[800px] max-sm:w-fit px-4 text-xl text-foreground/80 tracking-wide max-lg:text-lg">
               Nosso sistema conecta voçê aos depósitos mais próximos em poucos
               cliques. Pesquise pelo medicamento necessário e encontre
               rapidamente onde comprar.
@@ -33,7 +35,7 @@ export function Landing() {
               <Button
                 size="lg"
                 asChild
-                className="bg-neutral-900 hover:bg-neutral-800 rounded-full"
+                className="bg-neutral-900 hover:bg-neutral-800 rounded-lg"
               >
                 <Link to="/auth/sign-up" className="flex gap-1 items-center">
                   <UserPlus className="h-4 w-4" />
@@ -41,7 +43,7 @@ export function Landing() {
                 </Link>
               </Button>
 
-              <Button size="lg" asChild className="rounded-full">
+              <Button size="lg" asChild className="rounded-lg">
                 <Link to="/auth/sign-in" className="flex gap-1 items-center">
                   <User className="h-4 w-4" />
                   <span>Entrar</span>
@@ -57,7 +59,7 @@ export function Landing() {
             <span>Contactos</span>
           </div>
 
-          <div className="flex items-center justify-between gap-8">
+          <div className="flex items-center justify-between gap-6 max-sm:hidden">
             <NavLink to="#">Termos & condições</NavLink>
             <NavLink to="#">Guia</NavLink>
             <NavLink to="#">Cookies</NavLink>
