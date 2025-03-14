@@ -1,15 +1,31 @@
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-export function Pagination() {
+interface PaginationProps {
+  legend: string
+  totalItem: number
+  currentPage: number
+  perPage: number
+}
+
+export function Pagination({
+  currentPage,
+  legend,
+  perPage,
+  totalItem,
+}: PaginationProps) {
   return (
     <div className="text-sm flex px-2 items-center mt-8 justify-between">
       <div>
-        <span>Total de 100 Medicamentos</span>
+        <span>
+          Todal de {totalItem} {"  "} {legend}
+        </span>
       </div>
 
       <div className="flex items-center gap-4">
-        <span>Página 1 de 20</span>
+        <span>
+          Página {currentPage} de {perPage}
+        </span>
         <div className="flex items-center gap-2">
           <Button
             size="sm"
@@ -27,5 +43,5 @@ export function Pagination() {
         </div>
       </div>
     </div>
-  );
+  )
 }
