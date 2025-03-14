@@ -33,7 +33,7 @@ export function OrderFilter() {
 
         <Button
           type="submit"
-          className="flex items-center gap-1 bg-neutral-900 hover:bg-neutral-800"
+          className="flex items-center gap-1 bg-gradient-to-tr to-emerald-500 from-emerald-600"
           size="sm"
         >
           <Filter className="w-4 h-4" />

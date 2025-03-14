@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async"
 
-import { Pagination } from "@/components/pagination"
-import { Toolbar } from "@/components/toolbar"
+import { Pagination } from "@/components/general-ui/pagination"
+import { Toolbar } from "@/components/pharmacy-ui/toolbar"
 import { Input } from "@/components/ui/input"
 
 import { DepositMedicialCard } from "./deposit-medicinal-card"
@@ -16,7 +16,7 @@ export function VisitDeposit() {
 
       <div className="w-full">
         <Toolbar
-          children={<HandPlatter className="text-primary h-6 w-6" />}
+          children={<HandPlatter className="text-emerald-600 h-6 w-6" />}
           legend="Santa Catarina Lda"
         />
         <div className="py-8 w-full">

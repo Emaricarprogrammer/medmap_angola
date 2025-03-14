@@ -12,7 +12,7 @@ export function DepositCard() {
   }
 
   return (
-    <div className="bg-white h-64 p-8 border-t-primary duration-200 cursor-pointer flex flex-col justify-between gap-2 rounded-xl border-2 border-t">
+    <div className="bg-white h-64 p-8 border-t-emerald-500 duration-200 cursor-pointer flex flex-col justify-between gap-2 rounded-xl border-2 border-t">
       <Avatar>
         <AvatarImage src="/profile.png" />
         <AvatarFallback>HF</AvatarFallback>
@@ -28,10 +28,10 @@ export function DepositCard() {
         <span className="text-neutral-500">+500 unidades</span>
       </div>
 
-      <footer className="text-primary mt-6">
+      <footer className="text-emerald-600 mt-6">
         <span
           onClick={handleVisitDeposit}
-          className="cursor-pointer flex text-sm hover:bg-primary hover:text-white duration-300 bg-primary/5 w-fit py-2 px-4 rounded-full items-center gap-1"
+          className="cursor-pointer flex text-sm hover:bg-emerald-500 hover:text-white duration-300 bg-emerald-500/5 w-fit py-2 px-4 rounded-full items-center gap-1"
         >
           <ArrowUpRightFromSquare className="w-4 h-4" />
           <span className="font-semibold">Visitar</span>

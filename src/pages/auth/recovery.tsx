@@ -1,6 +1,6 @@
 import { AtSign, Loader2, ArrowLeft, Mail } from "lucide-react"
 
-import { Logo } from "@/components/logo"
+import { Logo } from "@/components/general-ui/logo"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
@@ -66,7 +66,7 @@ export function Recovery() {
 
           <div className="w-full">
             <Button
-              className="w-full font-bold rounded-full"
+              className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-60primary0"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -86,7 +86,7 @@ export function Recovery() {
           <div className="text-left">
             <Link
               to="/auth/sign-in"
-              className="text-primary text-sm flex items-center gap-1"
+              className="text-emerald-600 text-sm flex items-center gap-1"
             >
               <ArrowLeft className="w-4 h-4" />
               Voltar para Login

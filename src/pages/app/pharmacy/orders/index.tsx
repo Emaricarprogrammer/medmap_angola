@@ -1,6 +1,6 @@
 import { Table, TableBody } from "@/components/ui/table"
-import { Pagination } from "@/components/pagination"
-import { Toolbar } from "@/components/toolbar"
+import { Pagination } from "@/components/general-ui/pagination"
+import { Toolbar } from "@/components/pharmacy-ui/toolbar"
 
 import { OrderTableRow } from "./order-table-row"
 import { OrderTableHead } from "./order-table-head"
@@ -16,7 +16,7 @@ export function Orders() {
 
       <div className="w-full">
         <Toolbar
-          children={<CircleDashed className="text-primary h-6 w-6" />}
+          children={<CircleDashed className="text-emerald-700 h-6 w-6" />}
           legend="Pedidos"
         />
 

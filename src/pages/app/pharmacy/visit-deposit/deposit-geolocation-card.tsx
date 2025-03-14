@@ -1,8 +1,9 @@
+import { Card } from "@/components/ui/card"
 import { MapPin } from "lucide-react"
 
 export function DepositGeoLocationCard() {
   return (
-    <div className="bg-white border border-neutral-300 p-5 flex flex-col gap-2 justify-between text-foreground rounded-md">
+    <Card className="p-5 flex flex-col gap-2 shadow-sm rounded-lg justify-between text-foreground">
       <div className="flex g-2">
         <strong className="flex">-3425.55/Log</strong>
         <strong className="flex">-3443.55/Lat</strong>
@@ -11,6 +12,6 @@ export function DepositGeoLocationCard() {
         <span>Geolocalização</span>
         <MapPin className="w-4 h-4" />
       </div>
-    </div>
+    </Card>
   )
 }

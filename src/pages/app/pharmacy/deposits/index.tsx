@@ -1,8 +1,8 @@
-import { Toolbar } from "@/components/toolbar"
+import { Toolbar } from "@/components/pharmacy-ui/toolbar"
 import { HandPlatter } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 import { DepositCard } from "./deposit-card"
-import { Pagination } from "@/components/pagination"
+import { Pagination } from "@/components/general-ui/pagination"
 
 export function Deposits() {
   return (
@@ -11,7 +11,7 @@ export function Deposits() {
 
       <div>
         <Toolbar
-          children={<HandPlatter className="text-primary h-6 w-6" />}
+          children={<HandPlatter className="text-emerald-700 h-6 w-6" />}
           legend="Depósitos"
         />
 

@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async"
 
-import { Toolbar } from "@/components/toolbar"
-import { Pagination } from "@/components/pagination"
+import { Toolbar } from "@/components/pharmacy-ui/toolbar"
+import { Pagination } from "@/components/general-ui/pagination"
 
 import { House } from "lucide-react"
 import { MedicinalCard } from "./medicinal-card"
@@ -13,7 +13,7 @@ export function Home() {
 
       <div className="w-full">
         <Toolbar
-          children={<House className="text-primary h-6 w-6" />}
+          children={<House className="text-emerald-700 h-6 w-6" />}
           legend="Home"
         />
 

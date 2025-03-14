@@ -1,8 +1,6 @@
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogTrigger } from "@/components/ui/dialog"
-import { Package, ShoppingCart } from "lucide-react"
+import { Package } from "lucide-react"
 
-export function DepositMedicialCard() {
+export function MedicialCard() {
   return (
     <div className="bg-white flex-col border-t-emerald-600 p-4 flex text-sm rounded-xl max-sm:p-4 max-sm:flex-col border-2">
       <img className="w-20 h-20 max-sm:w-24 max-sm:h-24" src="/medicial.png" />
@@ -23,17 +21,6 @@ export function DepositMedicialCard() {
             25 Unidades Disponíveis
           </span>
         </div>
-
-        <footer>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="flex bg-gradient-to-tr to-emerald-500 from-emerald-600">
-                <ShoppingCart className="h-4 w-4" />
-                <span className="font-bold text-sm">Encomendar</span>
-              </Button>
-            </DialogTrigger>
-          </Dialog>
-        </footer>
       </div>
     </div>
   )

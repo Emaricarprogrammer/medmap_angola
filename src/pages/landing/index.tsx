@@ -1,4 +1,4 @@
-import { Logo } from "@/components/logo"
+import { Logo } from "@/components/general-ui/logo"
 import { Button } from "@/components/ui/button"
 
 import { User, UserPlus } from "lucide-react"
@@ -43,7 +43,11 @@ export function Landing() {
                 </Link>
               </Button>
 
-              <Button size="lg" asChild className="rounded-lg">
+              <Button
+                size="lg"
+                asChild
+                className="rounded-lg bg-gradient-to-tr to-emerald-500 from-emerald-600"
+              >
                 <Link to="/auth/sign-in" className="flex gap-1 items-center">
                   <User className="h-4 w-4" />
                   <span>Entrar</span>

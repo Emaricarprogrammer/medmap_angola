@@ -1,6 +1,6 @@
 import { Lock, AtSign, LogIn, Loader2 } from "lucide-react"
 
-import { Logo } from "@/components/logo"
+import { Logo } from "@/components/general-ui/logo"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
@@ -47,7 +47,7 @@ export function SignIn() {
           <Logo />
           <div className="font-normal">
             Ainda não possui uma conta?{" "}
-            <Link to="/auth/sign-up" className="text-primary">
+            <Link to="/auth/sign-up" className="text-emerald-600">
               Crie uma conta
             </Link>
           </div>
@@ -89,14 +89,14 @@ export function SignIn() {
           </div>
 
           <div className="text-left">
-            <Link to="/auth/recovery" className="text-primary text-sm">
+            <Link to="/auth/recovery" className="text-emerald-600 text-sm">
               Esqueci minha senha
             </Link>
           </div>
 
           <div className="w-full">
             <Button
-              className="w-full font-bold rounded-full"
+              className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

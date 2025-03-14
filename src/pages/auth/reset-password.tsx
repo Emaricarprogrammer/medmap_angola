@@ -1,6 +1,6 @@
 import { Loader2, Lock } from "lucide-react"
 
-import { Logo } from "@/components/logo"
+import { Logo } from "@/components/general-ui/logo"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
@@ -94,7 +94,7 @@ export function ResetPassword() {
 
           <div className="w-full">
             <Button
-              className="w-full font-bold rounded-full"
+              className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

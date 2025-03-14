@@ -1,4 +1,4 @@
-import { Logo } from "@/components/logo"
+import { Logo } from "@/components/general-ui/logo"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader } from "@/components/ui/card"
 
@@ -54,7 +54,7 @@ export function SignUp() {
           <Logo />
           <div>
             Já possui uma conta?{" "}
-            <Link to="/auth/sign-in" className="text-primary">
+            <Link to="/auth/sign-in" className="text-emerald-600">
               Entrar
             </Link>
           </div>
@@ -82,7 +82,7 @@ export function SignUp() {
             <div className="w-full">
               <Button
                 type="submit"
-                className="w-full font-bold rounded-full"
+                className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (

@@ -1,8 +1,9 @@
-import { PharmacyNavbar } from "@/components/pharmacy-ui/navbar"
+import { DepositNavbar } from "@/components/deposit-ui/navbar"
+
 import { LogOut } from "lucide-react"
 import { Outlet } from "react-router-dom"
 
-export function PharmacyLayout() {
+export function DepositLayout() {
   return (
     <div className="flex antialiased bg-neutral-50 h-screen gap-8 max-sm:gap-2 ">
       <aside className="flex flex-col justify-between w-fit max-sm:flex-row max-sm:left-0 max-sm:w-full bg-neutral-800 max-sm:h-fit max-sm:py-5 max-sm:px-8 max-sm:fixed max-sm:top-0 h-screen p-10">
@@ -16,7 +17,7 @@ export function PharmacyLayout() {
             <span className="w-full  max-sm:hidden h-[1px] bg-neutral-600"></span>
           </div>
 
-          <PharmacyNavbar />
+          <DepositNavbar />
         </header>
 
         <footer className="flex flex-col gap-6 font-lg text-white hover:text-neutral-100">
@@ -26,7 +27,7 @@ export function PharmacyLayout() {
           </div>
 
           <div className="max-sm:hidden text-sm text-muted/60 mt-5">
-            Painel da Farmácia &copy; 2025
+            Painel do Depósito &copy; 2025
           </div>
         </footer>
       </aside>

@@ -121,7 +121,7 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
 
       <div
         onClick={handleGetCurrentLocation}
-        className="flex justify-start text-sm font-bold text-primary w-fit gap-1 mt-4 cursor-pointer rounded-full"
+        className="flex justify-start text-sm font-bold text-emerald-600 w-fit gap-1 mt-4 cursor-pointer rounded-full"
       >
         <MapPin className="w-4 h-4" />
         <span>Usar a localização actual</span>

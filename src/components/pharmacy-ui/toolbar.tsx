@@ -1,6 +1,7 @@
-import { ShoppingCart } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { ReactNode } from "react"
+
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { ShoppingCart } from "lucide-react"
 
 interface ToolbarProps {
   legend: string
@@ -8,7 +9,7 @@ interface ToolbarProps {
 }
 export function Toolbar({ legend, children }: ToolbarProps) {
   return (
-    <div className="w-full border p-4 flex items-center justify-between max-sm:mt-16 bg-white shadow-sm rounded-xl">
+    <div className="w-full border p-4 flex items-center justify-between max-sm:mt-16 bg-white rounded-lg">
       <div className="flex items-center gap-2 max-sm:gap-1">
         {children}
         <span className="font-semibold">{legend}</span>

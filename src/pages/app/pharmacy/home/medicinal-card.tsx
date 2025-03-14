@@ -10,12 +10,12 @@ import { Button } from "@/components/ui/button"
 
 export function MedicinalCard() {
   return (
-    <div className="bg-white border-t-primary p-6 flex rounded-xl max-sm:p-4 max-sm:flex-col border-2">
+    <div className="bg-white border-t-emerald-600 p-6 flex rounded-xl max-sm:p-4 max-sm:flex-col border-2">
       <img className="w-20 h-20 max-sm:w-24 max-sm:h-24" src="/medicial.png" />
 
       <div className="flex-1 rounded-tr-xl rounded-br-xl bg-neutral-100 flex flex-col gap-3 max-sm:gap-2">
         <div className="flex flex-col gap-2 p-3">
-          <strong className="text-primary font-normal">
+          <strong className="text-emerald-600 font-normal">
             <span>11999,99</span> /Caixa
           </strong>
           <strong className="font-medium text-foreground text-sm">
@@ -47,7 +47,7 @@ export function MedicinalCard() {
               <DialogTrigger asChild>
                 <Button
                   size="sm"
-                  className="flex bg-transparent w-fit hover:bg-transparent hover:opacity-80 duration-300 rounded-full items-center gap-2 text-primary cursor-pointer shadow-none"
+                  className="flex bg-transparent w-fit hover:bg-transparent hover:opacity-80 duration-300 rounded-full items-center gap-2 text-emerald-600 cursor-pointer shadow-none"
                 >
                   <ShoppingCart className="h-4 w-4" />
                   <span className="text-sm font-semibold">Encomendar</span>

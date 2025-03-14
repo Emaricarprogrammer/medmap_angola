@@ -1,10 +1,10 @@
-import { Button } from '@/components/ui/button';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { Button } from "@/components/ui/button"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 interface StepFormControllersProps {
-  stepForm: number;
-  onPrevious: () => void;
-  onNext: () => void;
+  stepForm: number
+  onPrevious: () => void
+  onNext: () => void
 }
 export function StepFormControllers({
   stepForm,
@@ -26,11 +26,15 @@ export function StepFormControllers({
       )}
 
       {stepForm < 3 && (
-        <Button type="button" className="rounded-full" onClick={onNext}>
+        <Button
+          type="button"
+          className="rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
+          onClick={onNext}
+        >
           <ArrowRight />
           <span>Próximo</span>
         </Button>
       )}
     </div>
-  );
+  )
 }
