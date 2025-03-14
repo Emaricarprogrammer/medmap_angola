@@ -1,18 +1,18 @@
-import { AtSign, Loader2, ArrowLeft, Mail } from 'lucide-react';
+import { AtSign, Loader2, ArrowLeft, Mail } from "lucide-react"
 
-import { Logo } from '@/components/logo';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@radix-ui/react-label';
-import { Card, CardHeader } from '@/components/ui/card';
+import { Logo } from "@/components/logo"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@radix-ui/react-label"
+import { Card, CardHeader } from "@/components/ui/card"
 
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet-async"
+import { Link } from "react-router-dom"
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { RecoveryData, recoveryScheme } from '@/schemas/recovery';
-import { toast } from 'sonner';
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { RecoveryData, recoveryScheme } from "@/schemas/recovery"
+import { toast } from "sonner"
 
 export function Recovery() {
   const {
@@ -21,16 +21,16 @@ export function Recovery() {
     formState: { isSubmitting, errors },
   } = useForm<RecoveryData>({
     resolver: zodResolver(recoveryScheme),
-  });
+  })
 
   async function handleSendRecoveryMail(data: RecoveryData) {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       toast.success(
-        `Enviamos um email de recuperação de credencias para ${data.email}`,
-      );
+        `Enviamos um email de recuperação de credencias para ${data.email}`
+      )
     } catch {
-      toast.error('Ops! Falha ao enviar.');
+      toast.error("Ops! Falha ao enviar.")
     }
   }
 
@@ -57,7 +57,7 @@ export function Recovery() {
               type="email"
               placeholder="e-mail cadastrado na plataforma"
               className="bg-neutral-50/50"
-              {...register('email')}
+              {...register("email")}
             />
             <span className="text-rose-600 text-sm text-left ">
               {errors.email && errors.email.message}
@@ -86,7 +86,7 @@ export function Recovery() {
           <div className="text-left">
             <Link
               to="/auth/sign-in"
-              className="text-primary font-semibold text-sm flex items-center gap-1"
+              className="text-primary text-sm flex items-center gap-1"
             >
               <ArrowLeft className="w-4 h-4" />
               Voltar para Login
@@ -95,5 +95,5 @@ export function Recovery() {
         </form>
       </Card>
     </>
-  );
+  )
 }

@@ -2,15 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ... */
 body {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
 }
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 5px;
 }
 .font-mono {
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
 }
 @keyframes typing {
   0% {

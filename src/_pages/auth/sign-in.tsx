@@ -1,21 +1,21 @@
-import { Lock, AtSign, LogIn, Loader2 } from 'lucide-react';
+import { Lock, AtSign, LogIn, Loader2 } from "lucide-react"
 
-import { Logo } from '@/components/logo';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@radix-ui/react-label';
-import { Card, CardHeader } from '@/components/ui/card';
+import { Logo } from "@/components/logo"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@radix-ui/react-label"
+import { Card, CardHeader } from "@/components/ui/card"
 
-import { Helmet } from 'react-helmet-async';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Helmet } from "react-helmet-async"
+import { Link, useSearchParams } from "react-router-dom"
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SignInData, signInScheme } from '@/schemas/sign-in';
-import { toast } from 'sonner';
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { SignInData, signInScheme } from "@/schemas/sign-in"
+import { toast } from "sonner"
 
 export function SignIn() {
-  const [params] = useSearchParams();
+  const [params] = useSearchParams()
 
   const {
     register,
@@ -24,29 +24,29 @@ export function SignIn() {
   } = useForm<SignInData>({
     resolver: zodResolver(signInScheme),
     defaultValues: {
-      email: params.get('email') || '',
+      email: params.get("email") || "",
     },
-  });
+  })
 
   async function handleSignIn(data: SignInData) {
-    console.log(data);
+    console.log(data)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      toast.success('Login realizado com Sucesso!');
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      toast.success("Login realizado com Sucesso!")
     } catch {
-      toast.error('Ops! Falha ao fazer Login.');
+      toast.error("Ops! Falha ao fazer Login.")
     }
   }
 
   return (
     <>
-      <Helmet title="Fazer Login" />
+      <Helmet title="Login" />
       <Card className="w-[480px] h-[600px] p-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
         <CardHeader>
           <Logo />
           <div className="font-normal">
-            Ainda não possui uma conta?{' '}
+            Ainda não possui uma conta?{" "}
             <Link to="/auth/sign-up" className="text-primary">
               Crie uma conta
             </Link>
@@ -65,7 +65,7 @@ export function SignIn() {
               type="email"
               placeholder="seu@email.com"
               className="bg-neutral-50/50"
-              {...register('email')}
+              {...register("email")}
             />
             <span className="text-rose-600 text-sm text-left ">
               {errors.email && errors.email.message}
@@ -81,7 +81,7 @@ export function SignIn() {
               type="password"
               placeholder="*** *** ***"
               className="bg-neutral-50/50"
-              {...register('password')}
+              {...register("password")}
             />
             <span className="text-rose-600 text-sm text-left ">
               {errors.password && errors.password.message}
@@ -115,5 +115,5 @@ export function SignIn() {
         </form>
       </Card>
     </>
-  );
+  )
 }

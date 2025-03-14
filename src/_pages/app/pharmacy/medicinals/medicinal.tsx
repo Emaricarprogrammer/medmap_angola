@@ -2,6 +2,7 @@ import { Toolbar } from '@/components/toolbar';
 import { MedicialCard } from './medicinal-card';
 import { Helmet } from 'react-helmet-async';
 import { Thermometer } from 'lucide-react';
+import { Pagination } from '@/components/pagination';
 
 export function Medicinals() {
   return (
@@ -14,17 +15,17 @@ export function Medicinals() {
           legend="Medicamentos"
         />
 
-        <div className="py-16 h-[40rem] max-xl:h-[52rem] max-sm:h-[40rem]  max-xl:py-8 grid grid-cols-2 gap-8 max-xl:grid-cols-1 overflow-y-scroll">
-          <MedicialCard />
-          <MedicialCard />
-          <MedicialCard />
-          <MedicialCard />
-          <MedicialCard />
-          <MedicialCard />
-          <MedicialCard />
-          <MedicialCard />
-          <MedicialCard />
-          <MedicialCard />
+        <div className="h-[40rem] overflow-y-scroll">
+          <div className="py-6 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll">
+            <MedicialCard />
+            <MedicialCard />
+            <MedicialCard />
+            <MedicialCard />
+            <MedicialCard />
+            <MedicialCard />
+          </div>
+
+          <Pagination />
         </div>
       </div>
     </>

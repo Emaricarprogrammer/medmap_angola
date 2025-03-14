@@ -1,21 +1,21 @@
-import { Loader2, Lock } from 'lucide-react';
+import { Loader2, Lock } from "lucide-react"
 
-import { Logo } from '@/components/logo';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@radix-ui/react-label';
-import { Card, CardHeader } from '@/components/ui/card';
+import { Logo } from "@/components/logo"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@radix-ui/react-label"
+import { Card, CardHeader } from "@/components/ui/card"
 
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async"
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 import {
   ResetPasswordData,
-  resetpasswordScheme,
-} from '@/schemas/reset-password';
-import { useNavigate } from 'react-router-dom';
+  resetPasswordSchema,
+} from "@/schemas/reset-password"
+import { useNavigate } from "react-router-dom"
 
 export function ResetPassword() {
   const {
@@ -23,25 +23,25 @@ export function ResetPassword() {
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<ResetPasswordData>({
-    resolver: zodResolver(resetpasswordScheme),
-  });
+    resolver: zodResolver(resetPasswordSchema),
+  })
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   async function handleResetPassword(data: ResetPasswordData) {
-    console.log(data);
+    console.log(data)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       toast.success(`Palavra Passe alterada com sucesso`, {
         action: {
-          label: 'Fazer Login',
+          label: "Fazer Login",
           onClick: () => {
-            navigate('/auth/sign-in');
+            navigate("/auth/sign-in")
           },
         },
-      });
+      })
     } catch {
-      toast.error('Ops! Falha ao conluir esta acção.');
+      toast.error("Ops! Falha ao repor credencias.")
     }
   }
 
@@ -55,6 +55,7 @@ export function ResetPassword() {
             Ao repor a sua palavra passe certifique que será fácil de lembrar
           </div>
         </CardHeader>
+
         <form
           className="flex flex-col gap-6"
           onSubmit={handleSubmit(handleResetPassword)}
@@ -62,16 +63,16 @@ export function ResetPassword() {
           <div className="flex flex-col gap-2">
             <Label className="flex items-center text-foreground/60 ml-2 gap-1">
               <Lock className="w-4 h-4" />
-              <span>Nova Palavra Passe</span>
+              <span>Palavra Passe antiga</span>
             </Label>
             <Input
               type="password"
               placeholder="*** *** ***"
               className="bg-neutral-50/50"
-              {...register('newPassWord')}
+              {...register("oldPassWord")}
             />
             <span className="text-rose-600 text-sm text-left ">
-              {errors.newPassWord && errors.newPassWord.message}
+              {errors.oldPassWord && errors.oldPassWord.message}
             </span>
           </div>
 
@@ -84,7 +85,7 @@ export function ResetPassword() {
               type="password"
               placeholder="*** *** ***"
               className="bg-neutral-50/50"
-              {...register('newPassWord')}
+              {...register("newPassWord")}
             />
             <span className="text-rose-600 text-sm text-left ">
               {errors.newPassWord && errors.newPassWord.message}
@@ -109,5 +110,5 @@ export function ResetPassword() {
         </form>
       </Card>
     </>
-  );
+  )
 }

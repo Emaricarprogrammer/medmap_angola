@@ -1,29 +1,27 @@
-import { Label } from '@/components/ui/label';
-import { Info, Map, MapPin, WifiOff } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { FormStepProps } from '@/schemas/sign-up';
-import { useState } from 'react';
-import { toast } from 'sonner';
+import { Label } from "@/components/ui/label"
+import { Info, Map, MapPin } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { FormStepProps } from "@/schemas/sign-up"
+import { useState } from "react"
+import { toast } from "sonner"
 
 export function LocationDataStep({ register, errors }: FormStepProps) {
-  const [Userlatitude, setUserLatitude] = useState(0);
-  const [Userlongitude, setUserLongitude] = useState(0);
+  const [Userlatitude, setUserLatitude] = useState(0)
+  const [Userlongitude, setUserLongitude] = useState(0)
 
-  async function handleGeoLocation() {
+  async function handleGetCurrentLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const { latitude } = position.coords;
-        const { longitude } = position.coords;
+        const { latitude } = position.coords
+        const { longitude } = position.coords
 
-        setUserLatitude(latitude);
-        setUserLongitude(longitude);
+        setUserLatitude(latitude)
+        setUserLongitude(longitude)
       },
       () => {
-        toast.error('Ops! Erro ao Obter a localização', {
-          icon: <WifiOff />,
-        });
-      },
-    );
+        toast.error("Ops! Erro ao Obter a localização")
+      }
+    )
   }
 
   return (
@@ -37,11 +35,11 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           type="text"
           placeholder="Ex: avenida 21 de janeiro"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('logradouro')}
+          {...register("logradouro")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.logradouro &&
-            typeof errors.logradouro.message === 'string' &&
+            typeof errors.logradouro.message === "string" &&
             errors.logradouro.message}
         </span>
       </div>
@@ -54,11 +52,11 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           type="text"
           placeholder="Ex: Kikagil"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('street')}
+          {...register("street")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.street &&
-            typeof errors.street.message === 'string' &&
+            typeof errors.street.message === "string" &&
             errors.street.message}
         </span>
       </div>
@@ -72,11 +70,11 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           type="number"
           placeholder="Ex: Kikagil"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('streetNumber', { valueAsNumber: true })}
+          {...register("streetNumber", { valueAsNumber: true })}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.streetNumber &&
-            typeof errors.streetNumber.message === 'string' &&
+            typeof errors.streetNumber.message === "string" &&
             errors.streetNumber.message}
         </span>
       </div>
@@ -92,11 +90,11 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
             placeholder="Latitude"
             value={Userlatitude && Userlatitude}
             className="bg-neutral-50 placeholder:text-neutral-500"
-            {...register('latitude', { valueAsNumber: true })}
+            {...register("latitude", { valueAsNumber: true })}
           />
           <span className="text-rose-600 text-sm font-light text-left ">
             {errors.latitude &&
-              typeof errors.latitude.message === 'string' &&
+              typeof errors.latitude.message === "string" &&
               errors.latitude.message}
           </span>
         </div>
@@ -111,23 +109,23 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
             placeholder="Longitude"
             value={Userlongitude && Userlongitude}
             className="bg-neutral-50 placeholder:text-neutral-500"
-            {...register('longitude', { valueAsNumber: true })}
+            {...register("longitude", { valueAsNumber: true })}
           />
           <span className="text-rose-600 text-sm font-light text-left ">
             {errors.longitude &&
-              typeof errors.longitude.message === 'string' &&
+              typeof errors.longitude.message === "string" &&
               errors.longitude.message}
           </span>
         </div>
       </div>
 
       <div
-        onClick={handleGeoLocation}
+        onClick={handleGetCurrentLocation}
         className="flex justify-start text-sm font-bold text-primary w-fit gap-1 mt-4 cursor-pointer rounded-full"
       >
         <MapPin className="w-4 h-4" />
         <span>Usar a localização actual</span>
       </div>
     </div>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import { Logo } from '@/components/logo';
-import { Button } from '@/components/ui/button';
+import { Logo } from "@/components/logo"
+import { Button } from "@/components/ui/button"
 
-import { User, UserPlus } from 'lucide-react';
-import { Link, NavLink } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { User, UserPlus } from "lucide-react"
+import { Link, NavLink } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 
 export function Landing() {
   return (
@@ -17,18 +17,18 @@ export function Landing() {
         <div className="max-xl:flex max-xl:items-center max-xl:flex-col max-xl:gap-6 max-xl:justify-center max-xl:h-screen">
           <Logo />
 
-          <div className="mt-24 max-xl:mt-0 flex flex-col gap-6 items-center max-xl:w-96">
-            <header className="w-max  text-4xl font-mono tracking-wide max-lg:text-3xl">
+          <div className="mt-12 max-xl:mt-0 flex flex-col gap-6 items-center max-xl:w-96">
+            <header className="w-max max-sm:w-fit text-4xl fontxl-mono tracking-wide max-lg:text-3xl">
               <h1 className="max-lg:hidden">Medicamentos ao ceu alcance:</h1>
-              <h2 className="animate-typing border-r-primary border-r-5 overflow-hidden whitespace-nowrap ">
+              <h2 className="animate-typing border-r-primary border-r-5 overflow-hidden max-sm:border-r-0 whitespace-nowrap max-sm:animate-pulse max-sm:overflow-visible max-sm:whitespace-normal">
                 Encontre os Depósitos Mais Próximos
               </h2>
             </header>
 
-            <article className="w-[800px] max-sm:w-fit px-4 text-xl text-foreground/80 tracking-wide max-lg:text-lg">
+            <article className="w-[800px] max-sm:max-w-xl max-sm:w-fit px-4 text-xl text-foreground/80 tracking-wide max-lg:text-lg">
               Nosso sistema conecta voçê aos depósitos mais próximos em poucos
               cliques. Pesquise pelo medicamento necessário e encontre
-              rapidamente onde comprar.
+              rapidamene.
             </article>
 
             <div className="flex gap-4 items-center justify-center">
@@ -67,5 +67,5 @@ export function Landing() {
         </footer>
       </main>
     </>
-  );
+  )
 }

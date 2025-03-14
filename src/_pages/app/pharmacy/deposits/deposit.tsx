@@ -2,6 +2,7 @@ import { Toolbar } from '@/components/toolbar';
 import { HandPlatter } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { DepositCard } from './depositi-card';
+import { Pagination } from '@/components/pagination';
 
 export function Deposits() {
   return (
@@ -14,7 +15,7 @@ export function Deposits() {
           legend="Depósitos"
         />
 
-        <div className="py-16 h-[40rem] max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
+        <div className="py-6 max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
           <DepositCard />
           <DepositCard />
           <DepositCard />
@@ -24,6 +25,8 @@ export function Deposits() {
           <DepositCard />
           <DepositCard />
         </div>
+
+        <Pagination />
       </div>
     </>
   );

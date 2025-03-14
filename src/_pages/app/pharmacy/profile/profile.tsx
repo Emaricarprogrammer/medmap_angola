@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Search, User } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { ProfileHeader } from './profile-header';
-import { Pagination } from './pagination';
+import { Pagination } from '../../../../components/pagination';
 
 export function PharmacyProfile() {
   return (
@@ -28,13 +28,7 @@ export function PharmacyProfile() {
             </div>
           </form>
 
-          <div className="mt-8 text-sm flex items-center justify-between">
-            <div>
-              <span>Total de 100 Medicamentos</span>
-            </div>
-
-            <Pagination />
-          </div>
+          <Pagination />
         </div>
       </div>
     </>
