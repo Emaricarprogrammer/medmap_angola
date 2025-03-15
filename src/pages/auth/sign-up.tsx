@@ -21,6 +21,8 @@ export function SignUp() {
   const navigate = useNavigate()
   const { stepForm, handleNext, handlePrevious, stepState } = useMultStepForm()
 
+  console.log(stepForm)
+
   const {
     register,
     handleSubmit,
@@ -31,6 +33,7 @@ export function SignUp() {
   })
 
   async function handleSignUp(data: SignUpData) {
+    console.log(data)
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000))
       toast.success("Conta cadastrada com sucesso!", {
