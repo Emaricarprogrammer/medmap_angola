@@ -66,7 +66,7 @@ export function Recovery() {
 
           <div className="w-full">
             <Button
-              className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-60primary0"
+              className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

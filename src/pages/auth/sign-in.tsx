@@ -48,7 +48,7 @@ export function SignIn() {
           <div className="font-normal">
             Ainda não possui uma conta?{" "}
             <Link to="/auth/sign-up" className="text-emerald-600">
-              Crie uma conta
+              Crie uma
             </Link>
           </div>
         </CardHeader>

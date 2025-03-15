@@ -15,10 +15,12 @@ import { Orders } from "./pages/app/pharmacy/orders"
 import { VisitDeposit } from "./pages/app/pharmacy/visit-deposit"
 import { DepositLayout } from "./layouts/deposit"
 import { Dashboard } from "./pages/app/deposit/dashboard"
+import { NotFound } from "./pages/404"
 
 export const routes = createBrowserRouter([
   {
     path: "/",
+    errorElement: <NotFound />,
     element: <Landing />,
   },
 

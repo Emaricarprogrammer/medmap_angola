@@ -1,13 +1,19 @@
 import { Helmet } from "react-helmet-async"
 
+import { Button } from "@/components/ui/button"
 import { Toolbar } from "@/components/deposit-ui/toolbar"
 
-import { House, Plus } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { DashboardOverview } from "./dashboard-overview"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import { RegisterMedDialog } from "./register-med-dialog"
-import { MedicialCard } from "./medicinal-card"
+
+import { Table, TableBody } from "@/components/ui/table"
+import { MedicinalTableHead } from "./medicinal-table-head"
+import { MedicinalTableRow } from "./medicinal-table-row"
+
+import { Pagination } from "@/components/general-ui/pagination"
+
+import { House, Plus } from "lucide-react"
 
 export function Dashboard() {
   return (
@@ -40,10 +46,27 @@ export function Dashboard() {
               <RegisterMedDialog />
             </Dialog>
           </div>
-        </div>
 
-        <div className="py-6 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll">
-          <MedicialCard />
+          <div className="mt-6 bg-white p-4 rounded-lg border shadow-sm">
+            <Table className="w-full">
+              <MedicinalTableHead />
+
+              <TableBody>
+                {Array.from({ length: 5 }).map((_) => {
+                  return <MedicinalTableRow />
+                })}
+              </TableBody>
+            </Table>
+          </div>
+
+          <div>
+            <Pagination
+              currentPage={1}
+              totalItem={20}
+              perPage={3}
+              legend="Medicamentos"
+            />
+          </div>
         </div>
       </div>
     </>
