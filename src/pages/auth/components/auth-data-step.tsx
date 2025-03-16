@@ -1,7 +1,7 @@
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { FormStepProps } from '@/schemas/sign-up';
-import { AtSign, Phone, Lock } from 'lucide-react';
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { FormStepProps } from "@/schemas/sign-up"
+import { AtSign, Phone, Lock } from "lucide-react"
 
 export function AuthDataStep({ register, errors }: FormStepProps) {
   return (
@@ -15,11 +15,11 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
           type="number"
           placeholder="999 999 999"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('phone', { valueAsNumber: true })}
+          {...register("phone", { valueAsNumber: true })}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.phone &&
-            typeof errors.phone.message === 'string' &&
+            typeof errors.phone.message === "string" &&
             errors.phone.message}
         </span>
       </div>
@@ -33,11 +33,11 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
           type="email"
           placeholder="seu@email.com"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('email')}
+          {...register("email")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.email &&
-            typeof errors.email.message === 'string' &&
+            typeof errors.email.message === "string" &&
             errors.email.message}
         </span>
       </div>
@@ -48,17 +48,17 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
           <span>Palavra passe</span>
         </Label>
         <Input
-          type="text"
+          type="password"
           placeholder="*** *** ***"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('password')}
+          {...register("password")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.password &&
-            typeof errors.password.message === 'string' &&
+            typeof errors.password.message === "string" &&
             errors.password.message}
         </span>
       </div>
     </div>
-  );
+  )
 }

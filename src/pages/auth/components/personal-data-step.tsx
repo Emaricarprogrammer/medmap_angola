@@ -1,20 +1,20 @@
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { FormStepProps } from '@/schemas/sign-up';
+} from "@/components/ui/select"
+import { FormStepProps } from "@/schemas/sign-up"
 import {
   BriefcaseBusiness,
   LucideUserCog,
   Barcode,
   Building,
-} from 'lucide-react';
-import { Controller } from 'react-hook-form';
+} from "lucide-react"
+import { Controller } from "react-hook-form"
 
 export function PersonalDataStep({ register, errors, control }: FormStepProps) {
   return (
@@ -28,11 +28,11 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
           type="text"
           placeholder="Firma, Lda"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('company')}
+          {...register("company")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.company &&
-            typeof errors.company.message === 'string' &&
+            typeof errors.company.message === "string" &&
             errors.company.message}
         </span>
       </div>
@@ -48,7 +48,7 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
           control={control}
           render={({ field }) => {
             return (
-              <Select defaultValue="pharmacy" onValueChange={field.onChange}>
+              <Select defaultValue="" onValueChange={field.onChange}>
                 <SelectTrigger className="bg-neutral-50 placeholder:text-neutral-500">
                   <SelectValue placeholder="Selecione uma entidade" />
                 </SelectTrigger>
@@ -58,12 +58,12 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
                   <SelectItem value="deposit">Depósito</SelectItem>
                 </SelectContent>
               </Select>
-            );
+            )
           }}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.entity &&
-            typeof errors.entity.message === 'string' &&
+            typeof errors.entity.message === "string" &&
             errors.entity.message}
         </span>
       </div>
@@ -77,11 +77,11 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
           type="text"
           placeholder="00000000LA"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('nif')}
+          {...register("nif")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.nif &&
-            typeof errors.nif.message === 'string' &&
+            typeof errors.nif.message === "string" &&
             errors.nif.message}
         </span>
       </div>
@@ -95,14 +95,14 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
           type="text"
           placeholder="Adcione sua cidade"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register('city')}
+          {...register("city")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.city &&
-            typeof errors.city.message === 'string' &&
+            typeof errors.city.message === "string" &&
             errors.city.message}
         </span>
       </div>
     </div>
-  );
+  )
 }
