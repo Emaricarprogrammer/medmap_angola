@@ -1,7 +1,5 @@
-type MedicinalStatus = "expired" | "valid"
-
 interface MedicinalStatusProps {
-  status: MedicinalStatus
+  status: "expired" | "valid"
 }
 
 export function MedicinalStatus({ status }: MedicinalStatusProps) {
