@@ -54,8 +54,8 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
                 </SelectTrigger>
 
                 <SelectContent>
-                  <SelectItem value="pharmacy">Farmácia</SelectItem>
-                  <SelectItem value="deposit">Depósito</SelectItem>
+                  <SelectItem value="farmacia">Farmácia</SelectItem>
+                  <SelectItem value="deposito">Depósito</SelectItem>
                 </SelectContent>
               </Select>
             )

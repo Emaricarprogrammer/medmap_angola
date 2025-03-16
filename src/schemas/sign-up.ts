@@ -4,7 +4,7 @@ import { z } from "zod"
 export const signUpScheme = z.object({
   firma: z.string().min(1, "Firma inválido!"),
   nif: z.string().min(10, "NIF inválido!"),
-  tipo_entidade: z.enum(["pharmacy", "deposit"]),
+  tipo_entidade: z.enum(["farmacia", "deposito"]),
   cidade: z.string().min(3, "Preenha este campo!"),
 
   rua: z.string({ message: "Preencha este campo!" }),
