@@ -52,7 +52,7 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           type="text"
           placeholder="Ex: Kikagil"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register("street")}
+          {...register("rua")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.street &&
@@ -68,9 +68,9 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
         </Label>
         <Input
           type="number"
-          placeholder="Ex: Kikagil"
+          placeholder="Ex: 01"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register("streetNumber", { valueAsNumber: true })}
+          {...register("numero", { valueAsNumber: true })}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.streetNumber &&

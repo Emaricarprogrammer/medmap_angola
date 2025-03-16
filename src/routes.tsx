@@ -16,6 +16,7 @@ import { VisitDeposit } from "./pages/app/pharmacy/visit-deposit"
 import { DepositLayout } from "./layouts/deposit"
 import { Dashboard } from "./pages/app/deposit/dashboard"
 import { NotFound } from "./pages/404"
+import { AdminLayouth } from "./layouts/admin"
 
 export const routes = createBrowserRouter([
   {
@@ -50,5 +51,10 @@ export const routes = createBrowserRouter([
     path: "/deposit",
     element: <DepositLayout />,
     children: [{ path: "", element: <Dashboard /> }],
+  },
+
+  {
+    path: "/admin",
+    element: <AdminLayouth />,
   },
 ])

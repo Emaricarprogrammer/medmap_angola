@@ -33,9 +33,8 @@ export function SignUp() {
   })
 
   async function handleSignUp(data: SignUpData) {
-    console.log(data)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      SignUp()
       toast.success("Conta cadastrada com sucesso!", {
         action: {
           label: "Fazer Login",

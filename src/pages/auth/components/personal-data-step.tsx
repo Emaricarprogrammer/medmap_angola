@@ -28,7 +28,7 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
           type="text"
           placeholder="Firma, Lda"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register("company")}
+          {...register("firma")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.company &&
@@ -44,7 +44,7 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
         </Label>
 
         <Controller
-          name="entity"
+          name="tipo_entidade"
           control={control}
           render={({ field }) => {
             return (
@@ -95,7 +95,7 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
           type="text"
           placeholder="Adcione sua cidade"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register("city")}
+          {...register("cidade")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.city &&

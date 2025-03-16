@@ -15,7 +15,7 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
           type="number"
           placeholder="999 999 999"
           className="bg-neutral-50 placeholder:text-neutral-500"
-          {...register("phone", { valueAsNumber: true })}
+          {...register("contacto", { valueAsNumber: true })}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
           {errors.phone &&
