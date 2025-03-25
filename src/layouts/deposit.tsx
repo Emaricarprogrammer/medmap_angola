@@ -4,34 +4,41 @@ import { Outlet } from "react-router-dom"
 
 export function DepositLayout() {
   return (
-    <div className="flex antialiased bg-neutral-50 h-screen gap-8 max-sm:gap-2 ">
-      <aside className="flex flex-col justify-between w-fit max-sm:flex-row max-sm:left-0 max-sm:w-full bg-neutral-900 max-sm:h-fit max-sm:py-5 max-sm:px-8 max-sm:fixed max-sm:top-0 h-screen p-10">
-        <header className="flex flex-col w-44 gap-20 max-sm:flex-row max-sm:gap-12">
-          <div className="flex flex-col gap-5">
-            <div className="flex items-end gap-2">
-              <img src="/logo-white-1.png" className="w-10" />
-              <img src="/logo-white-2.png" className="max-sm:hidden" />
+    <div className="flex antialiased bg-neutral-50 h-screen">
+      <aside className="flex flex-col justify-between w-64 max-sm:w-full bg-gradient-to-b from-neutral-900 to-neutral-800 max-sm:fixed max-sm:top-0 max-sm:z-50 h-screen p-8 max-sm:p-4 max-sm:py-4 max-sm:border-b max-sm:border-neutral-700 shadow-lg">
+        <header className="flex flex-col gap-12 max-sm:flex-row max-sm:items-center max-sm:gap-8">
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center gap-3">
+              <img
+                src="/logo-white-1.png"
+                className="w-9 h-9 object-contain"
+                alt="Deposit Logo"
+              />
+              <img
+                src="/logo-white-2.png"
+                className="max-sm:hidden h-6 object-contain"
+                alt="Deposit Name"
+              />
             </div>
-
-            <span className="w-full  max-sm:hidden h-[1px] bg-neutral-700"></span>
+            <div className="max-sm:hidden w-full h-px bg-neutral-700/80"></div>
           </div>
 
           <DepositNavbar />
         </header>
 
-        <footer className="flex flex-col gap-6 font-lg">
-          <div className="flex cursor-pointer items-center gap-2 text-rose-500 text-sm">
-            <LogOut className="t w-5 h-5 max-sm:w-7 max-sm:h-7" />
-            <span>Sair</span>
-          </div>
+        <footer className="flex flex-col gap-6">
+          <button className="flex items-center gap-3 text-rose-400/90 hover:text-rose-300 transition-colors duration-200 text-sm group">
+            <LogOut className="w-5 h-5 max-sm:w-6 max-sm:h-6 group-hover:scale-105 transition-transform" />
+            <span className="max-sm:hidden">Sair</span>
+          </button>
 
-          <div className="max-sm:hidden text-sm text-muted/60">
+          <div className="max-sm:hidden text-xs text-neutral-500/70">
             Painel do Depósito &copy; {new Date().getFullYear()}
           </div>
         </footer>
       </aside>
 
-      <div className="p-6 w-full">
+      <div className="flex-1 overflow-y-auto p-8 max-sm:pt-20 bg-white/50">
         <Outlet />
       </div>
     </div>

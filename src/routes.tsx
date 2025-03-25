@@ -18,6 +18,7 @@ import { Dashboard } from "./pages/app/deposit/dashboard"
 import { NotFound } from "./pages/404"
 import { AdminLayouth } from "./layouts/admin"
 import { AdminDashboard } from "./pages/admin"
+import { Cart } from "./pages/app/pharmacy/cart"
 
 export const routes = createBrowserRouter([
   {
@@ -42,6 +43,7 @@ export const routes = createBrowserRouter([
     element: <PharmacyLayout />,
     children: [
       { path: "", element: <Home /> },
+      { path: "cart", element: <Cart /> },
       { path: "deposits", element: <Deposits /> },
       { path: "orders", element: <Orders /> },
       { path: "view-deposit", element: <VisitDeposit /> },

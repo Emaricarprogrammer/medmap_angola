@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom"
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
-import { ArrowUpRightFromSquare, Package } from "lucide-react"
+import { ArrowUpRight, Box, MapPin } from "lucide-react"
 
 export function DepositCard() {
   const navigate = useNavigate()
@@ -12,31 +10,45 @@ export function DepositCard() {
   }
 
   return (
-    <div className="bg-white h-64 p-8 border-t-emerald-500 duration-200 cursor-pointer flex flex-col justify-between gap-2 rounded-xl border-2 border-t-2">
-      <Avatar>
-        <AvatarImage src="/profile.png" />
-        <AvatarFallback>HF</AvatarFallback>
-      </Avatar>
+    <div className="bg-white h-72 p-6 cursor-pointer flex flex-col justify-between gap-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200 group">
+      <div className="flex items-start gap-4">
+        <div className="relative">
+          <Avatar className="h-14 w-14 rounded-xl border-2 border-white shadow-sm">
+            <AvatarImage src="/profile.png" className="object-cover" />
+            <AvatarFallback className="bg-gradient-to-br from-gray-100 to-gray-200 text-gray-600 font-medium">
+              MA
+            </AvatarFallback>
+          </Avatar>
+          <div className="absolute -bottom-2 -right-2 bg-emerald-500 p-1 rounded-full border-2 border-white">
+            <Box className="h-3 w-3 text-white" />
+          </div>
+        </div>
 
-      <div className="flex flex-col gap-1">
-        <strong>Marcos Aus Lda</strong>
-        <span className="text-neutral-500">Luanda, Kimbangu</span>
+        <div className="flex-1">
+          <h3 className="text-xl font-semibold text-gray-900">
+            Marcos Aus Lda
+          </h3>
+          <p className="text-sm text-gray-500 flex items-center gap-1.5 mt-1">
+            <MapPin className="h-4 w-4 text-gray-400" />
+            <span>Luanda, Kimbangu</span>
+          </p>
+        </div>
       </div>
 
-      <div className="flex items-center gap-2">
-        <Package className="h-5 w-5" />
-        <span className="text-neutral-500">+500 unidades</span>
+      <div className="grid grid-cols-2 gap-3 mt-2">
+        <div className="bg-gray-50/80 p-3 rounded-xl">
+          <p className="text-xs text-gray-500">Unidades</p>
+          <p className="text-lg font-medium text-gray-900">+500</p>
+        </div>
       </div>
 
-      <footer className="text-emerald-600 mt-6">
-        <span
-          onClick={handleVisitDeposit}
-          className="cursor-pointer flex text-sm hover:bg-emerald-500 hover:text-white duration-300 bg-emerald-500/10 w-fit py-2 px-4 rounded-full items-center gap-1"
-        >
-          <ArrowUpRightFromSquare className="w-4 h-4" />
-          <span className="font-semibold">Visitar</span>
-        </span>
-      </footer>
+      <button
+        onClick={handleVisitDeposit}
+        className="mt-2 flex border items-center justify-center gap-2 text-sm font-medium text-emerald-600  transition-all duration-300 w-full py-3 rounded-xl group-hover:shadow-emerald-sm"
+      >
+        <ArrowUpRight className="w-4 h-4" />
+        <span>Visitar Depósito</span>
+      </button>
     </div>
   )
 }

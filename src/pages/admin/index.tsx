@@ -34,7 +34,7 @@ export function AdminDashboard() {
 
             <TableBody>
               {Array.from({ length: 5 }).map((_) => {
-                return <EntityTableRow />
+                return <EntityTableRwow />
               })}
             </TableBody>
           </Table>

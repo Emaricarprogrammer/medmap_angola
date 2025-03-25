@@ -1,32 +1,53 @@
 import { ReactNode } from "react"
-
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { ShoppingCart } from "lucide-react"
+import { Link } from "react-router-dom"
+import { Badge } from "../ui/badge"
 
 interface ToolbarProps {
   legend: string
-  children: ReactNode
+  children?: ReactNode
+  cartItemsCount?: number
 }
-export function Toolbar({ legend, children }: ToolbarProps) {
+
+export function Toolbar({
+  legend,
+  children,
+  cartItemsCount = 0,
+}: ToolbarProps) {
   return (
-    <div className="w-full border p-4 flex items-center justify-between max-sm:mt-16 bg-white rounded-lg">
-      <div className="flex items-center gap-2 max-sm:gap-1">
-        {children}
-        <span className="font-semibold">{legend}</span>
-      </div>
-      <div className="flex items-center justify-between gap-8 max-sm:gap-8 text-neutral-400">
-        <div className="flex items-end cursor-pointer" title="Sexto de compras">
-          <ShoppingCart className="w-8 h-8 max-sm:w-7 max-sm:h-7" />
-          <span className="w-5 h-5 bg-rose-600 text-white max-sm:text-sm  rounded-full flex items-center justify-center font-bold">
-            0
-          </span>
+    <header className="w-full rounded-xl border-b bg-white/95 backdrop-blur-sm sticky top-0 z-50 px-4 py-3 shadow-sm">
+      <div className="flex items-center justify-between h-14">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            {children}
+            <h1 className="font-semibold text-lg text-gray-900">{legend}</h1>
+          </div>
         </div>
 
-        <Avatar className="max-sm:w-10 max-sm:h-10">
-          <AvatarImage src="/avatar.png" />
-          <AvatarFallback>HS</AvatarFallback>
-        </Avatar>
+        <div className="flex items-center gap-4">
+          <Link
+            to="/pharmacy/cart"
+            className="relative p-2 rounded-full hover:bg-gray-100 transition-colors"
+            aria-label="Shopping cart"
+          >
+            <ShoppingCart className="h-6 *:w-6 text-gray-700" />
+            <Badge
+              variant="destructive"
+              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0"
+            >
+              {cartItemsCount > 9 ? "9+" : cartItemsCount}
+            </Badge>
+          </Link>
+
+          <Avatar className="h-9 w-9 border">
+            <AvatarImage src="/avatar.png" alt="User avatar" />
+            <AvatarFallback className="bg-emerald-100 text-emerald-800">
+              HS
+            </AvatarFallback>
+          </Avatar>
+        </div>
       </div>
-    </div>
+    </header>
   )
 }

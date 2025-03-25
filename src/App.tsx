@@ -2,6 +2,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async"
 import { RouterProvider } from "react-router-dom"
 import { Toaster } from "sonner"
 import { routes } from "./routes"
+import { QueryClientProvider } from "@tanstack/react-query"
+import { queryClient } from "./services/react-query"
 
 export function App() {
   return (
@@ -15,7 +17,9 @@ export function App() {
           richColors
           position="top-center"
         />
-        <RouterProvider router={routes} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={routes} />
+        </QueryClientProvider>
       </HelmetProvider>
     </>
   )

@@ -7,7 +7,6 @@ import { OrderTableHead } from "./order-table-head"
 
 import { Helmet } from "react-helmet-async"
 import { CircleDashed } from "lucide-react"
-import { OrderFilter } from "./order-filter"
 
 export function Orders() {
   return (
@@ -20,14 +19,12 @@ export function Orders() {
           legend="Pedidos"
         />
 
-        <OrderFilter />
-
-        <div className="mt-3 bg-white p-4 rounded-lg border shadow-sm">
+        <div className="mt-8 bg-white p-4 rounded-lg border shadow-sm">
           <Table className="w-full">
             <OrderTableHead />
 
             <TableBody>
-              {Array.from({ length: 8 }).map((_) => {
+              {Array.from({ length: 9 }).map((_) => {
                 return <OrderTableRow />
               })}
             </TableBody>

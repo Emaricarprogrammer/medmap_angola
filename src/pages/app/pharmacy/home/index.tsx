@@ -5,8 +5,25 @@ import { Pagination } from "@/components/general-ui/pagination"
 
 import { House } from "lucide-react"
 import { MedicinalCard } from "./medicinal-card"
+import { useQuery } from "@tanstack/react-query"
+import { getMedicinals } from "@/api/get-medicinals"
+import { MedicinalSkeleton } from "./medicinal-skeleton"
+import { toast } from "sonner"
 
 export function Home() {
+  const {
+    data: result,
+    isFetching,
+    isError,
+  } = useQuery({
+    queryKey: ["medicinals"],
+    queryFn: getMedicinals,
+  })
+
+  if (isError) {
+    toast.error("Erro ao carregar medicamentos!")
+  }
+
   return (
     <>
       <Helmet title="Home" />
@@ -17,14 +34,25 @@ export function Home() {
           legend="Home"
         />
 
-        <div className="h-[40rem] overflow-y-scroll">
+        <div className="h-[40rem] flex-col justify-between flex  overflow-y-scroll">
           <div className="py-6 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll">
-            <MedicinalCard />
-            <MedicinalCard />
-            <MedicinalCard />
-            <MedicinalCard />
-            <MedicinalCard />
-            <MedicinalCard />
+            {isFetching || isError ? (
+              <>
+                <MedicinalSkeleton />
+                <MedicinalSkeleton />
+                <MedicinalSkeleton />
+                <MedicinalSkeleton />
+                <MedicinalSkeleton />
+                <MedicinalSkeleton />
+              </>
+            ) : (
+              result?.map((medicinal) => (
+                <MedicinalCard
+                  key={medicinal.id_medicamento}
+                  medicinal={medicinal}
+                />
+              ))
+            )}
           </div>
 
           <Pagination
