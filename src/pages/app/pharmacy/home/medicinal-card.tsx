@@ -43,10 +43,7 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
           </h3>
           <div className="flex items-center gap-2">
             <span className="text-emerald-600 font-bold text-lg">
-              {Intl.NumberFormat("pt-br", {
-                currency: "AKZ",
-                style: "currency",
-              }).format(medicinal.preco)}
+              {medicinal.preco}
             </span>
             <span className="text-muted-foreground text-sm">/Caixa</span>
           </div>
@@ -70,7 +67,7 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
             <span className="text-muted-foreground">
               <span className="font-medium text-foreground">
                 {medicinal.quantidade_disponivel}
-              </span>{" "}
+              </span>
               unidades disponíveis
             </span>
           </div>

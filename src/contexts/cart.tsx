@@ -1,6 +1,7 @@
 import { createContext, useState } from "react"
 import { Medicinal } from "@/@types/medicinals"
 import { toast } from "sonner"
+import { ShoppingBag } from "lucide-react"
 
 export interface CartProps extends Medicinal {
   quantity?: number
@@ -23,14 +24,39 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const totalItems = cartItems.length
 
   function addMedicinalToCart(medicinal: CartProps) {
-    setCartItems([
-      ...cartItems,
-      {
-        ...medicinal,
-        quantity: medicinal.quantity ? medicinal.quantity + 1 : 1,
-      },
-    ])
-    toast.success(`${medicinal.nome_generico} adicionado ao carrinho!`)
+    const medicinalAlreadyExistInTheCart = cartItems.some((item) => {
+      return item.id_medicamento === medicinal.id_medicamento
+    })
+
+    if (medicinalAlreadyExistInTheCart) {
+      const updatedCartItems = cartItems.map((item) => {
+        if (item.id_medicamento === medicinal.id_medicamento) {
+          return {
+            ...item,
+            quantity: item.quantity ? item.quantity + 1 : 1,
+          }
+        }
+
+        return item
+      })
+
+      toast.warning(
+        `${medicinal.nome_generico} Já existe no carrinho, Deseja Aumetar a Quantidade?, `,
+
+        {
+          icon: <ShoppingBag className="w-5 h-5" />,
+          action: {
+            label: "Confirmar",
+            onClick: () => {
+              setCartItems(updatedCartItems)
+            },
+          },
+        }
+      )
+    } else {
+      setCartItems([...cartItems, { ...medicinal, quantity: 1 }])
+      toast.success(`${medicinal.nome_generico} adicionado ao carrinho!`)
+    }
   }
 
   function removeMedicinalFromCart(medicinal: CartProps) {

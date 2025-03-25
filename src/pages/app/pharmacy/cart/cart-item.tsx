@@ -1,5 +1,6 @@
 import { CartProps } from "@/contexts/cart"
 import { useCart } from "@/hooks/useCart"
+import { priceFormatter } from "@/utils/formatter"
 import { Minus, Plus, Trash2 } from "lucide-react"
 
 interface CartItemProps {
@@ -10,7 +11,7 @@ export function CartItem({ item }: CartItemProps) {
     useCart()
 
   return (
-    <div className="flex items-center gap-4 justify-between p-4 hover:bg-neutral-50 rounded-lg transition-colors">
+    <div className="flex items-center border-b pb-4 gap-4 justify-between p-4 hover:bg-neutral-50 transition-colors">
       <div className="flex items-center gap-4">
         <div className="w-20 h-20 bg-white border border-neutral-200 rounded-lg overflow-hidden flex items-center justify-center">
           <img
@@ -54,7 +55,7 @@ export function CartItem({ item }: CartItemProps) {
               onClick={() => {
                 removeMedicinalFromCart(item)
               }}
-              className="flex items-center gap-1 text-sm text-rose-600 hover:text-rose-700 transition-colors"
+              className="flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 transition-colors"
             >
               <Trash2 className="w-4 h-4" />
               <span>Remover</span>
@@ -63,9 +64,12 @@ export function CartItem({ item }: CartItemProps) {
         </div>
       </div>
 
-      <div className="flex flex-col items-end">
+      <div className="flex flex-col gap-1 items-end">
         <span className="font-bold text-neutral-800">
-          {item.preco * (item.quantity ?? 0)} Akz
+          {priceFormatter.format(item.preco * Number(item.quantity))}
+        </span>
+        <span className="text-neutral-800 text-xs">
+          {priceFormatter.format(item.preco)} / Caixa
         </span>
       </div>
     </div>

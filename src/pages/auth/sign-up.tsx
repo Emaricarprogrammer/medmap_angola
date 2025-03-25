@@ -16,12 +16,16 @@ import { useMultStepForm } from "@/hooks/useMulStepForm"
 import { SignUpData, signUpScheme } from "@/schemas/sign-up"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { StepFormControllers } from "./components/step-form-controllers"
+import { useMutation } from "@tanstack/react-query"
+import { signUp } from "@/api/sign-up"
 
 export function SignUp() {
+  const { mutateAsync: signUpEntity } = useMutation({
+    mutationKey: ["sign-up"],
+    mutationFn: signUp,
+  })
   const navigate = useNavigate()
   const { stepForm, handleNext, handlePrevious, stepState } = useMultStepForm()
-
-  console.log(stepForm)
 
   const {
     register,
@@ -34,7 +38,7 @@ export function SignUp() {
 
   async function handleSignUp(data: SignUpData) {
     try {
-      SignUp()
+      await signUpEntity(data)
       toast.success("Conta cadastrada com sucesso!", {
         action: {
           label: "Fazer Login",
