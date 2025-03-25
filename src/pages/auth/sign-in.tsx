@@ -64,7 +64,7 @@ export function SignIn() {
             <Input
               type="email"
               placeholder="seu@email.com"
-              className="bg-neutral-50/50"
+              className="bg-neutral-50/50 h-12"
               {...register("email")}
             />
             <span className="text-rose-600 text-sm text-left ">
@@ -80,7 +80,7 @@ export function SignIn() {
             <Input
               type="password"
               placeholder="*** *** ***"
-              className="bg-neutral-50/50"
+              className="bg-neutral-50/50 h-12"
               {...register("password")}
             />
             <span className="text-rose-600 text-sm text-left ">

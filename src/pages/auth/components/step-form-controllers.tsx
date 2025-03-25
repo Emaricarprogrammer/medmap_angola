@@ -16,7 +16,7 @@ export function StepFormControllers({
       {stepForm !== 1 && (
         <Button
           type="button"
-          className="rounded-full"
+          className="rounded-full h-12"
           variant="secondary"
           onClick={onPrevious}
         >
@@ -28,7 +28,7 @@ export function StepFormControllers({
       {stepForm < 3 && (
         <Button
           type="button"
-          className="rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
+          className="rounded-full h-12 bg-gradient-to-tr to-emerald-500 from-emerald-600"
           onClick={onNext}
         >
           <ArrowRight />

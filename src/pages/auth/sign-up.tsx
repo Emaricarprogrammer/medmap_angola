@@ -84,7 +84,7 @@ export function SignUp() {
             <div className="w-full">
               <Button
                 type="submit"
-                className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
+                className="w-full h-12 font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (

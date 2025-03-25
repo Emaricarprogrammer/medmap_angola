@@ -56,7 +56,7 @@ export function Recovery() {
             <Input
               type="email"
               placeholder="e-mail cadastrado na plataforma"
-              className="bg-neutral-50/50"
+              className="bg-neutral-50/50 h-12"
               {...register("email")}
             />
             <span className="text-rose-600 text-sm text-left ">
@@ -66,7 +66,7 @@ export function Recovery() {
 
           <div className="w-full">
             <Button
-              className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
+              className="w-full font-bold h-12 rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

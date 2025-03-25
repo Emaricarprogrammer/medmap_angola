@@ -27,7 +27,7 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
         <Input
           type="text"
           placeholder="Firma, Lda"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("firma")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
@@ -49,7 +49,7 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
           render={({ field }) => {
             return (
               <Select defaultValue="" onValueChange={field.onChange}>
-                <SelectTrigger className="bg-neutral-50 placeholder:text-neutral-500">
+                <SelectTrigger className="bg-neutral-50 placeholder:text-neutral-500 h-12">
                   <SelectValue placeholder="Selecione uma entidade" />
                 </SelectTrigger>
 
@@ -76,7 +76,7 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
         <Input
           type="text"
           placeholder="00000000LA"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("nif")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
@@ -94,7 +94,7 @@ export function PersonalDataStep({ register, errors, control }: FormStepProps) {
         <Input
           type="text"
           placeholder="Adcione sua cidade"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("cidade")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">

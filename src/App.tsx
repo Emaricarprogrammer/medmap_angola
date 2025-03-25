@@ -4,6 +4,7 @@ import { Toaster } from "sonner"
 import { routes } from "./routes"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { queryClient } from "./services/react-query"
+import { CartProvider } from "./contexts/cart"
 
 export function App() {
   return (
@@ -18,7 +19,9 @@ export function App() {
           position="top-center"
         />
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={routes} />
+          <CartProvider>
+            <RouterProvider router={routes} />
+          </CartProvider>
         </QueryClientProvider>
       </HelmetProvider>
     </>

@@ -3,18 +3,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { ShoppingCart } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Badge } from "../ui/badge"
+import { useCart } from "@/hooks/useCart"
 
 interface ToolbarProps {
   legend: string
   children?: ReactNode
-  cartItemsCount?: number
 }
 
-export function Toolbar({
-  legend,
-  children,
-  cartItemsCount = 0,
-}: ToolbarProps) {
+export function Toolbar({ legend, children }: ToolbarProps) {
+  const { totalItems } = useCart()
+
   return (
     <header className="w-full rounded-xl border-b bg-white/95 backdrop-blur-sm sticky top-0 z-50 px-4 py-3 shadow-sm">
       <div className="flex items-center justify-between h-14">
@@ -36,7 +34,7 @@ export function Toolbar({
               variant="destructive"
               className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0"
             >
-              {cartItemsCount > 9 ? "9+" : cartItemsCount}
+              {totalItems > 9 ? "9+" : totalItems}
             </Badge>
           </Link>
 

@@ -10,12 +10,15 @@ import { Button } from "@/components/ui/button"
 import { Medicinal } from "@/@types/medicinals"
 import { DetailsDialog } from "./details-dialog"
 import { Badge } from "@/components/ui/badge"
+import { useCart } from "@/hooks/useCart"
 
 interface MedicinalProps {
   medicinal: Medicinal
 }
 
 export function MedicinalCard({ medicinal }: MedicinalProps) {
+  const { addMedicinalToCart } = useCart()
+
   return (
     <div className="bg-white border border-gray-200 gap-4 p-5 flex rounded-xl max-sm:p-4 max-sm:flex-col hover:shadow-md transition-shadow duration-300">
       <div className="relative">
@@ -85,7 +88,12 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
             <DetailsDialog medicinal={medicinal} />
           </Dialog>
 
-          <Button className="gap-2 text-sm h-10 bg-emerald-600 hover:bg-emerald-700">
+          <Button
+            className="gap-2 text-sm h-10 bg-emerald-600 hover:bg-emerald-700"
+            onClick={() => {
+              addMedicinalToCart(medicinal)
+            }}
+          >
             <ShoppingBag className="w-4 h-4" />
             Encomendar
           </Button>

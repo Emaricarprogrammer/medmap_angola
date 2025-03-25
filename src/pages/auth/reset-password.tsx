@@ -84,7 +84,7 @@ export function ResetPassword() {
             <Input
               type="password"
               placeholder="*** *** ***"
-              className="bg-neutral-50/50"
+              className="bg-neutral-50/50 h-12"
               {...register("newPassWord")}
             />
             <span className="text-rose-600 text-sm text-left ">
@@ -94,7 +94,7 @@ export function ResetPassword() {
 
           <div className="w-full">
             <Button
-              className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
+              className="w-full h-12 font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

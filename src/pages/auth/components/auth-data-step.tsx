@@ -14,7 +14,7 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
         <Input
           type="number"
           placeholder="999 999 999"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("contacto", { valueAsNumber: true })}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
@@ -32,7 +32,7 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
         <Input
           type="email"
           placeholder="seu@email.com"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("email")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
@@ -50,7 +50,7 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
         <Input
           type="password"
           placeholder="*** *** ***"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("password")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">

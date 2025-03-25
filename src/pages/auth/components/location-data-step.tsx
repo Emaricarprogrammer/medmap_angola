@@ -34,7 +34,7 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
         <Input
           type="text"
           placeholder="Ex: avenida 21 de janeiro"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("logradouro")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
@@ -51,7 +51,7 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
         <Input
           type="text"
           placeholder="Ex: Kikagil"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("rua")}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
@@ -69,7 +69,7 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
         <Input
           type="number"
           placeholder="Ex: 01"
-          className="bg-neutral-50 placeholder:text-neutral-500"
+          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
           {...register("numero", { valueAsNumber: true })}
         />
         <span className="text-rose-600 text-sm font-light text-left ">
@@ -89,7 +89,7 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
             type="number"
             placeholder="Latitude"
             value={Userlatitude && Userlatitude}
-            className="bg-neutral-50 placeholder:text-neutral-500"
+            className="bg-neutral-50 placeholder:text-neutral-500 h-12"
             {...register("latitude", { valueAsNumber: true })}
           />
           <span className="text-rose-600 text-sm font-light text-left ">
@@ -108,7 +108,7 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
             type="number"
             placeholder="Longitude"
             value={Userlongitude && Userlongitude}
-            className="bg-neutral-50 placeholder:text-neutral-500"
+            className="bg-neutral-50 placeholder:text-neutral-500 h-12"
             {...register("longitude", { valueAsNumber: true })}
           />
           <span className="text-rose-600 text-sm font-light text-left ">
