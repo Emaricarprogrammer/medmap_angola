@@ -10,7 +10,7 @@ export interface Medicinal {
     firma_deposito: string
     logradouro: string
     rua: string
-    number: string
+    numero_rua: number
     cidade: string
   }
   preco: number
