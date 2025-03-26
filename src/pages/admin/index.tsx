@@ -1,8 +1,8 @@
 import { Table, TableBody } from "@/components/ui/table"
 import { EntityTableHead } from "./entity-table-head"
-import { EntityTableRow } from "./entity-table-row"
 import { Hospital } from "lucide-react"
 import { Pagination } from "@/components/general-ui/pagination"
+import { EntityTableRow } from "./entity-table-row"
 
 export function AdminDashboard() {
   return (
@@ -34,7 +34,7 @@ export function AdminDashboard() {
 
             <TableBody>
               {Array.from({ length: 5 }).map((_) => {
-                return <EntityTableRwow />
+                return <EntityTableRow />
               })}
             </TableBody>
           </Table>
