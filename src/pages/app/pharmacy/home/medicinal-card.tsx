@@ -11,6 +11,7 @@ import { Medicinal } from "@/@types/medicinals"
 import { DetailsDialog } from "./details-dialog"
 import { Badge } from "@/components/ui/badge"
 import { useCart } from "@/hooks/useCart"
+import { priceFormatter } from "@/utils/formatter"
 
 interface MedicinalProps {
   medicinal: Medicinal
@@ -43,7 +44,7 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
           </h3>
           <div className="flex items-center gap-2">
             <span className="text-emerald-600 font-bold text-lg">
-              {medicinal.preco}
+              {priceFormatter.format(medicinal.preco)}
             </span>
             <span className="text-muted-foreground text-sm">/Caixa</span>
           </div>

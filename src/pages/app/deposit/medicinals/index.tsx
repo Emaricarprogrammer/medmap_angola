@@ -1,31 +1,30 @@
 import { Table, TableBody } from "@/components/ui/table"
 import { Pagination } from "@/components/general-ui/pagination"
-import { Toolbar } from "@/components/pharmacy-ui/toolbar"
-
-import { OrderTableRow } from "./order-table-row"
-import { OrderTableHead } from "./order-table-head"
 
 import { Helmet } from "react-helmet-async"
 import { Package } from "lucide-react"
+import { Toolbar } from "@/components/deposit-ui/toolbar"
+import { MedicinalTableHead } from "./medicinal-table-head"
+import { MedicinalTableRow } from "./medicinal-table-row"
 
-export function Orders() {
+export function Medicinals() {
   return (
     <>
-      <Helmet title="Encomendas" />
+      <Helmet title="Gestão de Medicamentos" />
 
       <div className="w-full">
         <Toolbar
           children={<Package className="text-emerald-700 h-6 w-6" />}
-          legend="Encomendas"
+          legend="Medicamentos"
         />
 
         <div className="mt-8 bg-white p-4 rounded-lg border shadow-sm">
           <Table className="w-full">
-            <OrderTableHead />
+            <MedicinalTableHead />
 
             <TableBody>
               {Array.from({ length: 9 }).map((_) => {
-                return <OrderTableRow />
+                return <MedicinalTableRow />
               })}
             </TableBody>
           </Table>
@@ -33,7 +32,7 @@ export function Orders() {
 
         <Pagination
           currentPage={1}
-          legend="Pedidos"
+          legend="Medicamentos"
           totalItem={20}
           perPage={3}
         />

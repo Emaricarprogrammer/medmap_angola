@@ -13,12 +13,16 @@ import { Home } from "./pages/app/pharmacy/home"
 import { Deposits } from "./pages/app/pharmacy/deposits"
 import { Orders } from "./pages/app/pharmacy/orders"
 import { VisitDeposit } from "./pages/app/pharmacy/visit-deposit"
-import { DepositLayout } from "./layouts/deposit"
-import { Dashboard } from "./pages/app/deposit/dashboard"
-import { NotFound } from "./pages/404"
+import { Cart } from "./pages/app/pharmacy/cart"
+
 import { AdminLayouth } from "./layouts/admin"
 import { AdminDashboard } from "./pages/admin"
-import { Cart } from "./pages/app/pharmacy/cart"
+
+import { DepositLayout } from "./layouts/deposit"
+import { Dashboard } from "./pages/app/deposit/dashboard"
+import { Medicinals } from "./pages/app/deposit/medicinals"
+
+import { NotFound } from "./pages/404"
 
 export const routes = createBrowserRouter([
   {
@@ -53,7 +57,10 @@ export const routes = createBrowserRouter([
   {
     path: "/deposit",
     element: <DepositLayout />,
-    children: [{ path: "", element: <Dashboard /> }],
+    children: [
+      { path: "", element: <Dashboard /> },
+      { path: "medicinals", element: <Medicinals /> },
+    ],
   },
 
   {

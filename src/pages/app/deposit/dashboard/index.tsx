@@ -8,12 +8,12 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import { RegisterMedDialog } from "./register-med-dialog"
 
 import { Table, TableBody } from "@/components/ui/table"
-import { MedicinalTableHead } from "./medicinal-table-head"
-import { MedicinalTableRow } from "./medicinal-table-row"
+import { OrdersTableHead } from "./orders-table-head"
+import { OrdersTableRow } from "./orders-table-row"
 
 import { Pagination } from "@/components/general-ui/pagination"
 
-import { House, Plus } from "lucide-react"
+import { House, Package, Plus } from "lucide-react"
 
 export function Dashboard() {
   return (
@@ -30,7 +30,10 @@ export function Dashboard() {
           <DashboardOverview />
 
           <div className="mt-10 flex items-center justify-between">
-            <h1>Medicamentos Adcionados Recentemente</h1>
+            <h1 className="font-bold flex items-center gap-1 text-neutral-800">
+              <Package className="w-5 h-5" />
+              Últimos Pedidos em 24h
+            </h1>
 
             <Dialog>
               <DialogTrigger>
@@ -49,11 +52,11 @@ export function Dashboard() {
 
           <div className="mt-6 bg-white p-4 rounded-lg border shadow-sm">
             <Table className="w-full">
-              <MedicinalTableHead />
+              <OrdersTableHead />
 
               <TableBody>
-                {Array.from({ length: 5 }).map((_) => {
-                  return <MedicinalTableRow />
+                {Array.from({ length: 4 }).map((_) => {
+                  return <OrdersTableRow />
                 })}
               </TableBody>
             </Table>

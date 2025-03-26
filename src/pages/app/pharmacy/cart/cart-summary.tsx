@@ -1,34 +1,23 @@
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/hooks/useCart"
+import { useSummary } from "@/hooks/useSummary"
 import { priceFormatter } from "@/utils/formatter"
-import { ShoppingBag, ShoppingCart } from "lucide-react"
+import { Package, ShoppingBag, ShoppingCart } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 
 export function CartSummary() {
-  const { totalItems, cartItems } = useCart()
-  const FRETE_DE_ENTREGA = 500
-
   const navigate = useNavigate()
-
-  const summary = cartItems.reduce(
-    (acc, cartItem) => {
-      acc.subtotal += cartItem.preco * Number(cartItem.quantity)
-      acc.total = FRETE_DE_ENTREGA + acc.subtotal
-      return acc
-    },
-    {
-      total: 0,
-      subtotal: 0,
-    }
-  )
+  const { totalItems } = useCart()
+  const { summary, FRETE_DE_ENTREGA } = useSummary()
 
   async function handleEncomend() {
-    toast("Foram Enviada Novas Encomendas!", {
+    toast.success(`(${totalItems}) Items Enviados Para Encomenda!`, {
       action: {
-        label: "Vizualizar",
+        label: "visualizar",
         onClick: () => navigate("/pharmacy/orders"),
       },
+      icon: <Package />,
     })
   }
 
@@ -68,7 +57,7 @@ export function CartSummary() {
 
         <Button
           onClick={handleEncomend}
-          disabled={cartItems.length === 0}
+          disabled={totalItems === 0}
           className="w-full bg-emerald-600 hover:bg-emerald-700 h-12 rounded-lg font-medium gap-2 transition-colors"
         >
           <ShoppingCart className="h-5 w-5" />

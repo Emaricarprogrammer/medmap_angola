@@ -7,11 +7,10 @@ export function MedicinalTableHead() {
         <TableHead className="w-[250px]">Nome Comercial</TableHead>
         <TableHead className="w-[250px]">Nome Genérico</TableHead>
         <TableHead className="w-[200px]">Categoria</TableHead>
-        <TableHead className="w-[100px]">Qtd</TableHead>
+        <TableHead className="w-[100px]">Qtd.</TableHead>
         <TableHead className="w-[150px]">Origem</TableHead>
         <TableHead className="w-[150px]">Preço Unitário</TableHead>
         <TableHead className="w-[150px]">Validade</TableHead>
-        <TableHead className="w-[50px]">Status</TableHead>
       </TableRow>
     </TableHeader>
   )

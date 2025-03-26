@@ -7,19 +7,22 @@ import {
 } from "@/components/ui/dialog"
 import {
   Hospital,
-  Minus,
-  Plus,
   ShoppingBag,
   Truck,
   ShieldCheck,
+  Calendar,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { priceFormatter } from "@/utils/formatter"
+import { useCart } from "@/hooks/useCart"
 
 interface DetailsDialogProps {
   medicinal: Medicinal
 }
 
 export function DetailsDialog({ medicinal }: DetailsDialogProps) {
+  const { addMedicinalToCart } = useCart()
+
   return (
     <DialogContent className="sm:max-w-[625px] rounded-lg">
       <div className="space-y-4">
@@ -51,11 +54,13 @@ export function DetailsDialog({ medicinal }: DetailsDialogProps) {
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-foreground">
-                  {medicinal.nome_generico}
+                <h3 className="text-xl text-foreground">
+                  <strong>{medicinal.nome_generico} </strong>
+                  <span>({medicinal.nome_comercial})</span>
                 </h3>
 
                 <div className="mt-2 flex items-center gap-2">
+                  Origem:
                   <Badge variant="secondary" className="text-emerald-700">
                     {medicinal.origem}
                   </Badge>
@@ -68,10 +73,7 @@ export function DetailsDialog({ medicinal }: DetailsDialogProps) {
                     Preço por caixa
                   </p>
                   <p className="text-2xl font-bold text-emerald-600">
-                    {Intl.NumberFormat("pt-br", {
-                      currency: "AKZ",
-                      style: "currency",
-                    }).format(medicinal.preco)}
+                    {priceFormatter.format(medicinal.preco)}
                   </p>
                 </div>
 
@@ -84,29 +86,17 @@ export function DetailsDialog({ medicinal }: DetailsDialogProps) {
                     <p className="text-sm text-muted-foreground">
                       {medicinal.deposito.rua}, {medicinal.deposito.logradouro}
                     </p>
+                    <p className="text-sm text-muted-foreground"></p>
                   </div>
                 </div>
 
-                <div className="border rounded-lg p-4">
-                  <h4 className="font-medium mb-3">Quantidade</h4>
-                  <div className="flex items-center justify-between gap-4">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full"
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-
-                    <span className="text-lg font-bold">1</span>
-
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="rounded-full bg-emerald-50 border-emerald-100"
-                    >
-                      <Plus className="h-4 w-4 text-emerald-600" />
-                    </Button>
+                <div className="flex items-start gap-3">
+                  <Calendar className="mt-1 text-emerald-600 h-5 w-5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium">Válidade</p>
+                    <p className="text-sm text-muted-foreground">
+                      {medicinal.validade}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -120,7 +110,12 @@ export function DetailsDialog({ medicinal }: DetailsDialogProps) {
                 <span>Entrega em 24h • Taxa de entrega: 500 AKZ</span>
               </div>
 
-              <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700 shadow-md">
+              <Button
+                onClick={() => {
+                  addMedicinalToCart(medicinal)
+                }}
+                className="gap-2 bg-emerald-600 hover:bg-emerald-700 shadow-md"
+              >
                 <ShoppingBag className="h-4 w-4" />
                 Adicionar ao carrinho
               </Button>

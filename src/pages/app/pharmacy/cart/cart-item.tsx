@@ -24,7 +24,7 @@ export function CartItem({ item }: CartItemProps) {
         <div className="flex flex-col gap-1">
           <strong className="text-neutral-800">{item.nome_generico}</strong>
           <span className="text-sm text-neutral-500">
-            500mg · 20 comprimidos
+            {item.categoria} · {item.quantidade_disponivel} caixas Disponíveis
           </span>
 
           <div className="flex gap-3 mt-2">

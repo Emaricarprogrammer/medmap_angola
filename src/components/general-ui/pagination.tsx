@@ -29,6 +29,7 @@ export function Pagination({
         <div className="flex items-center gap-2">
           <Button
             size="sm"
+            title="Página Anterior"
             className="bg-white border text-foreground font-extrabold hover:bg-white/70"
           >
             <ChevronLeft />
@@ -36,6 +37,7 @@ export function Pagination({
 
           <Button
             size="sm"
+            title="Próxima Página"
             className="bg-white border text-foreground font-extrabold hover:bg-white/70"
           >
             <ChevronRight />

@@ -1,4 +1,4 @@
-import { HandPlatter, CircleDashed, House } from "lucide-react"
+import { HandPlatter, House, Package } from "lucide-react"
 import { NavLink } from "react-router-dom"
 
 export function PharmacyNavbar() {
@@ -24,8 +24,8 @@ export function PharmacyNavbar() {
         to="/pharmacy/orders"
         className="flex items-center gap-2 text-lg hover:text-neutral-200"
       >
-        <CircleDashed className="h-5 w-5 max-sm:w-7 max-sm:h-7" />
-        <span className="max-sm:hidden">Pedidos</span>
+        <Package className="h-5 w-5 max-sm:w-7 max-sm:h-7" />
+        <span className="max-sm:hidden">Encomendas</span>
       </NavLink>
     </nav>
   )

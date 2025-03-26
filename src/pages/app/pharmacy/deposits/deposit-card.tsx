@@ -10,7 +10,7 @@ export function DepositCard() {
   }
 
   return (
-    <div className="bg-white h-72 p-6 cursor-pointer flex flex-col justify-between gap-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200 group">
+    <div className="bg-white border h-72 p-6 cursor-pointer flex flex-col justify-between gap-4 rounded-2xl border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200 group">
       <div className="flex items-start gap-4">
         <div className="relative">
           <Avatar className="h-14 w-14 rounded-xl border-2 border-white shadow-sm">
