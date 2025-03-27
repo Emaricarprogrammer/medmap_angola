@@ -34,7 +34,7 @@ export function DetailsDialog({ medicinal }: DetailsDialogProps) {
             <div className="flex flex-col items-center gap-4">
               <img
                 className="w-48 h-48 object-contain rounded-lg border bg-white p-4 shadow-sm"
-                src="/medicial.png"
+                src={medicinal.imagem}
                 alt={medicinal.nome_generico}
               />
 
