@@ -25,7 +25,7 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
       <div className="relative">
         <img
           className="w-20 h-20 max-sm:w-28 max-sm:h-28 rounded-lg object-cover border border-gray-100"
-          src="/medicial.png"
+          src={medicinal.imagem}
           alt={medicinal.nome_generico}
         />
         <Badge

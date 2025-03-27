@@ -27,7 +27,9 @@ interface GetMedidicals {
 }
 
 export async function getMedicinals() {
-  const response = await api.get<GetMedidicals>("/medicamentos")
+  const response = await api.get<GetMedidicals>(
+    "/entidade/deposito/medicamentos"
+  )
   const data = response.data.response.MedicineResults
 
   return data
