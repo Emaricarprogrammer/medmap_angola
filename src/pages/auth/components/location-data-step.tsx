@@ -2,21 +2,21 @@ import { Label } from "@/components/ui/label"
 import { Info, Map, MapPin } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { FormStepProps } from "@/schemas/sign-up"
-import { useState } from "react"
 import { toast } from "sonner"
 
-export function LocationDataStep({ register, errors }: FormStepProps) {
-  const [Userlatitude, setUserLatitude] = useState(0)
-  const [Userlongitude, setUserLongitude] = useState(0)
-
-  async function handleGetCurrentLocation() {
+export function LocationDataStep({
+  register,
+  errors,
+  setValue,
+}: FormStepProps) {
+  function handleGetCurrentLocation() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude } = position.coords
         const { longitude } = position.coords
 
-        setUserLatitude(latitude)
-        setUserLongitude(longitude)
+        setValue("longitude", longitude)
+        setValue("latitude", latitude)
       },
       () => {
         toast.error("Ops! Erro ao Obter a localização")
@@ -88,7 +88,6 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           <Input
             type="number"
             placeholder="Latitude"
-            value={Userlatitude && Userlatitude}
             className="bg-neutral-50 placeholder:text-neutral-500 h-12"
             {...register("latitude", { valueAsNumber: true })}
           />
@@ -107,7 +106,6 @@ export function LocationDataStep({ register, errors }: FormStepProps) {
           <Input
             type="number"
             placeholder="Longitude"
-            value={Userlongitude && Userlongitude}
             className="bg-neutral-50 placeholder:text-neutral-500 h-12"
             {...register("longitude", { valueAsNumber: true })}
           />

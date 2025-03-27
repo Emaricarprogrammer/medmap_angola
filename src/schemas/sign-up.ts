@@ -1,4 +1,9 @@
-import { Control, useForm, UseFormRegister } from "react-hook-form"
+import {
+  Control,
+  useForm,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form"
 import { z } from "zod"
 
 export const signUpScheme = z.object({
@@ -26,4 +31,5 @@ export interface FormStepProps {
   register: UseFormRegister<SignUpData>
   errors: ReturnType<typeof useForm>["formState"]["errors"]
   control?: Control<SignUpData>
+  setValue: UseFormSetValue<SignUpData>
 }

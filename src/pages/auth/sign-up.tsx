@@ -32,6 +32,7 @@ export function SignUp() {
     handleSubmit,
     control,
     formState: { isSubmitting, errors },
+    setValue,
   } = useForm<SignUpData>({
     resolver: zodResolver(signUpScheme),
   })
@@ -49,7 +50,7 @@ export function SignUp() {
       })
     } catch (error) {
       toast.error(String(error.response.data.message))
-      console.log(error)
+      console.log(data)
     }
   }
 
@@ -76,13 +77,22 @@ export function SignUp() {
               register={register}
               errors={errors}
               control={control}
+              setValue={setValue}
             />
           )}
           {stepForm === 2 && (
-            <LocationDataStep register={register} errors={errors} />
+            <LocationDataStep
+              setValue={setValue}
+              register={register}
+              errors={errors}
+            />
           )}
           {stepForm === 3 && (
-            <AuthDataStep register={register} errors={errors} />
+            <AuthDataStep
+              setValue={setValue}
+              register={register}
+              errors={errors}
+            />
           )}
 
           {stepState === "finished" && (
