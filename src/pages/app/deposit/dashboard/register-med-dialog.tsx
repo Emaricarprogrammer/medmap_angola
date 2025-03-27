@@ -11,7 +11,7 @@ import {
   registerMedicinalSchema,
 } from "@/schemas/register-medicinal"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Loader2, Plus } from "lucide-react"
+import { Loader2, Plus, Upload } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
@@ -20,6 +20,8 @@ export function RegisterMedDialog() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    watch,
+    setValue,
   } = useForm<RegisterMedicinalFormData>({
     resolver: zodResolver(registerMedicinalSchema),
   })
@@ -34,6 +36,13 @@ export function RegisterMedDialog() {
     }
   }
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setValue("image", file)
+    }
+  }
+
   return (
     <DialogContent>
       <DialogHeader>
@@ -45,6 +54,42 @@ export function RegisterMedDialog() {
         className="mt-4 flex flex-col gap-5"
         onSubmit={handleSubmit(handleRegisterNewMedicinal)}
       >
+        <div className="grid grid-cols-2 gap-5">
+          <div className="flex flex-col gap-2">
+            <Label className="text-foreground/80 text-sm">
+              Imagem do Medicamento
+            </Label>
+            <label className="flex flex-col items-center justify-center h-32 border-2 border-dashed rounded-lg cursor-pointer bg-neutral-50 hover:bg-neutral-100">
+              {watch("image") ? (
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <img
+                    src={URL.createObjectURL(watch("image"))}
+                    alt="Preview"
+                    className="max-h-full max-w-full object-contain p-2"
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                  <Upload className="w-8 h-8 mb-2 text-foreground/50" />
+                  <p className="text-sm text-foreground/50">
+                    <span className="font-semibold">Clique para enviar</span> ou
+                    arraste até aqui
+                  </p>
+                </div>
+              )}
+              <input
+                type="file"
+                className="hidden"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </label>
+            <span className="text-sm text-rose-600">
+              {errors.image && errors.image.message}
+            </span>
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 gap-5">
           <div className="flex flex-col gap-2">
             <Label className="text-foreground/80 text-sm">Nome Comercial</Label>

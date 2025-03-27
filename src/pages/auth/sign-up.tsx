@@ -47,8 +47,8 @@ export function SignUp() {
           },
         },
       })
-    } catch {
-      toast.error("Ops! Falha ao cadastrar conta.")
+    } catch (error) {
+      toast.error(String(error))
     }
   }
 
