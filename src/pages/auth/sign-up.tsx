@@ -47,8 +47,9 @@ export function SignUp() {
           },
         },
       })
-    } catch {
-      toast.error("ERRO! Não foi possível cadastrar a conta.")
+    } catch (error) {
+      toast.error(String(error.response.data.message))
+      console.log(error)
     }
   }
 
