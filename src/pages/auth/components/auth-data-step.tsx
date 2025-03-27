@@ -1,9 +1,11 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FormStepProps } from "@/schemas/sign-up"
-import { AtSign, Phone, Lock } from "lucide-react"
+import { AtSign, Phone, Lock, Eye, EyeOff } from "lucide-react"
+import { useState } from "react"
 
 export function AuthDataStep({ register, errors }: FormStepProps) {
+  const [showPassword, setShowPassword] = useState(false)
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-col gap-1">
@@ -23,7 +25,6 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
             errors.phone.message}
         </span>
       </div>
-
       <div className="flex flex-col gap-2">
         <Label className="flex items-center text-foreground/60 ml-2 gap-1">
           <AtSign className="w-4 h-4" />
@@ -42,18 +43,31 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
         </span>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 relative">
         <Label className="flex items-center text-foreground/60 ml-2 gap-1">
           <Lock className="w-4 h-4" />
           <span>Palavra passe</span>
         </Label>
-        <Input
-          type="password"
-          placeholder="*** *** ***"
-          className="bg-neutral-50 placeholder:text-neutral-500 h-12"
-          {...register("password")}
-        />
-        <span className="text-rose-600 text-sm font-light text-left ">
+        <div className="relative">
+          <Input
+            type={showPassword ? "text" : "password"}
+            placeholder="*** *** ***"
+            className="bg-neutral-50 placeholder:text-neutral-500 h-12 pr-10" // Adicionei padding à direita
+            {...register("password")}
+          />
+          <button
+            type="button"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-700 transition-colors"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <EyeOff className="w-5 h-5" />
+            ) : (
+              <Eye className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+        <span className="text-rose-600 text-sm font-light text-left">
           {errors.password &&
             typeof errors.password.message === "string" &&
             errors.password.message}

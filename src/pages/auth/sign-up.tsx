@@ -40,6 +40,7 @@ export function SignUp() {
   async function handleSignUp(data: SignUpData) {
     try {
       await signUpEntity(data)
+
       toast.success("Conta cadastrada com sucesso!", {
         action: {
           label: "Fazer Login",
@@ -48,9 +49,8 @@ export function SignUp() {
           },
         },
       })
-    } catch (error) {
+    } catch (error: any) {
       toast.error(String(error.response.data.message))
-      console.log(data)
     }
   }
 
