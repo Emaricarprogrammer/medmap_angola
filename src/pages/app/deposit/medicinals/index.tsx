@@ -1,16 +1,20 @@
-import { Table, TableBody } from "@/components/ui/table"
-import { Pagination } from "@/components/general-ui/pagination"
-
 import { Helmet } from "react-helmet-async"
-import { Package } from "lucide-react"
+import { Package, Plus } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { Toolbar } from "@/components/deposit-ui/toolbar"
-import { MedicinalTableHead } from "./medicinal-table-head"
+
+import { Table, TableBody } from "@/components/ui/table"
+import { Dialog, DialogTrigger } from "@/components/ui/dialog"
+import { Pagination } from "@/components/general-ui/pagination"
+import { RegisterMedDialog } from "../dashboard/register-med-dialog"
+
 import { MedicinalTableRow } from "./medicinal-table-row"
+import { MedicinalTableHead } from "./medicinal-table-head"
 
 export function Medicinals() {
   return (
     <>
-      <Helmet title="Gestão de Medicamentos" />
+      <Helmet title="Stock de Medicamentos" />
 
       <div className="w-full">
         <Toolbar
@@ -18,12 +22,32 @@ export function Medicinals() {
           legend="Medicamentos"
         />
 
+        <div className="mt-10 flex items-center justify-between">
+          <h1 className="font-bold flex items-center gap-1 text-neutral-800">
+            Adcionados Recentemente
+          </h1>
+
+          <Dialog>
+            <DialogTrigger>
+              <Button
+                type="button"
+                className="flex items-center bg-gradient-to-tr to-emerald-500 from-emerald-600 gap-1"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Cadastrar Novo Medicamento</span>
+              </Button>
+            </DialogTrigger>
+
+            <RegisterMedDialog />
+          </Dialog>
+        </div>
+
         <div className="mt-8 bg-white p-4 rounded-lg border shadow-sm">
           <Table className="w-full">
             <MedicinalTableHead />
 
             <TableBody>
-              {Array.from({ length: 9 }).map((_) => {
+              {Array.from({ length: 7 }).map((_) => {
                 return <MedicinalTableRow />
               })}
             </TableBody>

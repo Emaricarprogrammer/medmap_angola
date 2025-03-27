@@ -17,7 +17,7 @@ export function DepositNavbar() {
         className="flex items-center gap-2 text-lg hover:text-neutral-200"
       >
         <Package className="h-5 w-5 max-sm:w-7 max-sm:h-7" />
-        <span className="max-sm:hidden">Medicamentos</span>
+        <span className="max-sm:hidden">Stock</span>
       </NavLink>
 
       <NavLink

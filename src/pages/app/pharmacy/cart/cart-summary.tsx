@@ -1,17 +1,38 @@
+import { Order } from "@/@types/pharmacy-orders"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/hooks/useCart"
 import { useSummary } from "@/hooks/useSummary"
 import { priceFormatter } from "@/utils/formatter"
 import { Package, ShoppingBag, ShoppingCart } from "lucide-react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 
 export function CartSummary() {
   const navigate = useNavigate()
-  const { totalItems } = useCart()
+
+  const { totalItems, cartItems } = useCart()
   const { summary, FRETE_DE_ENTREGA } = useSummary()
 
+  const [orders, setOrders] = useState<Order[]>([])
+
+  useEffect(() => {
+    console.log(orders)
+  }, [orders])
+
   async function handleEncomend() {
+    cartItems.map((order) => {
+      setOrders([
+        ...orders,
+        {
+          ...order,
+          status: "pending",
+          date: new Date(),
+          total: order.preco * order.quantity,
+        },
+      ])
+    })
+
     toast.success(`(${totalItems}) Items Enviados Para Encomenda!`, {
       action: {
         label: "visualizar",

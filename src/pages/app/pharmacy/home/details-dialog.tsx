@@ -5,13 +5,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog"
-import {
-  Hospital,
-  ShoppingBag,
-  Truck,
-  ShieldCheck,
-  Calendar,
-} from "lucide-react"
+import { Hospital, ShoppingBag, ShieldCheck, Calendar } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { priceFormatter } from "@/utils/formatter"
 import { useCart } from "@/hooks/useCart"
@@ -105,16 +99,11 @@ export function DetailsDialog({ medicinal }: DetailsDialogProps) {
 
           <div className="border-t bg-gray-50 p-6">
             <div className="flex flex-col sm:flex-row justify-between gap-4">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Truck className="h-4 w-4" />
-                <span>Entrega em 24h • Taxa de entrega: 500 AKZ</span>
-              </div>
-
               <Button
                 onClick={() => {
                   addMedicinalToCart(medicinal)
                 }}
-                className="gap-2 bg-emerald-600 hover:bg-emerald-700 shadow-md"
+                className="gap-2 ml-auto bg-emerald-600 hover:bg-emerald-700 shadow-md"
               >
                 <ShoppingBag className="h-4 w-4" />
                 Adicionar ao carrinho

@@ -23,6 +23,7 @@ import { Dashboard } from "./pages/app/deposit/dashboard"
 import { Medicinals } from "./pages/app/deposit/medicinals"
 
 import { NotFound } from "./pages/404"
+import { DepositPofile } from "./pages/app/deposit/profile"
 
 export const routes = createBrowserRouter([
   {
@@ -60,6 +61,7 @@ export const routes = createBrowserRouter([
     children: [
       { path: "", element: <Dashboard /> },
       { path: "medicinals", element: <Medicinals /> },
+      { path: "profile", element: <DepositPofile /> },
     ],
   },
 
