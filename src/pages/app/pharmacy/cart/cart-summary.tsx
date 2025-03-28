@@ -43,7 +43,7 @@ export function CartSummary() {
   }
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-neutral-200 shadow-sm">
+    <div className="bg-white p-6 rounded-tl-3xl rounded-br-3xl border border-neutral-200 shadow-sm">
       <h1 className="font-bold text-neutral-800 text-lg flex items-center gap-2">
         <ShoppingBag className="h-5 w-5 text-emerald-600" />
         Resumo da Encomenda

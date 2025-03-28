@@ -14,7 +14,7 @@ export function Toolbar({ legend, children }: ToolbarProps) {
   const { totalItems } = useCart()
 
   return (
-    <header className="w-full rounded-xl border-b bg-white/95 backdrop-blur-sm sticky top-0 z-50 px-4 py-3 shadow-sm">
+    <header className="w-full rounded-xl border-b bg-white/95 sticky top-0 z-50 px-4 py-3 shadow-md border">
       <div className="flex items-center justify-between h-14">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">

@@ -21,7 +21,7 @@ export function Cart() {
       </div>
 
       <div className="mt-12 grid grid-cols-[1fr_400px] gap-12 max-lg:grid-cols-1">
-        <div className="bg-white p-8 rounded-2xl shadow-lg border border-neutral-200 h-fit">
+        <div className="bg-white p-8 rounded-tl-3xl rounded-br-3xl shadow-lg border border-neutral-200 h-fit">
           {cartItems.length !== 0 ? (
             cartItems.map((item) => {
               return <CartItem key={item.id_medicamento} item={item} />

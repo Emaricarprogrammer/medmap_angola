@@ -35,7 +35,7 @@ export function DepositCard({ deposit }: Deposit) {
       </div>
 
       <div className="grid grid-cols-2 gap-3 mt-2">
-        <div className="bg-gray-50/80 p-3 rounded-xl">
+        <div className="bg-gray-50 p-3 rounded-xl">
           <p className="text-xs text-gray-500">Unidades</p>
           <p className="text-lg font-medium text-gray-900">+500</p>
         </div>

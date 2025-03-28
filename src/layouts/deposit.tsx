@@ -25,7 +25,7 @@ export function DepositLayout() {
 
         <footer className="flex flex-col gap-6">
           <button className="flex items-center gap-3 max-sm:flex-col max-sm:gap-0 font-semibold max-sm:px-5 text-rose-400/90 hover:text-rose-300 transition-colors text-sm group">
-            <LogOut className="w-6 h-6 max-sm:w-10 max-sm:h-10  group-hover:scale-105 transition-transform" />
+            <LogOut className="w-6 h-6  group-hover:scale-105 transition-transform" />
             <span>Sair</span>
           </button>
 
