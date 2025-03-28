@@ -1,25 +1,24 @@
 import { useNavigate } from "react-router-dom"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ArrowUpRight, Box, MapPin } from "lucide-react"
+import { ArrowUpRight, Box, MapPin, Truck } from "lucide-react"
 
-export function DepositCard() {
+interface Deposit {
+  deposit: {
+    name: string
+  }
+}
+export function DepositCard({ deposit }: Deposit) {
   const navigate = useNavigate()
 
   function handleVisitDeposit() {
-    navigate(`/pharmacy/view-deposit?name=[NomeDoDeposito]`)
+    navigate(`/pharmacy/view-deposit?name=${deposit.name}`)
   }
 
   return (
     <div className="bg-white border h-72 p-6 cursor-pointer flex flex-col justify-between gap-4 rounded-2xl border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200 group">
       <div className="flex items-start gap-4">
         <div className="relative">
-          <Avatar className="h-14 w-14 rounded-xl border-2 border-white shadow-sm">
-            <AvatarImage src="/profile.png" className="object-cover" />
-            <AvatarFallback className="bg-gradient-to-br from-gray-100 to-gray-200 text-gray-600 font-medium">
-              MA
-            </AvatarFallback>
-          </Avatar>
-          <div className="absolute -bottom-2 -right-2 bg-emerald-500 p-1 rounded-full border-2 border-white">
+          <Truck className="w-10 h-10" />
+          <div className="absolute -bottom-2 -left-2 bg-emerald-500 p-1 rounded-full border-2 border-white">
             <Box className="h-3 w-3 text-white" />
           </div>
         </div>
@@ -44,7 +43,7 @@ export function DepositCard() {
 
       <button
         onClick={handleVisitDeposit}
-        className="mt-2 flex border items-center justify-center gap-2 text-sm font-medium text-emerald-600  transition-all duration-300 w-full py-3 rounded-xl group-hover:shadow-emerald-sm"
+        className="mt-2 flex border items-center justify-center gap-2 text-sm font-medium text-emerald-600 hover:bg-emerald-600 hover:text-white  transition-all duration-300 w-full py-3 rounded-xl group-hover:shadow-emerald-sm"
       >
         <ArrowUpRight className="w-4 h-4" />
         <span>Visitar Depósito</span>

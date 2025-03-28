@@ -19,11 +19,11 @@ export function Medicinals() {
       <div className="w-full">
         <Toolbar
           children={<Package className="text-emerald-700 h-6 w-6" />}
-          legend="Medicamentos"
+          legend="Stock"
         />
 
         <div className="mt-10 flex items-center justify-between">
-          <h1 className="font-bold flex items-center gap-1 text-neutral-800">
+          <h1 className="font-bold px-1 flex items-center gap-1 text-neutral-800">
             Adcionados Recentemente
           </h1>
 
@@ -31,10 +31,10 @@ export function Medicinals() {
             <DialogTrigger>
               <Button
                 type="button"
-                className="flex items-center bg-gradient-to-tr to-emerald-500 from-emerald-600 gap-1"
+                className="flex items-center font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600 gap-1"
               >
                 <Plus className="w-4 h-4" />
-                <span>Cadastrar Novo Medicamento</span>
+                <span className="max-sm:hidden">Novo Medicamento</span>
               </Button>
             </DialogTrigger>
 
@@ -47,7 +47,7 @@ export function Medicinals() {
             <MedicinalTableHead />
 
             <TableBody>
-              {Array.from({ length: 7 }).map((_) => {
+              {Array.from({ length: 6 }).map((_) => {
                 return <MedicinalTableRow />
               })}
             </TableBody>

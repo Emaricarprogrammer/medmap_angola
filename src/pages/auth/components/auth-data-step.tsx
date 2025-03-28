@@ -42,7 +42,6 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
             errors.email.message}
         </span>
       </div>
-
       <div className="flex flex-col gap-2 relative">
         <Label className="flex items-center text-foreground/60 ml-2 gap-1">
           <Lock className="w-4 h-4" />

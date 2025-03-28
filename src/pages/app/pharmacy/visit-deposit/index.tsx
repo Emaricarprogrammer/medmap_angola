@@ -4,23 +4,27 @@ import { Pagination } from "@/components/general-ui/pagination"
 import { Toolbar } from "@/components/pharmacy-ui/toolbar"
 import { Input } from "@/components/ui/input"
 
-import { DepositMedicialCard } from "./deposit-medicinal-card"
+import { DepositMedicinalCard } from "./deposit-medicinal-card"
 import { DepositOverView } from "./deposit-overview"
 
 import { HandPlatter, Search } from "lucide-react"
+import { useSearchParams } from "react-router-dom"
 
 export function VisitDeposit() {
+  const [searchParams] = useSearchParams()
+  const depositName = searchParams.get("name")
+
   return (
     <>
-      <Helmet title="[Nome do Depósito]" />
+      <Helmet title={`${depositName}`} />
 
       <div className="w-full">
         <Toolbar
           children={<HandPlatter className="text-emerald-600 h-6 w-6" />}
-          legend="Santa Catarina Lda"
+          legend={`${depositName}`}
         />
         <div className="py-8 w-full">
-          <DepositOverView />
+          <DepositOverView depositName={depositName} />
 
           <form className="mt-4">
             <div className="relative text-foreground/60">
@@ -34,10 +38,10 @@ export function VisitDeposit() {
           </form>
 
           <div className="h-[20rem] overflow-y-scroll">
-            <div className="py-6 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll">
-              <DepositMedicialCard />
-              <DepositMedicialCard />
-              <DepositMedicialCard />
+            <div className="py-4 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll">
+              <DepositMedicinalCard />
+              <DepositMedicinalCard />
+              <DepositMedicinalCard />
             </div>
 
             <Pagination

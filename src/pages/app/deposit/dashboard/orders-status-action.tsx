@@ -5,7 +5,7 @@ export function OrdersStatusAction() {
   return (
     <div className="flex items-center gap-6">
       <Button
-        title="Detalhes do Pedido"
+        title="Aprovar Pedido"
         className="bg-transparent text-emerald-800 hover:bg-transparent"
         size="sm"
       >
@@ -14,7 +14,7 @@ export function OrdersStatusAction() {
       </Button>
 
       <Button
-        title="Detalhes do Pedido"
+        title="Cancelar Pedido"
         className="bg-transparent text-rose-800 hover:bg-transparent"
         size="sm"
       >

@@ -1,38 +1,61 @@
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogTrigger } from "@/components/ui/dialog"
-import { Package, ShoppingCart } from "lucide-react"
+import { Package, ShoppingBag, Star, Truck } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
-export function DepositMedicialCard() {
+export function DepositMedicinalCard() {
   return (
-    <div className="bg-white flex-col border-t-emerald-600 p-4 flex text-sm rounded-xl max-sm:p-4 max-sm:flex-col border-2">
-      <img className="w-20 h-20 max-sm:w-24 max-sm:h-24" src="/medicial.png" />
-      <div className=" flex-1 p-2 flex flex-col gap-3 rounded-xl max-sm:gap-2">
-        <div className="flex flex-col gap-2">
-          <strong className="text-emerald-600 font-normal">
-            <span>11999,99</span> /Caixa
-          </strong>
-          <strong className="font-medium text-foreground">
-            Paracetamol -{" "}
-            <span className="font-normal text-neutral-500">34 Lâminas</span>
-          </strong>
+    <div className="bg-white border border-gray-200 gap-4 p-5 flex rounded-xl max-sm:p-4 max-sm:flex-col hover:shadow-md transition-shadow duration-300">
+      <div className="relative">
+        <img
+          className="w-20 h-20 max-sm:w-28 max-sm:h-28 rounded-lg object-cover border border-gray-100"
+          src="/medicial.png"
+          alt=""
+        />
+        <Badge
+          variant="outline"
+          className="absolute -top-2 -right-2 bg-white shadow-sm flex items-center gap-1"
+        >
+          <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+          <span className="text-xs">4.8</span>
+        </Badge>
+      </div>
+
+      <div className="flex-1 flex flex-col gap-3">
+        <div className="flex flex-col gap-1">
+          <h3 className="font-semibold text-foreground text-base line-clamp-2">
+            Paracetamol
+          </h3>
+          <div className="flex items-center gap-2">
+            <span className="text-emerald-600 font-bold text-lg">
+              AKZ 12.000
+            </span>
+            <span className="text-muted-foreground text-sm">/Caixa</span>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Package className="text-emerald-600 h-4 w-4" />
-          <span className="text-neutral-500 text-sm">
-            25 Unidades Disponíveis
-          </span>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-sm">
+            <Truck className="text-muted-foreground h-4 w-4" />
+            <span className="text-muted-foreground flex items-center gap-1">
+              <span className="font-medium text-foreground">Origem</span>
+              Brasil
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 text-sm">
+            <Package className="text-muted-foreground h-4 w-4" />
+            <span className="text-muted-foreground flex items-center gap-1">
+              <span className="font-medium text-foreground">12</span>
+              unidades disponíveis
+            </span>
+          </div>
         </div>
 
-        <footer>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="flex bg-gradient-to-tr to-emerald-500 from-emerald-600">
-                <ShoppingCart className="h-4 w-4" />
-                <span className="font-bold text-sm">Encomendar</span>
-              </Button>
-            </DialogTrigger>
-          </Dialog>
+        <footer className="mt-auto pt-3 gap-4 border-t flex items-center justify-between">
+          <Button className="gap-2 text-sm h-10 ml-auto bg-emerald-600 hover:bg-emerald-700">
+            <ShoppingBag className="w-4 h-4" />
+            Encomendar
+          </Button>
         </footer>
       </div>
     </div>

@@ -25,7 +25,7 @@ export function OrdersTableRow() {
         </Dialog>
       </TableCell>
 
-      <TableCell className="py-4 max-xl:py-2">Ada Farma, Sul</TableCell>
+      <TableCell className="py-4 max-xl:py-2">Ada Farma</TableCell>
       <TableCell className="py-4 max-xl:py-2">23 Caixas</TableCell>
       <TableCell className="py-4 max-xl:py-2">AKZ 45.000,00</TableCell>
       <TableCell className="py-4 max-xl:py-2">45 Minutos</TableCell>

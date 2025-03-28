@@ -18,7 +18,8 @@ export function Pagination({
     <div className="text-sm flex px-2 items-center mt-8 justify-between">
       <div>
         <span>
-          Todal de {totalItem} {"  "} {legend}
+          Todal de {totalItem} {"  "}{" "}
+          <span className="max-sm:hidden">{legend}</span>
         </span>
       </div>
 

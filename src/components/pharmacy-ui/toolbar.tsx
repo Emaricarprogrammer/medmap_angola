@@ -29,7 +29,7 @@ export function Toolbar({ legend, children }: ToolbarProps) {
             className="relative p-2 rounded-full hover:bg-gray-100 transition-colors"
             aria-label="Shopping cart"
           >
-            <ShoppingCart className="h-6 *:w-6 text-gray-700" />
+            <ShoppingCart className="h-6 w-6 text-gray-700" />
             <Badge
               variant="destructive"
               className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0"

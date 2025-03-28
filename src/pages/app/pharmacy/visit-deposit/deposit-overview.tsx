@@ -5,7 +5,10 @@ import { DepositLocationCard } from "./deposit-location-card"
 import { DepositContactsCard } from "./deposit-contacts-card"
 import { DepositGeoLocationCard } from "./deposit-geolocation-card"
 
-export function DepositOverView() {
+interface DepositOverViewProps {
+  depositName: string | null
+}
+export function DepositOverView({ depositName }: DepositOverViewProps) {
   return (
     <div className="flex flex-col gap-2 w-full border bg-white p-4 rounded-md">
       <div className="flex items-center gap-2">
@@ -15,7 +18,7 @@ export function DepositOverView() {
         </Avatar>
 
         <div className="flex flex-col gap-1">
-          <strong className="font-bold text-xl">Santa Catarina</strong>
+          <strong className="font-bold text-xl">{depositName}</strong>
           <span className="text-foreground/80">Depósito de Medicamentos</span>
         </div>
       </div>

@@ -28,7 +28,7 @@ export function CartSummary() {
           ...order,
           status: "pending",
           date: new Date(),
-          total: order.preco * order.quantity,
+          total: order.preco * Number(order.quantity),
         },
       ])
     })
@@ -63,7 +63,7 @@ export function CartSummary() {
         </div>
 
         <div className="flex items-center justify-between py-3 px-2">
-          <span className="text-neutral-600">Frete de Entrega</span>
+          <span className="text-neutral-600">Taxa de Entrega</span>
           <strong className="text-neutral-900 font-medium">
             {priceFormatter.format(FRETE_DE_ENTREGA)}
           </strong>

@@ -3,7 +3,7 @@ import {
   ArrowUpRightFromSquare,
   MapPin,
   Package,
-  ShoppingBag,
+  ShoppingCart,
   Star,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -21,11 +21,11 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
   const { addMedicinalToCart } = useCart()
 
   return (
-    <div className="bg-white border border-gray-200 gap-4 p-5 flex rounded-xl max-sm:p-4 max-sm:flex-col hover:shadow-md transition-shadow duration-300">
+    <div className="bg-white border border-gray-200 gap-4 p-5 flex rounded-tl-2xl rounded-br-2xl max-sm:p-4 max-sm:flex-col hover:shadow-md transition-shadow duration-300">
       <div className="relative">
         <img
           className="w-20 h-20 max-sm:w-28 max-sm:h-28 rounded-lg object-cover border border-gray-100"
-          src={medicinal.imagem}
+          src="/medicial.png"
           alt={medicinal.nome_generico}
         />
         <Badge
@@ -65,7 +65,7 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
 
           <div className="flex items-center gap-2 text-sm">
             <Package className="text-muted-foreground h-4 w-4" />
-            <span className="text-muted-foreground">
+            <span className="text-muted-foreground flex items-center gap-1">
               <span className="font-medium text-foreground">
                 {medicinal.quantidade_disponivel}
               </span>
@@ -77,7 +77,10 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
         <footer className="mt-auto pt-3 gap-4 border-t flex items-center justify-between">
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="outline" className="gap-2 text-sm h-10 px-3">
+              <Button
+                variant="outline"
+                className="gap-2 text-sm h-10 px-3 rounded-xl"
+              >
                 <ArrowUpRightFromSquare className="w-4 h-4" />
                 Detalhes
               </Button>
@@ -87,12 +90,12 @@ export function MedicinalCard({ medicinal }: MedicinalProps) {
           </Dialog>
 
           <Button
-            className="gap-2 text-sm h-10 bg-emerald-600 hover:bg-emerald-700"
+            className="gap-2 text-sm h-10 bg-emerald-600 hover:bg-emerald-700 rounded-xl"
             onClick={() => {
               addMedicinalToCart(medicinal)
             }}
           >
-            <ShoppingBag className="w-4 h-4" />
+            <ShoppingCart className="w-4 h-4" />
             Encomendar
           </Button>
         </footer>

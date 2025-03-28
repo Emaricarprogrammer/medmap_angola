@@ -5,6 +5,9 @@ import { DepositCard } from "./deposit-card"
 import { Pagination } from "@/components/general-ui/pagination"
 
 export function Deposits() {
+  const deposit = {
+    name: "Marcos Aus Lda",
+  }
   return (
     <>
       <Helmet title="Depósitos" />
@@ -16,14 +19,14 @@ export function Deposits() {
         />
 
         <div className="py-6 flex-col justify-between  max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
-          <DepositCard />
-          <DepositCard />
-          <DepositCard />
-          <DepositCard />
-          <DepositCard />
-          <DepositCard />
-          <DepositCard />
-          <DepositCard />
+          <DepositCard deposit={deposit} />
+          <DepositCard deposit={deposit} />
+          <DepositCard deposit={deposit} />
+          <DepositCard deposit={deposit} />
+          <DepositCard deposit={deposit} />
+          <DepositCard deposit={deposit} />
+          <DepositCard deposit={deposit} />
+          <DepositCard deposit={deposit} />
         </div>
 
         <Pagination
