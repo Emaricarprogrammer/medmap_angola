@@ -10,7 +10,7 @@ export function DepositCard({ deposit }: Deposit) {
   const navigate = useNavigate()
 
   function handleVisitDeposit() {
-    navigate(`/pharmacy/view-deposit?name=${deposit.name}`)
+    navigate(`/farmacia/detalhes-deposito?name=${deposit.name}`)
   }
 
   return (

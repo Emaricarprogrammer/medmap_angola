@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { AccountMenu } from "./account-menu"
 
 interface ToolbarProps {
   legend: string
@@ -13,14 +13,7 @@ export function Toolbar({ legend, children }: ToolbarProps) {
         {children}
         <span className="font-semibold">{legend}</span>
       </div>
-      <div className="flex items-center justify-between gap-8 max-sm:gap-8 font-bold">
-        <Avatar className="max-sm:w-10 max-sm:h-10">
-          <AvatarImage src="[Imagem do Depósito]" />
-          <AvatarFallback className="bg-neutral-800 text-white">
-            SC
-          </AvatarFallback>
-        </Avatar>
-      </div>
+      <AccountMenu />
     </div>
   )
 }

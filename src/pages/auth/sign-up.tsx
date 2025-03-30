@@ -62,7 +62,7 @@ export function SignUp() {
           <Logo />
           <div>
             Já possui uma conta?{" "}
-            <Link to="/auth/sign-in" className="text-emerald-600">
+            <Link to="/autenticacao/entrar" className="text-emerald-600">
               Entrar
             </Link>
           </div>

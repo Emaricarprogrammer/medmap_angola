@@ -37,7 +37,10 @@ export function Landing() {
                 asChild
                 className="bg-neutral-900 hover:bg-neutral-800 rounded-lg"
               >
-                <Link to="/auth/sign-up" className="flex gap-1 items-center">
+                <Link
+                  to="/autenticacao/criar-conta"
+                  className="flex gap-1 items-center"
+                >
                   <UserPlus className="h-4 w-4" />
                   <span>Criar Conta</span>
                 </Link>
@@ -48,7 +51,10 @@ export function Landing() {
                 asChild
                 className="rounded-lg bg-gradient-to-tr to-emerald-500 from-emerald-600"
               >
-                <Link to="/auth/sign-in" className="flex gap-1 items-center">
+                <Link
+                  to="/autenticacao/entrar"
+                  className="flex gap-1 items-center"
+                >
                   <User className="h-4 w-4" />
                   <span>Entrar</span>
                 </Link>

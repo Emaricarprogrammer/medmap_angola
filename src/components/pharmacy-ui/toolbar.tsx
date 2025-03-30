@@ -1,9 +1,11 @@
 import { ReactNode } from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { ShoppingCart } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Badge } from "../ui/badge"
 import { useCart } from "@/hooks/useCart"
+import { useQuery } from "@tanstack/react-query"
+import { getProfile } from "@/api/get-profile"
+import { AccountMenu } from "./account-menu"
 
 interface ToolbarProps {
   legend: string
@@ -11,6 +13,10 @@ interface ToolbarProps {
 }
 
 export function Toolbar({ legend, children }: ToolbarProps) {
+  const { data: entity } = useQuery({
+    queryKey: ["get-profile"],
+    queryFn: getProfile,
+  })
   const { totalItems } = useCart()
 
   return (
@@ -23,9 +29,11 @@ export function Toolbar({ legend, children }: ToolbarProps) {
           </div>
         </div>
 
+        <span>{entity?.profile.name}</span>
+
         <div className="flex items-center gap-4">
           <Link
-            to="/pharmacy/cart"
+            to="/farmacia/carrinho-encomendas"
             className="relative p-2 rounded-full hover:bg-gray-100 transition-colors"
             aria-label="Shopping cart"
           >
@@ -38,12 +46,7 @@ export function Toolbar({ legend, children }: ToolbarProps) {
             </Badge>
           </Link>
 
-          <Avatar className="h-9 w-9 border">
-            <AvatarImage src="/avatar.png" alt="User avatar" />
-            <AvatarFallback className="bg-emerald-100 text-emerald-800">
-              HS
-            </AvatarFallback>
-          </Avatar>
+          <AccountMenu />
         </div>
       </div>
     </header>

@@ -85,7 +85,7 @@ export function Recovery() {
 
           <div className="text-left">
             <Link
-              to="/auth/sign-in"
+              to="/autenticacao/entrar"
               className="text-emerald-600 text-sm flex items-center gap-1"
             >
               <ArrowLeft className="w-4 h-4" />

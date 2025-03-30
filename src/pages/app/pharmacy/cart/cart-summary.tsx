@@ -12,7 +12,7 @@ export function CartSummary() {
   const navigate = useNavigate()
 
   const { totalItems, cartItems } = useCart()
-  const { summary, FRETE_DE_ENTREGA } = useSummary()
+  const { summary } = useSummary()
 
   const [orders, setOrders] = useState<Order[]>([])
 
@@ -59,13 +59,6 @@ export function CartSummary() {
           <span className="text-neutral-600">Subtotal</span>
           <strong className="text-neutral-900 font-medium">
             {priceFormatter.format(summary.subtotal)}
-          </strong>
-        </div>
-
-        <div className="flex items-center justify-between py-3 px-2">
-          <span className="text-neutral-600">Taxa de Entrega</span>
-          <strong className="text-neutral-900 font-medium">
-            {priceFormatter.format(FRETE_DE_ENTREGA)}
           </strong>
         </div>
 

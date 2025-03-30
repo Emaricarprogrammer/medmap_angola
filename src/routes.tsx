@@ -23,7 +23,6 @@ import { Dashboard } from "./pages/app/deposit/dashboard"
 import { Medicinals } from "./pages/app/deposit/medicinals"
 
 import { NotFound } from "./pages/404"
-import { DepositPofile } from "./pages/app/deposit/profile"
 
 export const routes = createBrowserRouter([
   {
@@ -33,40 +32,39 @@ export const routes = createBrowserRouter([
   },
 
   {
-    path: "/auth",
+    path: "/autenticacao",
     element: <AuthLayout />,
     children: [
-      { path: "sign-in", element: <SignIn /> },
-      { path: "sign-up", element: <SignUp /> },
-      { path: "recovery", element: <Recovery /> },
-      { path: "reset-password", element: <ResetPassword /> },
+      { path: "entrar", element: <SignIn /> },
+      { path: "criar-conta", element: <SignUp /> },
+      { path: "recuperar-credencias", element: <Recovery /> },
+      { path: "repor-credencias", element: <ResetPassword /> },
     ],
   },
 
   {
-    path: "/pharmacy",
+    path: "/farmacia",
     element: <PharmacyLayout />,
     children: [
       { path: "", element: <Home /> },
-      { path: "cart", element: <Cart /> },
-      { path: "deposits", element: <Deposits /> },
-      { path: "orders", element: <Orders /> },
-      { path: "view-deposit", element: <VisitDeposit /> },
+      { path: "carrinho-encomendas", element: <Cart /> },
+      { path: "depositos-disponiveis", element: <Deposits /> },
+      { path: "encomendas", element: <Orders /> },
+      { path: "detalhes-deposito", element: <VisitDeposit /> },
     ],
   },
 
   {
-    path: "/deposit",
+    path: "/deposito",
     element: <DepositLayout />,
     children: [
       { path: "", element: <Dashboard /> },
-      { path: "medicinals", element: <Medicinals /> },
-      { path: "profile", element: <DepositPofile /> },
+      { path: "medicamentos", element: <Medicinals /> },
     ],
   },
 
   {
-    path: "/admin",
+    path: "/administrador",
     element: <AdminLayouth />,
     children: [{ path: "", element: <AdminDashboard /> }],
   },

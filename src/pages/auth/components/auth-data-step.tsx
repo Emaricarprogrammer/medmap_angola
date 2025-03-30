@@ -6,6 +6,7 @@ import { useState } from "react"
 
 export function AuthDataStep({ register, errors }: FormStepProps) {
   const [showPassword, setShowPassword] = useState(false)
+
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-col gap-1">
@@ -51,9 +52,10 @@ export function AuthDataStep({ register, errors }: FormStepProps) {
           <Input
             type={showPassword ? "text" : "password"}
             placeholder="*** *** ***"
-            className="bg-neutral-50 placeholder:text-neutral-500 h-12 pr-10" // Adicionei padding à direita
+            className="bg-neutral-50 placeholder:text-neutral-500 h-12 pr-10"
             {...register("password")}
           />
+
           <button
             type="button"
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-700 transition-colors"

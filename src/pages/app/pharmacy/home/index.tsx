@@ -26,7 +26,7 @@ export function Home() {
 
   return (
     <>
-      <Helmet title="Home" />
+      <Helmet title="Painel Farmácia" />
 
       <div className="w-full">
         <Toolbar

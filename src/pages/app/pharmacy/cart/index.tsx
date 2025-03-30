@@ -42,7 +42,7 @@ export function Cart() {
               </div>
 
               <Link
-                to="/pharmacy"
+                to="/farmacia"
                 className="mt-4 px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
               >
                 Ver medicamentos
