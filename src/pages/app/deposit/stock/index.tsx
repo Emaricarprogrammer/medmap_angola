@@ -6,12 +6,12 @@ import { Toolbar } from "@/components/deposit-ui/toolbar"
 import { Table, TableBody } from "@/components/ui/table"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import { Pagination } from "@/components/general-ui/pagination"
-import { RegisterMedDialog } from "../dashboard/register-med-dialog"
+import { RegisterMedDialog } from "./register-med-dialog"
 
 import { MedicinalTableRow } from "./medicinal-table-row"
 import { MedicinalTableHead } from "./medicinal-table-head"
 
-export function Medicinals() {
+export function Stock() {
   return (
     <>
       <Helmet title="Stock de Medicamentos" />
@@ -23,7 +23,7 @@ export function Medicinals() {
         />
 
         <div className="mt-10 flex items-center justify-between">
-          <h1 className="font-bold px-1 flex items-center gap-1 text-neutral-800">
+          <h1 className="font-semibold px-1 flex items-center gap-1 text-neutral-700">
             Adcionados Recentemente
           </h1>
 
@@ -42,7 +42,7 @@ export function Medicinals() {
           </Dialog>
         </div>
 
-        <div className="mt-8 bg-white p-4 rounded-lg border shadow-sm">
+        <div className="mt-8 bg-white p-4 h-[31rem] overflow-y-scroll rounded-lg border shadow-sm">
           <Table className="w-full">
             <MedicinalTableHead />
 

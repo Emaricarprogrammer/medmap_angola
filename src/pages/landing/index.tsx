@@ -2,10 +2,18 @@ import { Logo } from "@/components/general-ui/logo"
 import { Button } from "@/components/ui/button"
 
 import { User, UserPlus } from "lucide-react"
-import { Link, NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 
 export function Landing() {
+  const navigate = useNavigate()
+
+  function handleNavigateToLogin() {
+    navigate("/autenticacao/entrar", { replace: true })
+  }
+  function handleNavigateToRegister() {
+    navigate("/autenticacao/criar-conta", { replace: true })
+  }
   return (
     <>
       <Helmet title="Início" />
@@ -34,30 +42,20 @@ export function Landing() {
             <div className="flex gap-4 items-center justify-center">
               <Button
                 size="lg"
-                asChild
-                className="bg-neutral-900 hover:bg-neutral-800 rounded-lg"
+                onClick={handleNavigateToRegister}
+                className="bg-neutral-900 hover:bg-neutral-800 rounded-lg flex gap-1 items-center"
               >
-                <Link
-                  to="/autenticacao/criar-conta"
-                  className="flex gap-1 items-center"
-                >
-                  <UserPlus className="h-4 w-4" />
-                  <span>Criar Conta</span>
-                </Link>
+                <UserPlus className="h-4 w-4" />
+                <span>Criar Conta</span>
               </Button>
 
               <Button
                 size="lg"
-                asChild
-                className="rounded-lg bg-gradient-to-tr to-emerald-500 from-emerald-600"
+                onClick={handleNavigateToLogin}
+                className="rounded-lg bg-gradient-to-tr to-emerald-500 flex gap-1 items-center from-emerald-600"
               >
-                <Link
-                  to="/autenticacao/entrar"
-                  className="flex gap-1 items-center"
-                >
-                  <User className="h-4 w-4" />
-                  <span>Entrar</span>
-                </Link>
+                <User className="h-4 w-4" />
+                <span>Entrar</span>
               </Button>
             </div>
           </div>

@@ -30,7 +30,7 @@ export function PharmacyLayout() {
           </button>
 
           <div className="max-sm:hidden text-sm text-neutral-500/90">
-            Painel do Depósito &copy; {new Date().getFullYear()}
+            Painel da Farmácia &copy; {new Date().getFullYear()}
           </div>
         </footer>
       </aside>

@@ -9,8 +9,25 @@ import { DepositOverView } from "./deposit-overview"
 
 import { HandPlatter, Search } from "lucide-react"
 import { useSearchParams } from "react-router-dom"
+import { MedicinalSkeleton } from "../home/medicinal-skeleton"
+import { getMedicinals } from "@/api/get-medicinals"
+import { useQuery } from "@tanstack/react-query"
+import { toast } from "sonner"
 
 export function VisitDeposit() {
+  const {
+    data: result,
+    isFetching,
+    isError,
+  } = useQuery({
+    queryKey: ["medicinals"],
+    queryFn: getMedicinals,
+  })
+
+  if (isError) {
+    toast.error("Erro ao carregar medicamentos!")
+  }
+
   const [searchParams] = useSearchParams()
   const depositName = searchParams.get("name")
 
@@ -37,11 +54,25 @@ export function VisitDeposit() {
             </div>
           </form>
 
-          <div className="h-[20rem] overflow-y-scroll">
-            <div className="py-4 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll">
-              <DepositMedicinalCard />
-              <DepositMedicinalCard />
-              <DepositMedicinalCard />
+          <div className="">
+            <div className="py-4 max-xl:h-[52rem] max-sm:h-[40rem] h-[15rem] overflow-y-scroll grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 ">
+              {isFetching || isError ? (
+                <>
+                  <MedicinalSkeleton />
+                  <MedicinalSkeleton />
+                  <MedicinalSkeleton />
+                  <MedicinalSkeleton />
+                  <MedicinalSkeleton />
+                  <MedicinalSkeleton />
+                </>
+              ) : (
+                result?.map((medicinal) => (
+                  <DepositMedicinalCard
+                    key={medicinal.id_medicamento}
+                    medicinal={medicinal}
+                  />
+                ))
+              )}
             </div>
 
             <Pagination

@@ -38,7 +38,7 @@ export function MedicinalTableRow() {
           </Button>
 
           <Button
-            className="bg-transparent text-amber-800 hover:bg-transparent"
+            className="bg-transparent text-amber-600 hover:bg-transparent"
             size="sm"
           >
             Editar

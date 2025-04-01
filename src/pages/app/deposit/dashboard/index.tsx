@@ -20,7 +20,7 @@ export function Dashboard() {
           legend="Painel do Depósito"
         />
 
-        <div className="bg-white p-5 border border-neutral-200 rounded-lg  mt-4">
+        <div className="bg-white p-5  border border-neutral-200 rounded-lg  mt-4">
           <DashboardOverview />
 
           <div className="mt-10 flex items-center justify-between">
@@ -29,7 +29,7 @@ export function Dashboard() {
               Últimos Pedidos em 24h
             </h1>
           </div>
-          <div className="mt-6 bg-white p-4 rounded-lg border shadow-sm">
+          <div className="mt-6 bg-white h-[22rem] overflow-y-scroll p-4 rounded-lg border shadow-sm">
             <Table className="w-full">
               <OrdersTableHead />
 
@@ -40,14 +40,13 @@ export function Dashboard() {
               </TableBody>
             </Table>
           </div>
-          <div>
-            <Pagination
-              currentPage={1}
-              totalItem={20}
-              perPage={3}
-              legend="Pedidos"
-            />
-          </div>
+
+          <Pagination
+            currentPage={1}
+            totalItem={20}
+            perPage={3}
+            legend="Pedidos"
+          />
         </div>
       </div>
     </>

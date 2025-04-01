@@ -43,9 +43,9 @@ export function SignIn() {
       const response = await signInFn(data)
 
       if (response.role === "pharmacy") {
-        navigate("/farmacia")
+        navigate("/farmacia", { replace: true })
       } else if (response.role === "deposit") {
-        navigate("/deposito")
+        navigate("/deposito", { replace: true })
       } else {
         toast.error("Entidade Não Encontrada!")
       }

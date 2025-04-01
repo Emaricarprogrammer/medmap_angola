@@ -17,16 +17,14 @@ export function DepositCard({ deposit }: Deposit) {
     <div className="bg-white border h-72 p-6 cursor-pointer flex flex-col justify-between gap-4 rounded-2xl border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200 group">
       <div className="flex items-start gap-4">
         <div className="relative">
-          <Truck className="w-10 h-10" />
+          <Truck className="w-8 h-8" />
           <div className="absolute -bottom-2 -left-2 bg-emerald-500 p-1 rounded-full border-2 border-white">
             <Box className="h-3 w-3 text-white" />
           </div>
         </div>
 
         <div className="flex-1">
-          <h3 className="text-xl font-semibold text-gray-900">
-            Marcos Aus Lda
-          </h3>
+          <h3 className="text-xl font-medium text-gray-900">Marcos Aus Lda</h3>
           <p className="text-sm text-gray-500 flex items-center gap-1.5 mt-1">
             <MapPin className="h-4 w-4 text-gray-400" />
             <span>Luanda, Kimbangu</span>

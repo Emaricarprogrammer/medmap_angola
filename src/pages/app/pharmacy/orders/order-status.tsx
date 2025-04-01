@@ -1,4 +1,4 @@
-type OrderStatus = "pending" | "delivered" | "canceled"
+type OrderStatus = "pending" | "accepted" | "canceled"
 
 interface OrderStatusProps {
   status: OrderStatus
@@ -13,7 +13,7 @@ export function OrderStatus({ status }: OrderStatusProps) {
           <span>Pendente</span>
         </>
       )}
-      {status === "delivered" && (
+      {status === "accepted" && (
         <>
           <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
           <span>Entregue</span>

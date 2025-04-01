@@ -14,15 +14,17 @@ import { Deposits } from "./pages/app/pharmacy/deposits"
 import { Orders } from "./pages/app/pharmacy/orders"
 import { VisitDeposit } from "./pages/app/pharmacy/visit-deposit"
 import { Cart } from "./pages/app/pharmacy/cart"
+import { PharmacyProfile } from "./pages/app/pharmacy/profile"
 
 import { AdminLayouth } from "./layouts/admin"
 import { AdminDashboard } from "./pages/admin"
 
 import { DepositLayout } from "./layouts/deposit"
 import { Dashboard } from "./pages/app/deposit/dashboard"
-import { Medicinals } from "./pages/app/deposit/medicinals"
+import { Stock } from "./pages/app/deposit/stock"
 
 import { NotFound } from "./pages/404"
+import { DepositProfile } from "./pages/app/deposit/profile"
 
 export const routes = createBrowserRouter([
   {
@@ -51,6 +53,7 @@ export const routes = createBrowserRouter([
       { path: "depositos-disponiveis", element: <Deposits /> },
       { path: "encomendas", element: <Orders /> },
       { path: "detalhes-deposito", element: <VisitDeposit /> },
+      { path: "perfil", element: <PharmacyProfile /> },
     ],
   },
 
@@ -59,7 +62,8 @@ export const routes = createBrowserRouter([
     element: <DepositLayout />,
     children: [
       { path: "", element: <Dashboard /> },
-      { path: "medicamentos", element: <Medicinals /> },
+      { path: "stock", element: <Stock /> },
+      { path: "perfil", element: <DepositProfile /> },
     ],
   },
 

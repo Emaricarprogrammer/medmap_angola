@@ -181,7 +181,7 @@ export function RegisterMedDialog() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="flex items-center font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600 gap-1"
+          className="flex items-center font-bold rounded-xl h-11 bg-emerald-600 hover:bg-emerald-600 gap-1"
         >
           {isSubmitting ? (
             <>

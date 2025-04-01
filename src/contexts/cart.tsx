@@ -2,6 +2,7 @@ import { createContext, useState } from "react"
 import { Medicinal } from "@/@types/medicinals"
 import { toast } from "sonner"
 import { ShoppingBag } from "lucide-react"
+import { Order } from "@/@types/pharmacy-orders"
 
 export interface CartProps extends Medicinal {
   quantity?: number
@@ -16,12 +17,19 @@ interface CartContextType {
 
   onIncrementQuantity: (medicinal: CartProps) => void
   onDecrementQuantity: (medicinal: CartProps) => void
+
+  orders: Order[]
+  totalOrders: number
+  addOrders: () => void
 }
 export const CartContext = createContext({} as CartContextType)
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartProps[]>([])
+  const [orders, setOrders] = useState<Order[]>([])
+
   const totalItems = cartItems.length
+  const totalOrders = orders.length
 
   function addMedicinalToCart(medicinal: CartProps) {
     const medicinalAlreadyExistInTheCart = cartItems.some((item) => {
@@ -98,12 +106,31 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCartItems(updatedCartItems)
   }
 
+  function addOrders() {
+    cartItems.map((order) => {
+      setOrders((prev) => [
+        ...prev,
+        {
+          ...order,
+          status: "pending",
+          date: new Date(),
+          total: order.preco * Number(order.quantity),
+        },
+      ])
+    })
+
+    setCartItems([])
+  }
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
-        addMedicinalToCart,
         totalItems,
+        orders,
+        totalOrders,
+        addOrders,
+        addMedicinalToCart,
         removeMedicinalFromCart,
         onIncrementQuantity,
         onDecrementQuantity,
