@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { ArrowRight, X } from "lucide-react"
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { ArrowRight, MessageCircle, X } from "lucide-react"
 
 export function OrdersStatusAction() {
   return (
@@ -17,7 +23,20 @@ export function OrdersStatusAction() {
           </Button>
         </DialogTrigger>
 
-        <DialogContent></DialogContent>
+        <DialogContent>
+          <DialogTitle>Pedido: xgxgtrafaljtgf</DialogTitle>
+
+          <form className="flex flex-col gap-5">
+            <Input
+              placeholder="Disponibilidade de Levantamento"
+              className="h-16"
+            />
+            <Button className="ml-auto">
+              <MessageCircle />
+              Enviar
+            </Button>
+          </form>
+        </DialogContent>
       </Dialog>
 
       <Button

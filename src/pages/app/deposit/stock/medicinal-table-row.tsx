@@ -1,5 +1,10 @@
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { TableRow, TableCell } from "@/components/ui/table"
 import { Image, Trash2 } from "lucide-react"
 
@@ -16,6 +21,10 @@ export function MedicinalTableRow() {
               <Image className="w-4 h-4" />
             </Button>
           </DialogTrigger>
+
+          <DialogContent>
+            <DialogTitle></DialogTitle>
+          </DialogContent>
         </Dialog>
       </TableCell>
 
