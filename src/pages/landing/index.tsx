@@ -28,9 +28,9 @@ export function Landing() {
           <div className='mt-12 max-xl:mt-0 flex flex-col gap-6 items-center max-xl:w-96'>
             <header className='w-max max-sm:w-fit text-4xl fontxl-mono tracking-wide max-lg:text-3xl'>
               <h1 className='max-lg:hidden'>Medicamentos ao ceu alcance:</h1>
-              <h2 className='relative animate-typing overflow-hidden whitespace-nowrap'>
+              <h2 className='relative animate-typing overflow-hidden whitespace-nowrap max-sm:animate-pulse max-sm:overflow-visible max-sm:whitespace-normal'>
                 Encontre os Depósitos Mais Próximos
-                <span className='absolute inset-y-0 right-0 w-[2px] bg-black animate-[cursorBlink_1s_steps(2)_infinite]'></span>
+                <span className='absolute inset-y-0 right-0 w-[2px] max-sm bg-black animate-[cursorBlink_1s_steps(2)_infinite]'></span>
               </h2>
             </header>
 

@@ -26,16 +26,16 @@ export function Home() {
 
   return (
     <>
-      <Helmet title="Painel Farmácia" />
+      <Helmet title='Painel Farmácia' />
 
-      <div className="w-full">
+      <div className='w-full'>
         <Toolbar
-          children={<House className="text-emerald-700 h-6 w-6" />}
-          legend="Home"
+          children={<House className='text-emerald-700 h-6 w-6' />}
+          legend='Home'
         />
 
-        <div className="h-[40rem] flex-col justify-between flex  overflow-y-scroll">
-          <div className="py-6 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll">
+        <div className='h-[40rem] flex-col justify-between flex  overflow-y-scroll'>
+          <div className='py-6 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll'>
             {isFetching || isError ? (
               <>
                 <MedicinalSkeleton />
@@ -46,7 +46,7 @@ export function Home() {
                 <MedicinalSkeleton />
               </>
             ) : (
-              result?.map((medicinal) => (
+              result?.response?.map((medicinal) => (
                 <MedicinalCard
                   key={medicinal.id_medicamento}
                   medicinal={medicinal}
@@ -56,7 +56,7 @@ export function Home() {
           </div>
 
           <Pagination
-            legend="Medicamentos"
+            legend='Medicamentos'
             currentPage={1}
             totalItem={20}
             perPage={4}

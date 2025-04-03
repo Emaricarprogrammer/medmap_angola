@@ -20,13 +20,14 @@ interface GetMedidicals {
     preco: number
     imagem: string
   }[]
-  totalMedicines: number
-  totalPages: number
+  pagination: {
+    totalItems: number
+  }
 }
 
 export async function getMedicinals() {
   const response = await api.get<GetMedidicals>("/entity/deposit/medicines")
-  const data = response.data.response
+  const data = response.data
 
   return data
 }

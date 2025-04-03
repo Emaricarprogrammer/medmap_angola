@@ -17,6 +17,8 @@ import { useMutation } from "@tanstack/react-query"
 import { signIn } from "@/api/sign-in"
 import { useState } from "react"
 
+import { jwtDecode } from "jwt-decode"
+
 export function SignIn() {
   const { mutateAsync: signInFn } = useMutation({
     mutationKey: ["signIn"],
@@ -42,101 +44,99 @@ export function SignIn() {
     try {
       const response = await signInFn(data)
 
-      if (response.role === "pharmacy") {
-        navigate("/farmacia", { replace: true })
-      } else if (response.role === "deposit") {
-        navigate("/deposito", { replace: true })
-      } else {
-        toast.error("Entidade Não Encontrada!")
-      }
+      const accessToken = response.accessToken
+
+      const { access_level } = jwtDecode<any>(accessToken)
+
+      console.log(access_level)
 
       toast.success("Login realizado com Sucesso!")
-    } catch (error) {
-      toast.error(String(error.response.data.message))
+    } catch (error: any) {
+      toast.error(String(error.response))
     }
   }
 
   return (
     <>
-      <Helmet title="Entrar" />
-      <Card className="w-[480px] h-[600px] p-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
+      <Helmet title='Entrar' />
+      <Card className='w-[480px] h-[600px] p-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none'>
         <CardHeader>
           <Logo />
-          <div className="font-normal">
+          <div className='font-normal'>
             Ainda não possui uma conta?{" "}
-            <Link to="/autenticacao/criar-conta" className="text-emerald-600">
+            <Link to='/autenticacao/criar-conta' className='text-emerald-600'>
               Crie uma
             </Link>
           </div>
         </CardHeader>
 
         <form
-          className="flex flex-col gap-6"
+          className='flex flex-col gap-6'
           onSubmit={handleSubmit(handleSignIn)}
         >
-          <div className="flex flex-col gap-2 relative">
-            <Label className="flex items-center text-foreground/60 ml-2 gap-1">
-              <AtSign className="w-4 h-4" />
+          <div className='flex flex-col gap-2 relative'>
+            <Label className='flex items-center text-foreground/60 ml-2 gap-1'>
+              <AtSign className='w-4 h-4' />
               <span>E-mail</span>
             </Label>
             <Input
-              type="email"
-              placeholder="seu@email.com"
-              className="bg-neutral-50/50 h-12"
+              type='email'
+              placeholder='seu@email.com'
+              className='bg-neutral-50/50 h-12'
               {...register("email")}
             />
 
-            <span className="text-rose-600 text-sm text-left ">
+            <span className='text-rose-600 text-sm text-left '>
               {errors.email && errors.email.message}
             </span>
           </div>
 
-          <div className="flex flex-col gap-2 relative">
-            <Label className="flex items-center text-foreground/60 ml-2 gap-1">
-              <Lock className="w-4 h-4" />
+          <div className='flex flex-col gap-2 relative'>
+            <Label className='flex items-center text-foreground/60 ml-2 gap-1'>
+              <Lock className='w-4 h-4' />
               <span>Palavra passe</span>
             </Label>
             <Input
               type={showPassword ? "text" : "password"}
-              placeholder="*** *** ***"
-              className="bg-neutral-50/50 h-12"
+              placeholder='*** *** ***'
+              className='bg-neutral-50/50 h-12'
               {...register("password")}
             />
 
             <button
-              type="button"
+              type='button'
               title={showPassword ? "Esconder" : "Mostrar"}
-              className="absolute right-3 top-14 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-700 transition-colors"
+              className='absolute right-3 top-14 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-700 transition-colors'
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
-                <EyeOff className="w-5 h-5" />
+                <EyeOff className='w-5 h-5' />
               ) : (
-                <Eye className="w-5 h-5" />
+                <Eye className='w-5 h-5' />
               )}
             </button>
-            <span className="text-rose-600 text-sm text-left ">
+            <span className='text-rose-600 text-sm text-left '>
               {errors.password && errors.password.message}
             </span>
           </div>
 
-          <div className="text-left">
+          <div className='text-left'>
             <Link
-              to="/autenticacao/recuperar-credencias"
-              className="text-emerald-600 text-sm"
+              to='/autenticacao/recuperar-credencias'
+              className='text-emerald-600 text-sm'
             >
               Esqueci minha senha
             </Link>
           </div>
 
-          <div className="w-full">
+          <div className='w-full'>
             <Button
-              className="w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
+              className='w-full font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600'
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="animate-spin" />
+                  <Loader2 className='animate-spin' />
                   <span>Verificando credencias...</span>
                 </>
               ) : (
