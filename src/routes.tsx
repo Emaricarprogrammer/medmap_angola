@@ -27,49 +27,49 @@ import { NotFound } from "./pages/404"
 import { DepositProfile } from "./pages/app/deposit/profile"
 
 export const routes = createBrowserRouter([
-  {
-    path: "/",
-    errorElement: <NotFound />,
-    element: <Landing />,
-  },
+	{
+		path: "/",
+		errorElement: <NotFound />,
+		element: <Landing />,
+	},
 
-  {
-    path: "/autenticacao",
-    element: <AuthLayout />,
-    children: [
-      { path: "entrar", element: <SignIn /> },
-      { path: "criar-conta", element: <SignUp /> },
-      { path: "recuperar-credencias", element: <Recovery /> },
-      { path: "repor-credencias", element: <ResetPassword /> },
-    ],
-  },
+	{
+		path: "/auth",
+		element: <AuthLayout />,
+		children: [
+			{ path: "entrar", element: <SignIn /> },
+			{ path: "criar-conta", element: <SignUp /> },
+			{ path: "recuperar-credencias", element: <Recovery /> },
+			{ path: "repor-credencias", element: <ResetPassword /> },
+		],
+	},
 
-  {
-    path: "/farmacia",
-    element: <PharmacyLayout />,
-    children: [
-      { path: "", element: <Home /> },
-      { path: "carrinho-encomendas", element: <Cart /> },
-      { path: "depositos-disponiveis", element: <Deposits /> },
-      { path: "encomendas", element: <Orders /> },
-      { path: "detalhes-deposito", element: <VisitDeposit /> },
-      { path: "perfil", element: <PharmacyProfile /> },
-    ],
-  },
+	{
+		path: "/farmacia",
+		element: <PharmacyLayout />,
+		children: [
+			{ path: "", element: <Home /> },
+			{ path: "carrinho-encomendas", element: <Cart /> },
+			{ path: "depositos-disponiveis", element: <Deposits /> },
+			{ path: "encomendas", element: <Orders /> },
+			{ path: "detalhes-deposito", element: <VisitDeposit /> },
+			{ path: "perfil", element: <PharmacyProfile /> },
+		],
+	},
 
-  {
-    path: "/deposito",
-    element: <DepositLayout />,
-    children: [
-      { path: "", element: <Dashboard /> },
-      { path: "stock", element: <Stock /> },
-      { path: "perfil", element: <DepositProfile /> },
-    ],
-  },
+	{
+		path: "/deposito",
+		element: <DepositLayout />,
+		children: [
+			{ path: "", element: <Dashboard /> },
+			{ path: "stock", element: <Stock /> },
+			{ path: "perfil", element: <DepositProfile /> },
+		],
+	},
 
-  {
-    path: "/administrador",
-    element: <AdminLayouth />,
-    children: [{ path: "", element: <AdminDashboard /> }],
-  },
+	{
+		path: "/administrador",
+		element: <AdminLayouth />,
+		children: [{ path: "", element: <AdminDashboard /> }],
+	},
 ])

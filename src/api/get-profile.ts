@@ -1,16 +1,25 @@
 import { api } from "@/services/axios"
 
 interface GetProfile {
-  success: true
-  profile: {
-    id: number
-    role: string
-    email: string
-    name: string
-  }
+	success: true
+	response: {
+		id_entidade: number
+		email: string
+		firma_entidade: string
+		contacto: number
+		logradouro: string
+		rua: string
+		numero: number
+		cidade: string
+		NIF_entidade: number
+	}
 }
 export async function getProfile() {
-  const response = await api.get<GetProfile>("/entidades/profile")
+	const idAcessToken = JSON.parse(localStorage.getItem("id") as string)
+	const entityId = idAcessToken.id_entidade
 
-  return response.data
+	console.log(entityId)
+
+	const response = await api.get<GetProfile>(`/entities/me/${entityId}`)
+	return response.data.response
 }

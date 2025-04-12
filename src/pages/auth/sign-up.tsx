@@ -20,110 +20,110 @@ import { useMutation } from "@tanstack/react-query"
 import { signUp } from "@/api/sign-up"
 
 export function SignUp() {
-  const { mutateAsync: signUpEntity } = useMutation({
-    mutationKey: ["sign-up"],
-    mutationFn: signUp,
-  })
-  const navigate = useNavigate()
-  const { stepForm, handleNext, handlePrevious, stepState } = useMultStepForm()
+	const { mutateAsync: signUpEntity } = useMutation({
+		mutationKey: ["sign-up"],
+		mutationFn: signUp,
+	})
+	const navigate = useNavigate()
+	const { stepForm, handleNext, handlePrevious, stepState } = useMultStepForm()
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { isSubmitting, errors },
-    setValue,
-  } = useForm<SignUpData>({
-    resolver: zodResolver(signUpScheme),
-  })
+	const {
+		register,
+		handleSubmit,
+		control,
+		formState: { isSubmitting, errors },
+		setValue,
+	} = useForm<SignUpData>({
+		resolver: zodResolver(signUpScheme),
+	})
 
-  async function handleSignUp(data: SignUpData) {
-    try {
-      await signUpEntity(data)
+	async function handleSignUp(data: SignUpData) {
+		try {
+			await signUpEntity(data)
 
-      toast.success("Conta cadastrada com sucesso!", {
-        action: {
-          label: "Fazer Login",
-          onClick: () => {
-            navigate(`/auth/sign-in?email=${data.email}`)
-          },
-        },
-      })
-    } catch (error: any) {
-      toast.error(String(error.response.data.message))
-    }
-  }
+			toast.success("Conta cadastrada com sucesso!", {
+				action: {
+					label: "Fazer Login",
+					onClick: () => {
+						navigate(`/auth/entrar?email=${data.email}`)
+					},
+				},
+			})
+		} catch (error: any) {
+			toast.error(String(error.response.data.message))
+		}
+	}
 
-  return (
-    <>
-      <Helmet title="Cadastrar-se" />
-      <Card className="w-[480px] h-[690px] py-6 px-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
-        <CardHeader>
-          <Logo />
-          <div>
-            Já possui uma conta?{" "}
-            <Link to="/autenticacao/entrar" className="text-emerald-600">
-              Entrar
-            </Link>
-          </div>
-        </CardHeader>
+	return (
+		<>
+			<Helmet title="Cadastrar-se" />
+			<Card className="w-[480px] h-[690px] py-6 px-12 max-lg:w-96 max-lg:px-6 max-lg:border-none max-lg:shadow-none">
+				<CardHeader>
+					<Logo />
+					<div>
+						Já possui uma conta?{" "}
+						<Link to="/auth/entrar" className="text-emerald-600">
+							Entrar
+						</Link>
+					</div>
+				</CardHeader>
 
-        <form
-          className="flex flex-col gap-2 mt-6 text-sm"
-          onSubmit={handleSubmit(handleSignUp)}
-        >
-          {stepForm === 1 && (
-            <PersonalDataStep
-              register={register}
-              errors={errors}
-              control={control}
-              setValue={setValue}
-            />
-          )}
-          {stepForm === 2 && (
-            <LocationDataStep
-              setValue={setValue}
-              register={register}
-              errors={errors}
-            />
-          )}
-          {stepForm === 3 && (
-            <AuthDataStep
-              setValue={setValue}
-              register={register}
-              errors={errors}
-            />
-          )}
+				<form
+					className="flex flex-col gap-2 mt-6 text-sm"
+					onSubmit={handleSubmit(handleSignUp)}
+				>
+					{stepForm === 1 && (
+						<PersonalDataStep
+							register={register}
+							errors={errors}
+							control={control}
+							setValue={setValue}
+						/>
+					)}
+					{stepForm === 2 && (
+						<LocationDataStep
+							setValue={setValue}
+							register={register}
+							errors={errors}
+						/>
+					)}
+					{stepForm === 3 && (
+						<AuthDataStep
+							setValue={setValue}
+							register={register}
+							errors={errors}
+						/>
+					)}
 
-          {stepState === "finished" && (
-            <div className="w-full">
-              <Button
-                type="submit"
-                className="w-full h-12 font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="animate-spin" />
-                    <span>Processando Pedido...</span>
-                  </>
-                ) : (
-                  <>
-                    <ArrowRight />
-                    <span>Finalizar</span>
-                  </>
-                )}
-              </Button>
-            </div>
-          )}
+					{stepState === "finished" && (
+						<div className="w-full">
+							<Button
+								type="submit"
+								className="w-full h-12 font-bold rounded-full bg-gradient-to-tr to-emerald-500 from-emerald-600"
+								disabled={isSubmitting}
+							>
+								{isSubmitting ? (
+									<>
+										<Loader2 className="animate-spin" />
+										<span>Processando Pedido...</span>
+									</>
+								) : (
+									<>
+										<ArrowRight />
+										<span>Finalizar</span>
+									</>
+								)}
+							</Button>
+						</div>
+					)}
 
-          <StepFormControllers
-            stepForm={stepForm}
-            onNext={handleNext}
-            onPrevious={handlePrevious}
-          />
-        </form>
-      </Card>
-    </>
-  )
+					<StepFormControllers
+						stepForm={stepForm}
+						onNext={handleNext}
+						onPrevious={handlePrevious}
+					/>
+				</form>
+			</Card>
+		</>
+	)
 }
