@@ -3,8 +3,6 @@ import { ShoppingCart } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Badge } from "../ui/badge"
 import { useCart } from "@/hooks/useCart"
-import { useQuery } from "@tanstack/react-query"
-import { getProfile } from "@/api/get-profile"
 import { AccountMenu } from "./account-menu"
 
 interface ToolbarProps {
@@ -13,10 +11,6 @@ interface ToolbarProps {
 }
 
 export function Toolbar({ legend, children }: ToolbarProps) {
-	const { data: entity } = useQuery({
-		queryKey: ["get-profile"],
-		queryFn: getProfile,
-	})
 	const { totalItems } = useCart()
 
 	return (
@@ -28,8 +22,6 @@ export function Toolbar({ legend, children }: ToolbarProps) {
 						<h1 className="text-lg text-gray-700">{legend}</h1>
 					</div>
 				</div>
-
-				<span>{entity?.firma_entidade}</span>
 
 				<div className="flex items-center gap-4">
 					<Link

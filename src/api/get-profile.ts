@@ -1,3 +1,5 @@
+import { jwtDecode } from "jwt-decode"
+
 import { api } from "@/services/axios"
 
 interface GetProfile {
@@ -15,11 +17,9 @@ interface GetProfile {
 	}
 }
 export async function getProfile() {
-	const idAcessToken = JSON.parse(localStorage.getItem("id") as string)
-	const entityId = idAcessToken.id_entidade
+	const storedToken = JSON.parse(localStorage.getItem("accessToken") as string)
+	const { id_entidade } = jwtDecode<any>(storedToken)
 
-	console.log(entityId)
-
-	const response = await api.get<GetProfile>(`/entities/me/${entityId}`)
+	const response = await api.get<GetProfile>(`/entities/me/${id_entidade}`)
 	return response.data.response
 }

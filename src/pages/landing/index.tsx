@@ -19,7 +19,7 @@ export function Landing() {
 			<Helmet title="Início" />
 
 			<main
-				className="bg-cover bg-center h-screen flex flex-col text-center items-center py-28"
+				className="bg-cover bg-center h-screen flex flex-col text-center items-center py-36"
 				style={{ backgroundImage: "url('/main-bg.png')" }}
 			>
 				<div className="max-xl:flex max-xl:items-center max-xl:flex-col max-xl:gap-6 max-xl:justify-center max-xl:h-screen">

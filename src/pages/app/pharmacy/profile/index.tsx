@@ -11,8 +11,15 @@ import {
 } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 import { EditProfileDialog } from "./edit-profile-dialog"
+import { useQuery } from "@tanstack/react-query"
+import { getProfile } from "@/api/get-profile"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export function PharmacyProfile() {
+	const { data: profile } = useQuery({
+		queryKey: ["profile"],
+		queryFn: getProfile,
+	})
 	return (
 		<>
 			<Helmet title="Encomendas" />
@@ -34,7 +41,11 @@ export function PharmacyProfile() {
 
 									<div>
 										<h2 className="text-2xl font-bold text-gray-800">
-											Farmácia Luanda SUl
+											{profile?.firma_entidade ? (
+												profile.firma_entidade
+											) : (
+												<Skeleton className="w-56 h-4" />
+											)}
 										</h2>
 									</div>
 								</div>
@@ -43,21 +54,37 @@ export function PharmacyProfile() {
 									<div className="flex items-center gap-3">
 										<Mail className="h-5 w-5 text-gray-500" />
 
-										<span className="text-gray-700">
-											farmacia@luandasul.com
-										</span>
+										<p className="text-gray-700">
+											{profile?.email ? (
+												profile.email
+											) : (
+												<Skeleton className="w-48 h-4" />
+											)}
+										</p>
 									</div>
 
 									<div className="flex items-center gap-3">
 										<Phone className="h-5 w-5 text-gray-500" />
 
-										<span className="text-gray-700">923 000 999</span>
+										<span className="text-gray-700">
+											{profile?.contacto ? (
+												profile.contacto
+											) : (
+												<Skeleton className="w-48 h-4" />
+											)}
+										</span>
 									</div>
 
 									<div className="flex items-start gap-3">
 										<MapPin className="h-5 w-5 text-gray-500 mt-1" />
 
-										<span className="text-gray-700">Rua Kikagil - Luanda</span>
+										<span className="text-gray-700">
+											{profile?.rua && profile.cidade ? (
+												profile.rua + profile.cidade
+											) : (
+												<Skeleton className="w-24 h-4" />
+											)}
+										</span>
 									</div>
 
 									<DialogTrigger asChild>
@@ -80,7 +107,11 @@ export function PharmacyProfile() {
 									<div className="flex items-center gap-3">
 										<BriefcaseBusiness className="h-5 w-5 text-gray-500" />
 
-										<span className="text-gray-700">98454444645</span>
+										{profile?.NIF_entidade ? (
+											profile.NIF_entidade
+										) : (
+											<Skeleton className="w-48 h-4" />
+										)}
 									</div>
 								</div>
 							</div>

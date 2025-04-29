@@ -47,10 +47,8 @@ export function SignIn() {
 			const accessToken = response.accessToken
 
 			const { access_level } = jwtDecode<any>(accessToken)
-			const { id_entidade } = jwtDecode<any>(accessToken)
 
-			//Armazena o ID da Entidade que está a fazer login
-			localStorage.setItem("accessToken", JSON.stringify(id_entidade))
+			localStorage.setItem("accessToken", JSON.stringify(accessToken))
 
 			if (access_level === "deposito") {
 				navigate("/deposito")
