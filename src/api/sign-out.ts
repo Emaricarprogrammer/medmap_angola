@@ -1,7 +1,6 @@
-import { api } from "@/services/axios"
+import { api } from "@/services/axios";
 
-//Testes de autenticação
 export async function signOut() {
-	localStorage.removeItem("accessToken")
-	await api.post("auth/logout")
+	localStorage.removeItem("accessToken");
+	await api.post("auth/logout");
 }

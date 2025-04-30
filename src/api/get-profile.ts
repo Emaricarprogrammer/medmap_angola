@@ -1,25 +1,29 @@
-import { jwtDecode } from "jwt-decode"
+import { jwtDecode } from "jwt-decode";
 
-import { api } from "@/services/axios"
+import { api } from "@/services/axios";
 
 interface GetProfile {
-	success: true
+	success: true;
 	response: {
-		id_entidade: number
-		email: string
-		firma_entidade: string
-		contacto: number
-		logradouro: string
-		rua: string
-		numero: number
-		cidade: string
-		NIF_entidade: number
-	}
+		id_entidade: string;
+		email: string;
+		firma_entidade: string;
+		contacto: number;
+		logradouro: string;
+		rua: string;
+		numero: number;
+		cidade: string;
+		NIF_entidade: number;
+		geolocalizacao_entidade: {
+			latitude: number;
+			longitude: number;
+		};
+	};
 }
 export async function getProfile() {
-	const storedToken = JSON.parse(localStorage.getItem("accessToken") as string)
-	const { id_entidade } = jwtDecode<any>(storedToken)
+	const storedToken = JSON.parse(localStorage.getItem("accessToken") as string);
+	const { id_entidade } = jwtDecode<any>(storedToken);
 
-	const response = await api.get<GetProfile>(`/entities/me/${id_entidade}`)
-	return response.data.response
+	const response = await api.get<GetProfile>(`/entities/me/${id_entidade}`);
+	return response.data.response;
 }
