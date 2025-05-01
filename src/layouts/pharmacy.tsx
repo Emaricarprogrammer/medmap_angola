@@ -46,13 +46,26 @@ export function PharmacyLayout() {
 		mutationFn: signOut,
 	})
 
-	async function handleSignOut() {
+	const handleLogout = async () => {
+		const token = localStorage.getItem("token")
+		if (!token) {
+			toast.error("Nenhum token encontrado. Você já está desconectado.")
+			return
+		}
 		try {
-			await signOutFn()
-			toast.warning("Sua sessão foi terminada!")
-			navigate("/auth/entrar", { replace: true })
-		} catch (error: any) {
-			toast.error(error.response.data.message || "Erro desconhecido!")
+			await api.post(
+				"/logout",
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			)
+			localStorage.removeItem("accessToken")
+		} catch (error) {
+			console.error("Erro ao fazer logout:", error)
+			toast.error("Erro ao fazer logout!")
 		}
 	}
 
@@ -100,7 +113,7 @@ export function PharmacyLayout() {
 				<footer className="flex flex-col gap-6">
 					<button
 						onClick={() => {
-							handleSignOut()
+							handleLogout()
 						}}
 						className="flex items-center gap-3 max-sm:flex-col max-sm:gap-0 font-semibold max-sm:px-0 text-rose-400/90 hover:text-rose-300 transition-colors text-sm group"
 					>

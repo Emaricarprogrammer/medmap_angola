@@ -1,14 +1,11 @@
 import { Lock, AtSign, LogIn, Loader2, Eye, EyeOff } from "lucide-react"
-
 import { Logo } from "@/components/general-ui/logo"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
 import { Card, CardHeader } from "@/components/ui/card"
-
 import { Helmet } from "react-helmet-async"
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
-
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SignInData, signInScheme } from "@/schemas/sign-in"
@@ -16,7 +13,6 @@ import { toast } from "sonner"
 import { useMutation } from "@tanstack/react-query"
 import { signIn } from "@/api/sign-in"
 import { useEffect, useState } from "react"
-
 import { jwtDecode } from "jwt-decode"
 
 export function SignIn() {
@@ -43,12 +39,16 @@ export function SignIn() {
 	async function handleSignIn(data: SignInData) {
 		try {
 			const response = await signInFn(data)
-
 			const accessToken = response.accessToken
 
-			const { access_level } = jwtDecode<any>(accessToken)
+			if (!accessToken || typeof accessToken !== "string") {
+				throw new Error("Token inválido retornado pela API")
+			}
 
-			localStorage.setItem("accessToken", JSON.stringify(accessToken))
+			console.log("Token recebido:", accessToken)
+			localStorage.setItem("accessToken", accessToken)
+
+			const { access_level } = jwtDecode<any>(accessToken)
 
 			if (access_level === "deposito") {
 				navigate("/deposito")
@@ -60,18 +60,22 @@ export function SignIn() {
 				navigate("/auth/entrar")
 			}
 		} catch (error: any) {
+			console.error("Erro no login:", error)
 			toast.error(error?.response?.data?.message || "Erro ao fazer login")
 		}
 	}
 
-	const storedToken = localStorage.getItem("accessToken")
-		? JSON.parse(localStorage.getItem("accessToken")!)
-		: null
-
 	useEffect(() => {
-		const { access_level } = jwtDecode<any>(storedToken)
+		const storedToken = localStorage.getItem("accessToken")
+
+		if (!storedToken || typeof storedToken !== "string") {
+			navigate("/auth/entrar", { replace: true })
+			return
+		}
 
 		try {
+			console.log("Token armazenado:", storedToken)
+			const { access_level } = jwtDecode<any>(storedToken)
 			if (access_level === "deposito") {
 				navigate("/deposito", { replace: true })
 			} else if (access_level === "farmacia") {
@@ -79,12 +83,14 @@ export function SignIn() {
 			} else if (access_level === "admin") {
 				navigate("/administrador", { replace: true })
 			} else {
-				navigate("/auth/entrar")
+				navigate("/auth/entrar", { replace: true })
 			}
 		} catch (error) {
+			console.error("Erro ao decodificar token:", error)
+			localStorage.removeItem("accessToken")
 			navigate("/auth/entrar", { replace: true })
 		}
-	}, [navigate, storedToken])
+	}, [navigate])
 
 	return (
 		<>
@@ -115,8 +121,7 @@ export function SignIn() {
 							className="bg-neutral-50/50 h-12"
 							{...register("email")}
 						/>
-
-						<span className="text-rose-600 text-sm text-left ">
+						<span className="text-rose-600 text-sm text-left">
 							{errors.email && errors.email.message}
 						</span>
 					</div>
@@ -132,7 +137,6 @@ export function SignIn() {
 							className="bg-neutral-50/50 h-12"
 							{...register("password")}
 						/>
-
 						<button
 							type="button"
 							title={showPassword ? "Esconder" : "Mostrar"}
@@ -145,7 +149,7 @@ export function SignIn() {
 								<Eye className="w-5 h-5" />
 							)}
 						</button>
-						<span className="text-rose-600 text-sm text-left ">
+						<span className="text-rose-600 text-sm text-left">
 							{errors.password && errors.password.message}
 						</span>
 					</div>
