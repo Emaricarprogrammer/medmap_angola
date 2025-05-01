@@ -45,22 +45,19 @@ export function SignIn() {
 				throw new Error("Token inválido retornado pela API")
 			}
 
-			console.log("Token recebido:", accessToken)
 			localStorage.setItem("accessToken", accessToken)
-
 			const { access_level } = jwtDecode<any>(accessToken)
 
 			if (access_level === "deposito") {
-				navigate("/deposito")
+				navigate("/deposito", { replace: true })
 			} else if (access_level === "farmacia") {
-				navigate("/farmacia")
+				navigate("/farmacia", { replace: true })
 			} else if (access_level === "admin") {
 				navigate("/administrador")
 			} else {
 				navigate("/auth/entrar")
 			}
 		} catch (error: any) {
-			console.error("Erro no login:", error)
 			toast.error(error?.response?.data?.message || "Erro ao fazer login")
 		}
 	}
@@ -74,7 +71,6 @@ export function SignIn() {
 		}
 
 		try {
-			console.log("Token armazenado:", storedToken)
 			const { access_level } = jwtDecode<any>(storedToken)
 			if (access_level === "deposito") {
 				navigate("/deposito", { replace: true })
@@ -86,7 +82,6 @@ export function SignIn() {
 				navigate("/auth/entrar", { replace: true })
 			}
 		} catch (error) {
-			console.error("Erro ao decodificar token:", error)
 			localStorage.removeItem("accessToken")
 			navigate("/auth/entrar", { replace: true })
 		}
@@ -154,13 +149,13 @@ export function SignIn() {
 						</span>
 					</div>
 
-					<div className="text-left">
+					<div className="text-left text-sm">
 						Esqueceu a senha?{" "}
 						<Link
 							to="/auth/recuperar-credencias"
 							className="text-emerald-600 text-sm"
 						>
-							Recuperar
+							Recupere-a
 						</Link>
 					</div>
 

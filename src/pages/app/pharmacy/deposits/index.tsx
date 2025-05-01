@@ -7,17 +7,22 @@ import { useQuery } from "@tanstack/react-query"
 import { getDeposities } from "@/api/get-deposities"
 import { getProfile } from "@/api/get-profile"
 import { MedicinalSkeleton } from "../home/medicinal-skeleton"
+import { toast } from "sonner"
 
 export function Deposits() {
-	const { data: profile } = useQuery({
+	const {
+		data: profile,
+		isLoading: isProfileLoading,
+		error: profileError,
+	} = useQuery({
 		queryKey: ["profile"],
 		queryFn: getProfile,
 	})
 
 	const {
 		data: deposits,
-		error,
-		isLoading,
+		error: depositsError,
+		isLoading: isDepositsLoading,
 	} = useQuery({
 		queryKey: [
 			"deposits",
@@ -32,14 +37,29 @@ export function Deposits() {
 			queryKey: [string, { latitude: number; longitude: number }]
 		}) => {
 			const [, { latitude, longitude }] = queryKey
+			if (latitude === 0 && longitude === 0) {
+				throw new Error("Coordenadas de geolocalização não disponíveis")
+			}
 			console.log("Fetching deposits for:", { latitude, longitude })
 			return getDeposities(latitude, longitude)
 		},
-		enabled: !!profile && !!profile.geolocalizacao_entidade,
+		enabled:
+			!!profile &&
+			!!profile.geolocalizacao_entidade?.latitude &&
+			!!profile.geolocalizacao_entidade?.longitude,
 	})
 
-	if (isLoading) console.log("Loading deposits...")
-	if (error) console.error("Query error:", error)
+	if (profileError) {
+		toast.error(
+			"Erro ao carregar perfil: " + (profileError.message || "Tente novamente")
+		)
+	}
+
+	if (depositsError) {
+		toast.error(depositsError.message || "Erro ao carregar depósitos")
+	}
+
+	const isLoading = isProfileLoading || isDepositsLoading
 
 	return (
 		<>
@@ -51,22 +71,42 @@ export function Deposits() {
 					legend="Depósitos"
 				/>
 
-				<div className="py-6 flex-col justify-between  max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
-					{deposits
-						? deposits.response.map((deposit) => {
-								return <DepositCard deposit={deposit} />
-						  })
-						: Array.from({ length: 6 }).map(() => {
-								return <MedicinalSkeleton />
-						  })}
-				</div>
+				{isLoading && (
+					<div className="py-6 flex-col justify-between max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-3 gap-4 max-xl:grid-cols-2">
+						{Array.from({ length: 6 }).map((_, index) => (
+							<MedicinalSkeleton key={index} />
+						))}
+					</div>
+				)}
 
-				<Pagination
-					currentPage={1}
-					totalItem={20}
-					legend="Depósitos"
-					perPage={3}
-				/>
+				{!isLoading && deposits && deposits.response.length > 0 && (
+					<div className="py-6 flex-col justify-between max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
+						{deposits.response.map((deposit) => (
+							<DepositCard key={deposit.id_entidade} deposit={deposit} />
+						))}
+					</div>
+				)}
+
+				{!isLoading && deposits && deposits.response.length === 0 && (
+					<div className="py-6 text-center text-neutral-500">
+						Nenhum depósito encontrado.
+					</div>
+				)}
+
+				{!isLoading && !deposits && !depositsError && (
+					<div className="py-6 text-center text-neutral-500">
+						Coordenadas de geolocalização não disponíveis. Verifique seu perfil.
+					</div>
+				)}
+
+				{deposits && (
+					<Pagination
+						currentPage={deposits.pagination.currentPage || 1}
+						totalItem={deposits.pagination.totalItems || 20}
+						legend="Depósitos"
+						perPage={deposits.pagination.itemsPerPage || 3}
+					/>
+				)}
 			</div>
 		</>
 	)

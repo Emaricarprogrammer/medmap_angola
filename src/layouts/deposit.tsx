@@ -1,55 +1,151 @@
-import { signOut } from "@/api/sign-out"
 import { DepositNavbar } from "@/components/deposit-ui/navbar"
-import { useMutation } from "@tanstack/react-query"
+import { api } from "@/services/axios"
+import { isAxiosError } from "axios"
 import { jwtDecode } from "jwt-decode"
 import { LogOut } from "lucide-react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 
 export function DepositLayout() {
 	const navigate = useNavigate()
+	const [isLoading, setIsLoading] = useState(true)
 
 	const storedToken = localStorage.getItem("accessToken")
-		? JSON.parse(localStorage.getItem("accessToken")!)
-		: null
-
-	const { mutateAsync: signOutFn } = useMutation({
-		mutationFn: signOut,
-	})
-
-	async function handleSignOut() {
-		try {
-			await signOutFn()
-			toast.warning("Sua sessão foi terminada!")
-			navigate("/auth/entrar", { replace: true })
-		} catch (error: any) {
-			toast.error(error.response.data.message || "Erro desconhecido!")
-		}
-	}
 
 	useEffect(() => {
-		if (!storedToken) {
-			navigate("/auth/entrar", { replace: true })
-			toast.warning("Sua sessão foi terminada!")
+		const interceptorsId = api.interceptors.response.use(
+			(request) => request,
+			async (error) => {
+				if (isAxiosError(error)) {
+					const statusCode = error.status
+					const message = error?.response?.data?.message
 
+					if (
+						statusCode === 401 &&
+						message ===
+							"Ooooops! Parece que a sua sessão está expirada, por favor faça login novamente"
+					) {
+						localStorage.removeItem("accessToken")
+						navigate("/auth/entrar", { replace: true })
+					}
+				}
+				return Promise.reject(error)
+			}
+		)
+
+		return () => {
+			api.interceptors.response.eject(interceptorsId)
+		}
+	}, [navigate])
+
+	const handleLogout = async () => {
+		const token = localStorage.getItem("accessToken")
+
+		if (!token || typeof token !== "string") {
+			toast.error("Sessão terminada. Nenhum token válido encontrado.")
+			localStorage.removeItem("accessToken")
+			navigate("/auth/entrar", { replace: true })
 			return
 		}
 
 		try {
-			const { access_level } = jwtDecode<any>(storedToken)
-
-			if (access_level === "farmacia") {
-				navigate("/farmacia", { replace: true })
-			} else if (access_level === "deposito") {
-				navigate("/deposito", { replace: true })
-			} else {
-				navigate("/administrador", { replace: true })
-			}
+			await api.post(
+				"/auth/logout",
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			)
+			toast.success("Logout realizado com sucesso!")
 		} catch (error) {
+			console.error("Erro ao fazer logout:", error)
+			toast.error("Erro ao fazer logout!")
+		} finally {
+			localStorage.removeItem("accessToken")
 			navigate("/auth/entrar", { replace: true })
 		}
+	}
+
+	useEffect(() => {
+		async function Verify() {
+			await new Promise((resolve) => setTimeout(resolve, 4000))
+
+			if (!storedToken || typeof storedToken !== "string") {
+				navigate("/auth/entrar", { replace: true })
+				setIsLoading(false)
+				return
+			}
+
+			try {
+				const { access_level } = jwtDecode<any>(storedToken)
+				if (access_level === "deposito") {
+					setIsLoading(false)
+				} else if (access_level === "farmacia") {
+					navigate("/farmacia", { replace: true })
+					setIsLoading(false)
+				} else if (access_level === "admin") {
+					navigate("/administrador", { replace: true })
+					setIsLoading(false)
+				} else {
+					navigate("/auth/entrar", { replace: true })
+					setIsLoading(false)
+				}
+			} catch (error) {
+				console.error("Erro ao decodificar token:", error)
+				localStorage.removeItem("accessToken")
+				navigate("/auth/entrar", { replace: true })
+				setIsLoading(false)
+			}
+		}
+
+		Verify()
 	}, [navigate, storedToken])
+
+	if (isLoading) {
+		return (
+			<div className="flex gap-4 items-center justify-center h-screen bg-neutral-50">
+				<img
+					src="/logo-medmap.png"
+					className="w-44 transition-transform hover:scale-105"
+					alt="Logo"
+				/>
+				<div className="relative w-12 h-12">
+					<div className="absolute inset-0 rounded-full border-4 border-emerald-300/30"></div>
+					<div className="absolute inset-0 rounded-full animate-spin border-4 border-transparent border-t-emerald-500 border-r-emerald-500"></div>
+					<div className="absolute inset-0 rounded-full animate-spin border-4 border-transparent border-b-emerald-300 border-l-emerald-300 animation-delay-300"></div>
+					<div className="absolute inset-0 flex items-center justify-center">
+						<div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+					</div>
+				</div>
+			</div>
+		)
+	}
+
+	if (!storedToken || typeof storedToken !== "string") {
+		navigate("/auth/entrar", { replace: true })
+		return null
+	}
+
+	try {
+		const { access_level } = jwtDecode<any>(storedToken)
+		if (access_level !== "deposito") {
+			if (access_level === "farmacia") {
+				navigate("/farmacia", { replace: true })
+			} else if (access_level === "admin") {
+				navigate("/administrador", { replace: true })
+			} else {
+				navigate("/auth/entrar", { replace: true })
+			}
+			return null
+		}
+	} catch (error) {
+		localStorage.removeItem("accessToken")
+		navigate("/auth/entrar", { replace: true })
+		return null
+	}
 
 	return (
 		<div className="flex antialiased bg-neutral-50 h-screen gap-0 max-sm:gap-0">
@@ -64,30 +160,23 @@ export function DepositLayout() {
 								alt="Brand Name"
 							/>
 						</div>
-
 						<span className="w-full max-sm:hidden h-px bg-neutral-700/80 mt-2"></span>
 					</div>
-
 					<DepositNavbar />
 				</header>
-
 				<footer className="flex flex-col gap-6">
 					<button
-						onClick={() => {
-							handleSignOut()
-						}}
+						onClick={handleLogout}
 						className="flex items-center gap-3 max-sm:flex-col max-sm:gap-0 font-semibold max-sm:px-5 text-rose-400/90 hover:text-rose-300 transition-colors text-sm group"
 					>
-						<LogOut className="w-6 h-6  group-hover:scale-105 transition-transform" />
+						<LogOut className="w-6 h-6 group-hover:scale-105 transition-transform" />
 						<span>Sair</span>
 					</button>
-
 					<div className="max-sm:hidden text-sm text-neutral-500/90">
-						Painel do Depósito &copy; {new Date().getFullYear()}
+						Painel do Depósito © {new Date().getFullYear()}
 					</div>
 				</footer>
 			</aside>
-
 			<div className="flex-1 overflow-auto p-6 bg-white/50">
 				<Outlet />
 			</div>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { ArrowUpRight, Box, MapPin, Pill, Truck } from "lucide-react"
+import { ArrowUpRight, Box, MapPin, Package, Truck } from "lucide-react"
 import { Deposito } from "@/api/get-deposities"
 
 interface Deposit {
@@ -35,20 +35,29 @@ export function DepositCard({ deposit }: Deposit) {
 				</div>
 			</div>
 
-			<div className="grid grid-cols-2 gap-3 mt-2">
+			<div className="grid grid-cols-2 gap-3 mt-2 w-full">
 				<div className=" rounded-xl">
 					<p className="flex items-center gap-1 text-gray-500">
-						<Pill className="w-4 h-4" />
+						<Package className="w-4 h-4" />
 						<span>Unidades</span>
 					</p>
 
-					<p className="text-lg font-medium text-gray-900 mt-4">
-						{deposit.medicamentos.length !== 0 &&
-							deposit.medicamentos.length &&
-							"Unidades de Medicamentos"}
+					<p className="text-lg text-gray-900 mt-4 w-56">
+						{deposit.medicamentos.length > 0 && (
+							<p className="flex items-center gap-2">
+								<span className="text-sm text-emerald-500 font-bold bg-emerald-50 px-4 py-2 rounded-xl">
+									{deposit.medicamentos.length}
+								</span>
+								<span className="text-sm"> Unidades Disponíveis</span>
+							</p>
+						)}
+
 						{deposit.medicamentos.length === 0 && (
-							<p className="text-sm text-red-500 font-bold bg-rose-50 px-4 py-2 rounded-xl">
-								Indisponível
+							<p className="flex items-center gap-2">
+								<span className="text-sm text-rose-500 font-bold bg-rose-50 px-4 py-2 rounded-xl">
+									{deposit.medicamentos.length}
+								</span>
+								<span className="text-sm"> Unidades Disponíveis</span>
 							</p>
 						)}
 					</p>

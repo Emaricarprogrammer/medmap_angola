@@ -1,30 +1,30 @@
-type OrderStatus = "pending" | "accepted" | "canceled"
+type OrderStatus = "pendente" | "concluido" | "cancelado"
 
 interface OrderStatusProps {
-  status: OrderStatus
+	status: OrderStatus
 }
 
 export function OrderStatus({ status }: OrderStatusProps) {
-  return (
-    <div className="flex items-center gap-1">
-      {status === "pending" && (
-        <>
-          <span className="w-2 h-2 rounded-full bg-amber-600"></span>
-          <span>Pendente</span>
-        </>
-      )}
-      {status === "accepted" && (
-        <>
-          <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-          <span>Entregue</span>
-        </>
-      )}
-      {status === "canceled" && (
-        <>
-          <span className="w-2 h-2 rounded-full bg-rose-600"></span>
-          <span>Cancelado</span>
-        </>
-      )}
-    </div>
-  )
+	return (
+		<div className="flex items-center gap-1">
+			{status === "pendente" && (
+				<>
+					<span className="w-2 h-2 rounded-full bg-amber-600"></span>
+					<span>Pendente</span>
+				</>
+			)}
+			{status === "concluido" && (
+				<>
+					<span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+					<span>Entregue</span>
+				</>
+			)}
+			{status === "cancelado" && (
+				<>
+					<span className="w-2 h-2 rounded-full bg-rose-600"></span>
+					<span>Cancelado</span>
+				</>
+			)}
+		</div>
+	)
 }
