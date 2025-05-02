@@ -40,33 +40,9 @@ export function DepositLayout() {
 	}, [navigate])
 
 	const handleLogout = async () => {
-		const token = localStorage.getItem("accessToken")
-
-		if (!token || typeof token !== "string") {
-			toast.error("Sessão terminada. Nenhum token válido encontrado.")
-			localStorage.removeItem("accessToken")
-			navigate("/auth/entrar", { replace: true })
-			return
-		}
-
-		try {
-			await api.post(
-				"/auth/logout",
-				{},
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				}
-			)
-			toast.success("Logout realizado com sucesso!")
-		} catch (error) {
-			console.error("Erro ao fazer logout:", error)
-			toast.error("Erro ao fazer logout!")
-		} finally {
-			localStorage.removeItem("accessToken")
-			navigate("/auth/entrar", { replace: true })
-		}
+		toast.error("Sessão terminada!")
+		localStorage.removeItem("accessToken")
+		navigate("/auth/entrar", { replace: true })
 	}
 
 	useEffect(() => {

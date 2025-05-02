@@ -9,7 +9,7 @@ export function OrderStatus({ status }: OrderStatusProps) {
 		<div className="flex items-center gap-1">
 			{status === "pendente" && (
 				<>
-					<span className="w-2 h-2 rounded-full bg-amber-600"></span>
+					<span className="w-2 h-2 rounded-full bg-yellow-500"></span>
 					<span>Pendente</span>
 				</>
 			)}

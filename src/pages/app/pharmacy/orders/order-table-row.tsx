@@ -35,7 +35,7 @@ export function OrderTableRow({
 				{order.categoria_medicamento}
 			</TableCell>
 			<TableCell className="py-4 max-xl:py-2">{order.firma_deposito}</TableCell>
-			<TableCell className="py-4 max-xl:py-2">
+			<TableCell className="py-4 max-xl:py-2 text-center">
 				{quantidade_medicamentos}
 			</TableCell>
 			<TableCell className="py-4 max-xl:py-2">

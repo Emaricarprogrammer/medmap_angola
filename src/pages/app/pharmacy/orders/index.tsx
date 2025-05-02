@@ -35,9 +35,9 @@ export function Orders() {
 
 							<TableBody>
 								{result &&
-									result.response.map((pedido) =>
-										pedido.pedidos.map((item) =>
-											item.medicamento.map((item1) => {
+									result?.response?.map((pedido) =>
+										pedido?.pedidos?.map((item) =>
+											item?.medicamento?.map((item1) => {
 												return (
 													<OrderTableRow
 														key={item1.id_medicamento}
@@ -58,35 +58,10 @@ export function Orders() {
 									})}
 							</TableBody>
 						</Table>
-
-						{/* {orders.length === 0 && (
-							<div className="flex w-full flex-col items-center justify-center gap-4 p-8 text-center">
-								<div className="w-20 h-20 bg-neutral-100 rounded-full flex items-center justify-center">
-									<Package className="w-8 h-8 text-neutral-400" />
-								</div>
-
-								<div className="flex flex-col gap-1">
-									<h3 className="text-lg font-medium text-neutral-800">
-										Ops! Não Existem Encomendas
-									</h3>
-									<p className="text-neutral-500">
-										Adicione medicamentos ao carrinho em seguida encomende-os!
-									</p>
-								</div>
-
-								<Link
-									to="/farmacia"
-									className="mt-4 px-6 py-2 bg-orange-400 text-white rounded-lg hover:bg-orange-300 transition-colors"
-								>
-									Começar
-								</Link>
-							</div>
-						)} */}
 					</div>
 				</div>
 
 				<div>
-					{" "}
 					<Pagination
 						currentPage={result?.pagination.currentPage || 1}
 						legend="Pedidos"

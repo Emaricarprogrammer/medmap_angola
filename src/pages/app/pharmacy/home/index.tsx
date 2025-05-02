@@ -43,30 +43,23 @@ export function Home() {
 
 				<div className="h-[40rem] flex-col flex overflow-y-scroll">
 					<div className="py-6 max-xl:h-[52rem] max-sm:h-[40rem]  grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 overflow-y-scroll">
-						{isFetching || isError || result?.response === undefined ? (
-							<>
-								<MedicinalSkeleton />
-								<MedicinalSkeleton />
-								<MedicinalSkeleton />
-								<MedicinalSkeleton />
-								<MedicinalSkeleton />
-								<MedicinalSkeleton />
-							</>
-						) : (
-							result?.response?.map((medicinal) => (
-								<MedicinalCard
-									key={medicinal.id_medicamento}
-									medicinal={medicinal}
-								/>
-							))
-						)}
+						{isFetching || isError || result?.response === undefined
+							? Array.from({ length: 6 }).map((_, index) => {
+									return <MedicinalSkeleton key={index} />
+							  })
+							: result?.response?.map((medicinal) => (
+									<MedicinalCard
+										key={medicinal.id_medicamento}
+										medicinal={medicinal}
+									/>
+							  ))}
 					</div>
 
 					<div className="mb-auto">
 						<Pagination
 							legend="Medicamentos"
 							currentPage={1}
-							totalItem={20}
+							totalItem={result?.pagination.totalItems || 0}
 							perPage={4}
 						/>
 					</div>

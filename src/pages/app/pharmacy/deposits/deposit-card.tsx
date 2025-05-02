@@ -13,7 +13,7 @@ export function DepositCard({ deposit }: Deposit) {
 	}
 
 	return (
-		<div className="bg-white border h-72 p-6 cursor-pointer flex flex-col justify-between gap-4 rounded-2xl border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200 group">
+		<div className="bg-white border h-80 p-6 cursor-pointer justify-evenly flex flex-col gap-4 rounded-2xl border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200 group">
 			<div className="flex items-start gap-4">
 				<div className="relative">
 					<Truck className="w-8 h-8" />
