@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { DepositMedicinalCard } from "./deposit-medicinal-card"
 import { DepositOverView } from "./deposit-overview"
 
-import { HandPlatter, Search } from "lucide-react"
+import { HandPlatter, PackageSearch, Search } from "lucide-react"
 import { useSearchParams } from "react-router-dom"
 import { MedicinalSkeleton } from "../home/medicinal-skeleton"
 import { useQuery } from "@tanstack/react-query"
@@ -56,6 +56,24 @@ export function VisitDeposit() {
 						</div>
 					</form>
 
+					{!isFetching && data?.response.medicamentos_deposito.length === 0 && (
+						<div className="flex mt-10 flex-col items-center justify-center gap-3 p-6 rounded-lg bg-muted/50 text-center">
+							<PackageSearch className="w-10 h-10 text-gray-400" />
+							<div className="space-y-1">
+								<h3 className="text-lg font-medium">
+									Nenhum medicamento encontrado
+								</h3>
+								<p className="text-sm text-muted-foreground">
+									O depósito{" "}
+									<span className="font-semibold">
+										{data.response.firma_deposito}
+									</span>{" "}
+									não possui medicamentos cadastrados.
+								</p>
+							</div>
+						</div>
+					)}
+
 					<div className="">
 						<div className="py-4 max-xl:h-[52rem] max-sm:h-[40rem] h-[15rem] overflow-y-scroll grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 ">
 							{isFetching || isError
@@ -69,13 +87,6 @@ export function VisitDeposit() {
 										/>
 								  ))}
 						</div>
-
-						{!isFetching &&
-							data?.response.medicamentos_deposito.length === 0 && (
-								<div className="flex items-center justify-center">
-									{data.response.firma_deposito} Não Possui Medicamentos
-								</div>
-							)}
 
 						<Pagination
 							legend="Medicamentos"
