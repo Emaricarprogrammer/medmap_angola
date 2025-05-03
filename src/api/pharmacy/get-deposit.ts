@@ -1,6 +1,6 @@
 import { api } from "@/services/axios"
 
-interface Medicamento {
+export interface Medicamento {
 	categoria: string
 	id_medicamento: string
 	imagem: string
@@ -50,6 +50,5 @@ export async function getDeposit(depositId: string) {
 			},
 		}
 	)
-	console.log(response.data)
 	return response.data
 }

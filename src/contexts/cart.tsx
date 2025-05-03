@@ -4,7 +4,7 @@ import { toast } from "sonner"
 import { ShoppingBag } from "lucide-react"
 import { Order } from "@/@types/pharmacy-orders"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { registerOrder } from "@/api/register-order"
+import { registerOrder } from "@/api/pharmacy/register-order"
 
 export interface CartProps extends Medicinal {
 	quantity?: number

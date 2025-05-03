@@ -8,47 +8,65 @@ import { DashboardOverview } from "./dashboard-overview"
 import { Table, TableBody } from "@/components/ui/table"
 import { Toolbar } from "@/components/deposit-ui/toolbar"
 import { Pagination } from "@/components/general-ui/pagination"
+import { useQuery } from "@tanstack/react-query"
+import { jwtDecode } from "jwt-decode"
+import { getOrders } from "@/api/deposit/get-orders"
 
 export function Dashboard() {
-  return (
-    <>
-      <Helmet title='Dashboard - Depósito' />
+	const storedToken = localStorage.getItem("accessToken")
+	if (!storedToken || typeof storedToken !== "string") {
+		throw new Error("Token de autenticação ausente ou inválido")
+	}
+	const { id_entidade } = jwtDecode<any>(storedToken)
 
-      <div className='w-full'>
-        <Toolbar
-          children={<House className='text-emerald-700 h-6 w-6' />}
-          legend='Painel do Depósito'
-        />
+	const { data } = useQuery({
+		queryKey: ["my-orders", id_entidade || 0],
+		queryFn: async () => {
+			if (!id_entidade) return []
+			return getOrders(id_entidade)
+		},
+		enabled: !!id_entidade,
+	})
 
-        <div className='bg-white p-5  border border-neutral-200 rounded-lg  mt-4'>
-          <DashboardOverview />
+	return (
+		<>
+			<Helmet title="Dashboard - Depósito" />
 
-          <div className='mt-10 flex items-center justify-between'>
-            <h1 className='font-bold flex items-center gap-1 text-neutral-800'>
-              <Package className='w-5 h-5' />
-              Últimos Pedidos em 24h
-            </h1>
-          </div>
-          <div className='mt-6 bg-white h-[22rem] overflow-y-scroll p-4 rounded-lg border shadow-sm'>
-            <Table className='w-full'>
-              <OrdersTableHead />
+			<div className="w-full">
+				<Toolbar
+					children={<House className="text-emerald-700 h-6 w-6" />}
+					legend="Painel do Depósito"
+				/>
 
-              <TableBody>
-                {Array.from({ length: 7 }).map((_) => {
-                  return <OrdersTableRow />
-                })}
-              </TableBody>
-            </Table>
-          </div>
+				<div className="bg-white p-5  border border-neutral-200 rounded-lg  mt-4">
+					<DashboardOverview />
 
-          <Pagination
-            currentPage={1}
-            totalItem={20}
-            perPage={3}
-            legend='Pedidos'
-          />
-        </div>
-      </div>
-    </>
-  )
+					<div className="mt-10 flex items-center justify-between">
+						<h1 className="font-bold flex items-center gap-1 text-neutral-800">
+							<Package className="w-5 h-5" />
+							Últimos Pedidos em 24h
+						</h1>
+					</div>
+					<div className="mt-6 bg-white h-[22rem] overflow-y-scroll p-4 rounded-lg border shadow-sm">
+						<Table className="w-full">
+							<OrdersTableHead />
+
+							<TableBody>
+								{data?.map((order) => {
+									return <OrdersTableRow />
+								})}
+							</TableBody>
+						</Table>
+					</div>
+
+					<Pagination
+						currentPage={1}
+						totalItem={20}
+						perPage={3}
+						legend="Pedidos"
+					/>
+				</div>
+			</div>
+		</>
+	)
 }

@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet-async"
 import { Package } from "lucide-react"
 
 import { useQuery } from "@tanstack/react-query"
-import { getOrders } from "@/api/get-orders"
+import { getOrders } from "@/api/pharmacy/get-orders"
 import { OrderTableRowSkeleton } from "./orders-skeleton"
 
 export function Orders() {
@@ -63,10 +63,10 @@ export function Orders() {
 
 				<div>
 					<Pagination
-						currentPage={result?.pagination.currentPage || 1}
+						currentPage={result?.pagination?.currentPage || 1}
 						legend="Pedidos"
-						totalItem={Number(result?.response[0].totalPedidos)}
-						perPage={result?.pagination.itemsPerPage || 8}
+						totalItem={result?.pagination?.totalItems || 0}
+						perPage={result?.pagination?.itemsPerPage || 8}
 					/>
 				</div>
 			</div>

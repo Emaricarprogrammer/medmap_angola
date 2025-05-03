@@ -45,7 +45,10 @@ export function OrderTableRow({
 				{priceFormatter.format(order.total_compra)}
 			</TableCell>
 			<TableCell className="py-4 max-xl:py-2 capitalize">
-				{data_aquisicao}
+				{formatDistanceToNow(new Date(data_aquisicao), {
+					locale: ptBR,
+					addSuffix: true,
+				})}
 			</TableCell>
 			<TableCell className="py-4 max-xl:py-2">
 				<OrderStatus status={status} />

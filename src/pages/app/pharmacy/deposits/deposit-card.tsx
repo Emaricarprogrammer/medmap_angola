@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { ArrowUpRight, Box, MapPin, Package, Truck } from "lucide-react"
-import { Deposito } from "@/api/get-deposities"
+import { Deposito } from "@/api/pharmacy/get-deposities"
 
 interface Deposit {
 	deposit: Deposito

@@ -1,5 +1,5 @@
-import { editProfile } from "@/api/edit-profile"
-import { getProfile } from "@/api/get-profile"
+import { editProfile } from "@/api/general/edit-profile"
+import { getProfile } from "@/api/general/get-profile"
 import { Button } from "@/components/ui/button"
 import { DialogContent } from "@/components/ui/dialog"
 
@@ -53,7 +53,7 @@ export function EditProfileDialog() {
 	}
 
 	return (
-		<DialogContent className="sm:max-w-[600px]">
+		<DialogContent className="sm:max-w-[600px] w-[30rem]">
 			<form className="space-y-6" onSubmit={handleSubmit(handleEditProfile)}>
 				<h2 className="text-xl font-bold text-gray-800">
 					Editar Perfil {profile?.firma_entidade}
@@ -61,12 +61,13 @@ export function EditProfileDialog() {
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<div className="space-y-2">
-						<Label htmlFor="name">Nome do Depósito</Label>
+						<Label htmlFor="name">Firma</Label>
 						<Input
 							id="name"
 							defaultValue={profile?.firma_entidade}
 							className="w-full h-12"
 							{...register("firma")}
+							placeholder="Firma"
 						/>
 					</div>
 
@@ -78,6 +79,18 @@ export function EditProfileDialog() {
 							defaultValue={profile?.email}
 							className="w-full h-12"
 							{...register("email")}
+							placeholder="Email"
+						/>
+					</div>
+
+					<div className="space-y-2">
+						<Label htmlFor="entity">Seu NIF</Label>
+						<Input
+							id="entity"
+							defaultValue={profile?.NIF_entidade}
+							className="w-full h-12"
+							{...register("nif")}
+							placeholder="NIF"
 						/>
 					</div>
 
@@ -88,26 +101,43 @@ export function EditProfileDialog() {
 							defaultValue={profile?.contacto}
 							className="w-full h-12"
 							{...register("contacto")}
+							placeholder="Telefone"
+						/>
+					</div>
+				</div>
+
+				<div className="grid grid-cols-3 gap-4">
+					<div className="space-y-2">
+						<Label htmlFor="phone">Rua</Label>
+						<Input
+							id="street"
+							defaultValue={profile?.contacto}
+							className="w-full h-12"
+							{...register("contacto")}
+							placeholder="Telefone"
 						/>
 					</div>
 
 					<div className="space-y-2">
-						<Label htmlFor="address">Endereço</Label>
+						<Label htmlFor="city">Cidade</Label>
 						<Input
-							id="address"
+							id="city"
 							defaultValue={profile?.cidade}
 							className="w-full h-12"
 							{...register("cidade")}
+							placeholder="Cidade"
 						/>
 					</div>
 
 					<div className="space-y-2">
-						<Label htmlFor="entity">Entidade</Label>
+						<Label htmlFor="email">Logradouro</Label>
 						<Input
-							id="entity"
-							defaultValue={profile?.NIF_entidade}
+							id="email"
+							type="email"
+							defaultValue={profile?.email}
 							className="w-full h-12"
-							{...register("nif")}
+							{...register("email")}
+							placeholder="Logradouro"
 						/>
 					</div>
 				</div>

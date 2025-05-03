@@ -7,11 +7,14 @@ import { Input } from "@/components/ui/input"
 import { DepositMedicinalCard } from "./deposit-medicinal-card"
 import { DepositOverView } from "./deposit-overview"
 
-import { HandPlatter, PackageSearch, Search } from "lucide-react"
+import { HandPlatter, PackageSearch, Search, SearchX } from "lucide-react"
 import { useSearchParams } from "react-router-dom"
 import { MedicinalSkeleton } from "../home/medicinal-skeleton"
 import { useQuery } from "@tanstack/react-query"
-import { getDeposit } from "@/api/get-deposit"
+import { getDeposit, Medicamento } from "@/api/pharmacy/get-deposit"
+import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { fadeIn, staggerContainer } from "@/lib/motion"
 
 export function VisitDeposit() {
 	const [searchParams] = useSearchParams()
@@ -25,6 +28,30 @@ export function VisitDeposit() {
 		},
 		enabled: !!paramsId,
 	})
+
+	const [allMedicinals, setAllMedidinals] = useState<Medicamento[]>()
+	const [filteredMedicinals, setFIlteredMedicinals] = useState<Medicamento[]>()
+	const [query, setQuery] = useState("")
+
+	useEffect(() => {
+		if (!allMedicinals) return
+
+		const normalizedQuery = query.trim().toLowerCase()
+
+		const filtereds = allMedicinals.filter((medicinal) =>
+			medicinal.nome_generico
+				.normalize("NFD")
+				.replace(/[\u0300-\u036f]/g, "")
+				.toLowerCase()
+				.includes(normalizedQuery)
+		)
+
+		setFIlteredMedicinals(filtereds)
+	}, [query, allMedicinals])
+
+	useEffect(() => {
+		setAllMedidinals(data?.response?.medicamentos_deposito)
+	}, [data?.response.medicamentos_deposito])
 
 	return (
 		<>
@@ -52,6 +79,10 @@ export function VisitDeposit() {
 								className="bg-white rounded-lg p-5"
 								type="text"
 								placeholder="Pesquise por um medicamento"
+								value={query}
+								onChange={(e) => {
+									setQuery(e.target.value)
+								}}
 							/>
 						</div>
 					</form>
@@ -74,19 +105,50 @@ export function VisitDeposit() {
 						</div>
 					)}
 
+					<AnimatePresence>
+						{filteredMedicinals?.length === 0 && (
+							<motion.div
+								initial={{ opacity: 0, y: -20 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -20 }}
+								transition={{ duration: 0.3 }}
+								className="flex flex-col items-center justify-center py-12 px-4 text-center bg-white rounded-xl shadow-sm border border-gray-100 max-w-md mx-auto mt-10"
+							>
+								<SearchX className="w-12 h-12 text-rose-400 mb-4" />
+								<h3 className="text-xl font-semibold text-gray-800 mb-2">
+									Nenhum resultado encontrado
+								</h3>
+								<p className="text-gray-500 mb-4">
+									Não encontramos medicamentos para:{" "}
+									<span className="font-medium text-gray-700">"{query}"</span>
+								</p>
+							</motion.div>
+						)}
+					</AnimatePresence>
+
 					<div className="">
-						<div className="py-4 max-xl:h-[52rem] max-sm:h-[40rem] h-[15rem] overflow-y-scroll grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 ">
-							{isFetching || isError
-								? Array.from({ length: 6 }).map((_, index) => {
-										return <MedicinalSkeleton key={index} />
-								  })
-								: data?.response?.medicamentos_deposito?.map((medicinal) => (
-										<DepositMedicinalCard
+						<motion.div
+							variants={staggerContainer()}
+							initial="hidden"
+							animate="show"
+							className="py-4 max-xl:h-[52rem] max-sm:h-[40rem] h-[18rem] overflow-y-scroll grid grid-cols-3 gap-8 max-xl:grid-cols-2 max-lg:grid-cols-1 "
+						>
+							{isFetching || isError || data?.response === undefined
+								? Array.from({ length: 6 }).map((_, index) => (
+										<MedicinalSkeleton key={index} />
+								  ))
+								: filteredMedicinals?.map((medicinal, index) => (
+										<motion.div
 											key={medicinal.id_medicamento}
-											medicinal={medicinal}
-										/>
+											variants={fadeIn("up", "spring", index * 0.1, 0.5)}
+										>
+											<DepositMedicinalCard
+												key={medicinal.id_medicamento}
+												medicinal={medicinal}
+											/>
+										</motion.div>
 								  ))}
-						</div>
+						</motion.div>
 
 						<Pagination
 							legend="Medicamentos"

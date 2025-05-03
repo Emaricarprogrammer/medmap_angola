@@ -17,7 +17,9 @@ import { SignUpData, signUpScheme } from "@/schemas/sign-up"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { StepFormControllers } from "./components/step-form-controllers"
 import { useMutation } from "@tanstack/react-query"
-import { signUp } from "@/api/sign-up"
+import { signUp } from "@/api/general/sign-up"
+import { useEffect } from "react"
+import { jwtDecode } from "jwt-decode"
 
 export function SignUp() {
 	const { mutateAsync: signUpEntity } = useMutation({
@@ -53,6 +55,31 @@ export function SignUp() {
 			toast.error(String(error.response.data.message))
 		}
 	}
+
+	useEffect(() => {
+		const storedToken = localStorage.getItem("accessToken")
+
+		if (!storedToken || typeof storedToken !== "string") {
+			navigate("/auth/entrar", { replace: true })
+			return
+		}
+
+		try {
+			const { access_level } = jwtDecode<any>(storedToken)
+			if (access_level === "deposito") {
+				navigate("/deposito", { replace: true })
+			} else if (access_level === "farmacia") {
+				navigate("/farmacia", { replace: true })
+			} else if (access_level === "admin") {
+				navigate("/administrador", { replace: true })
+			} else {
+				navigate("/auth/entrar", { replace: true })
+			}
+		} catch (error) {
+			localStorage.removeItem("accessToken")
+			navigate("/auth/entrar", { replace: true })
+		}
+	}, [navigate])
 
 	return (
 		<>

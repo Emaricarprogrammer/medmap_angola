@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { SignInData, signInScheme } from "@/schemas/sign-in"
 import { toast } from "sonner"
 import { useMutation } from "@tanstack/react-query"
-import { signIn } from "@/api/sign-in"
+import { signIn } from "@/api/general/sign-in"
 import { useEffect, useState } from "react"
 import { jwtDecode } from "jwt-decode"
 

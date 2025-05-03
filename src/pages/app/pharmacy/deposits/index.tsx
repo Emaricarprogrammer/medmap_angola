@@ -1,11 +1,11 @@
 import { Toolbar } from "@/components/pharmacy-ui/toolbar"
-import { HandPlatter } from "lucide-react"
+import { HandPlatter, Truck } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 import { DepositCard } from "./deposit-card"
 import { Pagination } from "@/components/general-ui/pagination"
 import { useQuery } from "@tanstack/react-query"
-import { getDeposities } from "@/api/get-deposities"
-import { getProfile } from "@/api/get-profile"
+import { getDeposities } from "@/api/pharmacy/get-deposities"
+import { getProfile } from "@/api/general/get-profile"
 import { MedicinalSkeleton } from "../home/medicinal-skeleton"
 import { toast } from "sonner"
 
@@ -92,9 +92,16 @@ export function Deposits() {
 						)}
 
 						{!isLoading && !deposits && !depositsError && (
-							<div className="py-6 text-center text-neutral-500">
-								Coordenadas de geolocalização não disponíveis. Verifique seu
-								perfil.
+							<div className="flex mt-10 flex-col items-center justify-center gap-3 p-6 rounded-lg bg-muted/50 text-center">
+								<Truck className="w-10 h-10 text-gray-400" />
+								<div className="space-y-1">
+									<h3 className="text-lg font-medium">
+										Nenhum Depósito encontrado!
+									</h3>
+									<span>
+										Parece que as suas coordenadas não estão corretas!
+									</span>
+								</div>
 							</div>
 						)}
 					</div>
