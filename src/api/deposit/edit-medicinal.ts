@@ -1,6 +1,6 @@
 import { api } from "@/services/axios"
 
-interface RegisterMedicinalBody {
+interface EditMedicinalBody {
 	categoria_medicamento: string
 	nome_generico: string
 	nome_comercial: string
@@ -12,7 +12,7 @@ interface RegisterMedicinalBody {
 	id_entidade_fk: string
 }
 
-export async function registerMedicinal({ ...rest }: RegisterMedicinalBody) {
+export async function editMedicinal({ ...rest }: EditMedicinalBody) {
 	const storedToken = localStorage.getItem("accessToken")
 
 	if (!storedToken || typeof storedToken !== "string") {

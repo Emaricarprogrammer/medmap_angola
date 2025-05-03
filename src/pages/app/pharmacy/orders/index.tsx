@@ -11,12 +11,20 @@ import { Package } from "lucide-react"
 import { useQuery } from "@tanstack/react-query"
 import { getOrders } from "@/api/pharmacy/get-orders"
 import { OrderTableRowSkeleton } from "./orders-skeleton"
+import { useContext, useEffect } from "react"
+import { OrdersNumberContext } from "@/contexts/pharmacy-orders"
 
 export function Orders() {
 	const { data: result } = useQuery({
 		queryKey: ["orders"],
 		queryFn: getOrders,
 	})
+
+	const { updateOrdersNumber } = useContext(OrdersNumberContext)
+
+	useEffect(() => {
+		updateOrdersNumber(result?.response.length || 0)
+	}, [result?.response])
 
 	return (
 		<>
