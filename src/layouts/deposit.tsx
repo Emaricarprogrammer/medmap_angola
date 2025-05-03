@@ -40,7 +40,7 @@ export function DepositLayout() {
 	}, [navigate])
 
 	const handleLogout = async () => {
-		toast.error("Sessão terminada!")
+		toast.warning("Sessão terminada!")
 		localStorage.removeItem("accessToken")
 		navigate("/auth/entrar", { replace: true })
 	}

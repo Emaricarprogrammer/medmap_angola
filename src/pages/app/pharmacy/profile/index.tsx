@@ -42,7 +42,7 @@ export function PharmacyProfile() {
 
 	return (
 		<>
-			<Helmet title="Perfil do Depósito" />
+			<Helmet title="Perfil da Farmácia" />
 
 			<div className="w-full">
 				<Toolbar
@@ -54,7 +54,7 @@ export function PharmacyProfile() {
 							<User className="text-emerald-700 h-6 w-6" />
 						</motion.div>
 					}
-					legend="Perfil do Depósito"
+					legend="Perfil da Farmácia"
 				/>
 
 				<Dialog>

@@ -87,9 +87,7 @@ export function RegisterMedDialog() {
 				id_entidade_fk,
 			})
 			toast.success(`${nome_comercial} Cadastrado com Sucesso!`)
-		} catch {
-			toast.error("Ops! Erro ao cadastrar medicamento")
-		}
+		} catch {}
 	}
 
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
