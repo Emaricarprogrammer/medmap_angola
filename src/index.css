@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-	font-family: "Dm sans", sans-serif;
+	font-family: "Sora", sans-serif;
+	font-weight: 300;
 }
 ::-webkit-scrollbar {
 	width: 5px;

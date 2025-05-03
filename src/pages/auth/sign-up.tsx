@@ -18,9 +18,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { StepFormControllers } from "./components/step-form-controllers"
 import { useMutation } from "@tanstack/react-query"
 import { signUp } from "@/api/general/sign-up"
-import { useEffect } from "react"
-import { jwtDecode } from "jwt-decode"
-
 export function SignUp() {
 	const { mutateAsync: signUpEntity } = useMutation({
 		mutationKey: ["sign-up"],

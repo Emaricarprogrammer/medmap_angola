@@ -5,38 +5,68 @@ import { OrderStatus } from "./order-status"
 import { OrdersStatusAction } from "./orders-status-action"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import { OrdersDetails } from "./orders-details"
+import { Medicamento } from "@/api/deposit/get-medicinals"
+import { priceFormatter } from "@/utils/formatter"
+import { formatDistanceToNow } from "date-fns"
+import { pt } from "date-fns/locale"
 
-export function OrdersTableRow() {
-  return (
-    <TableRow>
-      <TableCell className="py-4 max-xl:py-2">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button
-              title="Detalhes do Pedido"
-              className="bg-transparent text-neutral-800 hover:bg-transparent"
-              size="sm"
-            >
-              <Search className="w-4 h-4" />
-            </Button>
-          </DialogTrigger>
+interface Props {
+	order: {
+		id_aquisicao: string
+		data_aquisicao: "2025-05-03T13:12:57.567Z"
+		status: "pendente" | "concluido" | "cancelado"
+		farmacia: {
+			id: string
+			nome: string
+			contacto: number
+		}
+		medicamentos: Medicamento[]
+		total_compra: number
+	}
+}
 
-          <OrdersDetails />
-        </Dialog>
-      </TableCell>
+export function OrdersTableRow({ order }: Props) {
+	return (
+		<TableRow>
+			<TableCell className="py-4 max-xl:py-2">
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button
+							title="Detalhes do Pedido"
+							className="bg-transparent text-neutral-800 hover:bg-transparent"
+							size="sm"
+						>
+							<Search className="w-4 h-4" />
+						</Button>
+					</DialogTrigger>
 
-      <TableCell className="py-4 max-xl:py-2">Ada Farma</TableCell>
-      <TableCell className="py-4 max-xl:py-2">23 Caixas</TableCell>
-      <TableCell className="py-4 max-xl:py-2">AKZ 45.000,00</TableCell>
-      <TableCell className="py-4 max-xl:py-2">45 Minutos</TableCell>
+					<OrdersDetails order={order} />
+				</Dialog>
+			</TableCell>
 
-      <TableCell className="py-4 max-xl:py-2">
-        <OrderStatus status="pending" />
-      </TableCell>
+			<TableCell className="py-4 max-xl:py-2">
+				{order?.farmacia?.nome}
+			</TableCell>
+			<TableCell className="py-4 max-xl:py-2">
+				{order?.medicamentos.length}
+				{order?.medicamentos.length === 1 ? " Caixa" : " Caixas"}
+			</TableCell>
+			<TableCell className="py-4 max-xl:py-2">
+				{priceFormatter.format(order.total_compra)}
+			</TableCell>
+			<TableCell className="py-4 max-xl:py-2">
+				{formatDistanceToNow(new Date(order?.data_aquisicao), {
+					locale: pt,
+				})}
+			</TableCell>
 
-      <TableCell className="py-4 max-xl:py-2">
-        <OrdersStatusAction />
-      </TableCell>
-    </TableRow>
-  )
+			<TableCell className="py-4 max-xl:py-2">
+				<OrderStatus status={order.status} />
+			</TableCell>
+
+			<TableCell className="py-4 max-xl:py-2">
+				<OrdersStatusAction status={order?.status} />
+			</TableCell>
+		</TableRow>
+	)
 }

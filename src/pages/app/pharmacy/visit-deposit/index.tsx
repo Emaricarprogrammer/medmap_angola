@@ -106,24 +106,25 @@ export function VisitDeposit() {
 					)}
 
 					<AnimatePresence>
-						{filteredMedicinals?.length === 0 && (
-							<motion.div
-								initial={{ opacity: 0, y: -20 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -20 }}
-								transition={{ duration: 0.3 }}
-								className="flex flex-col items-center justify-center py-12 px-4 text-center bg-white rounded-xl shadow-sm border border-gray-100 max-w-md mx-auto mt-10"
-							>
-								<SearchX className="w-12 h-12 text-rose-400 mb-4" />
-								<h3 className="text-xl font-semibold text-gray-800 mb-2">
-									Nenhum resultado encontrado
-								</h3>
-								<p className="text-gray-500 mb-4">
-									Não encontramos medicamentos para:{" "}
-									<span className="font-medium text-gray-700">"{query}"</span>
-								</p>
-							</motion.div>
-						)}
+						{data?.response.medicamentos_deposito.length &&
+							filteredMedicinals?.length === 0 && (
+								<motion.div
+									initial={{ opacity: 0, y: -20 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -20 }}
+									transition={{ duration: 0.3 }}
+									className="flex flex-col items-center justify-center py-12 px-4 text-center bg-white rounded-xl shadow-sm border border-gray-100 max-w-md mx-auto mt-10"
+								>
+									<SearchX className="w-12 h-12 text-rose-400 mb-4" />
+									<h3 className="text-xl font-semibold text-gray-800 mb-2">
+										Nenhum resultado encontrado
+									</h3>
+									<p className="text-gray-500 mb-4">
+										Não encontramos medicamentos para:{" "}
+										<span className="font-medium text-gray-700">"{query}"</span>
+									</p>
+								</motion.div>
+							)}
 					</AnimatePresence>
 
 					<div className="">

@@ -19,12 +19,13 @@ export function Dashboard() {
 	}
 	const { id_entidade } = jwtDecode<any>(storedToken)
 
-	const { data } = useQuery({
+	const { data: result } = useQuery({
 		queryKey: ["my-orders", id_entidade || 0],
 		queryFn: async () => {
-			if (!id_entidade) return []
+			if (!id_entidade) return
 			return getOrders(id_entidade)
 		},
+
 		enabled: !!id_entidade,
 	})
 
@@ -42,7 +43,7 @@ export function Dashboard() {
 					<DashboardOverview />
 
 					<div className="mt-10 flex items-center justify-between">
-						<h1 className="font-bold flex items-center gap-1 text-neutral-800">
+						<h1 className="font-medium flex items-center gap-1 text-neutral-800">
 							<Package className="w-5 h-5" />
 							Últimos Pedidos em 24h
 						</h1>
@@ -52,8 +53,10 @@ export function Dashboard() {
 							<OrdersTableHead />
 
 							<TableBody>
-								{data?.map((order) => {
-									return <OrdersTableRow />
+								{result?.response?.map((order) => {
+									return (
+										<OrdersTableRow order={order} key={order.id_aquisicao} />
+									)
 								})}
 							</TableBody>
 						</Table>
