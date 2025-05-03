@@ -78,7 +78,7 @@ export function Stock() {
 						</Table>
 					</div>
 
-					{!isFetching && data?.response === undefined && (
+					{!isFetching && data?.response.length === 0 && (
 						<EmptyMedicinesState />
 					)}
 

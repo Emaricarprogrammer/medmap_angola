@@ -13,9 +13,10 @@ import { getOrders } from "@/api/pharmacy/get-orders"
 import { OrderTableRowSkeleton } from "./orders-skeleton"
 import { useContext, useEffect } from "react"
 import { OrdersNumberContext } from "@/contexts/pharmacy-orders"
+import { EmptyOrdersState } from "./empty-orders"
 
 export function Orders() {
-	const { data: result } = useQuery({
+	const { data: result, isFetching } = useQuery({
 		queryKey: ["orders"],
 		queryFn: getOrders,
 	})
@@ -60,6 +61,7 @@ export function Orders() {
 											})
 										)
 									)}
+
 								{!result &&
 									Array.from({ length: 8 }).map((_, index) => {
 										return <OrderTableRowSkeleton key={index} />
@@ -68,6 +70,10 @@ export function Orders() {
 						</Table>
 					</div>
 				</div>
+
+				{!isFetching && result?.response.length === undefined && (
+					<EmptyOrdersState />
+				)}
 
 				<div>
 					<Pagination
