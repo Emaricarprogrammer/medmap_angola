@@ -8,6 +8,8 @@ import { getDeposities } from "@/api/pharmacy/get-deposities"
 import { getProfile } from "@/api/general/get-profile"
 import { MedicinalSkeleton } from "../home/medicinal-skeleton"
 import { toast } from "sonner"
+import { motion } from "framer-motion"
+import { fadeIn, staggerContainer } from "@/lib/motion"
 
 export function Deposits() {
 	const {
@@ -78,11 +80,21 @@ export function Deposits() {
 						)}
 
 						{!isLoading && deposits && deposits.response.length > 0 && (
-							<div className="py-6 flex-col justify-between max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2">
-								{deposits.response.map((deposit) => (
-									<DepositCard key={deposit.id_entidade} deposit={deposit} />
+							<motion.div
+								variants={staggerContainer()}
+								initial="hidden"
+								animate="show"
+								className="py-6 flex-col justify-between max-xl:h-[52rem] max-sm:h-[40rem] overflow-y-scroll max-sm:grid-cols-1 max-xl:py-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2"
+							>
+								{deposits.response.map((deposit, index) => (
+									<motion.div
+										key={deposit.id_entidade}
+										variants={fadeIn("right", "spring", index * 0.1, 0.5)}
+									>
+										<DepositCard key={deposit.id_entidade} deposit={deposit} />
+									</motion.div>
 								))}
-							</div>
+							</motion.div>
 						)}
 
 						{!isLoading && deposits && deposits.response.length === 0 && (

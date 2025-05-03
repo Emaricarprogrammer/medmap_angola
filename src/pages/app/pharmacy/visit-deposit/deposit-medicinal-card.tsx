@@ -2,22 +2,16 @@ import { Button } from "@/components/ui/button"
 import { Package, ShoppingBag, Star, Truck } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { priceFormatter } from "@/utils/formatter"
+import { Medicinal } from "@/@types/medicinals"
+import { useCart } from "@/hooks/useCart"
 
 interface MedicinalProps {
-	medicinal: {
-		categoria: string
-		id_medicamento: string
-		imagem: string
-		nome_comercial: string
-		nome_generico: string
-		origem: string
-		preco: number
-		quantidade_disponivel: number
-		validade: string
-	}
+	medicinal: Medicinal
 }
 
 export function DepositMedicinalCard({ medicinal }: MedicinalProps) {
+	const { addMedicinalToCart } = useCart()
+
 	return (
 		<div className="bg-white border border-gray-200 gap-4 p-5 flex rounded-xl max-sm:p-4 max-sm:flex-col hover:shadow-md transition-shadow duration-300">
 			<div className="relative">
@@ -70,7 +64,9 @@ export function DepositMedicinalCard({ medicinal }: MedicinalProps) {
 
 				<footer className="mt-auto pt-3 gap-4 border-t flex items-center justify-between">
 					<Button
-						onClick={() => {}}
+						onClick={() => {
+							addMedicinalToCart(medicinal)
+						}}
 						className="gap-2 text-sm h-10 ml-auto bg-emerald-600 hover:bg-emerald-700"
 					>
 						<ShoppingBag className="w-4 h-4" />
