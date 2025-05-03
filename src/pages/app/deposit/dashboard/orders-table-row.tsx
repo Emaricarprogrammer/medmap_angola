@@ -65,7 +65,7 @@ export function OrdersTableRow({ order }: Props) {
 			</TableCell>
 
 			<TableCell className="py-4 max-xl:py-2">
-				<OrdersStatusAction status={order?.status} />
+				<OrdersStatusAction order={order} status={order?.status} />
 			</TableCell>
 		</TableRow>
 	)
