@@ -121,9 +121,8 @@ export function EditProfileDialog() {
 						</p>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-						{/* Coluna 1 - Dados Básicos */}
-						<div className="space-y-4">
+					<div className="grid gap-2">
+						<div className="grid grid-cols-2 gap-4">
 							<div className="space-y-2">
 								<Label htmlFor="firma">Nome do Depósito</Label>
 								<Input
@@ -167,30 +166,29 @@ export function EditProfileDialog() {
 							</div>
 						</div>
 
-						{/* Coluna 2 - Endereço e Senhas */}
-						<div className="space-y-4">
-							<div className="grid grid-cols-2 gap-4">
-								<div className="space-y-2">
-									<Label htmlFor="rua">Rua</Label>
-									<Input
-										id="rua"
-										className="h-10"
-										{...register("rua")}
-										defaultValue={profile?.rua}
-									/>
-								</div>
-								<div className="space-y-2">
-									<Label htmlFor="numero">Número</Label>
-									<Input
-										id="numero"
-										type="number"
-										className="h-10"
-										{...register("numero", { valueAsNumber: true })}
-										defaultValue={profile?.numero}
-									/>
-								</div>
+						<div className="grid grid-cols-2 gap-4">
+							<div className="space-y-2">
+								<Label htmlFor="rua">Rua</Label>
+								<Input
+									id="rua"
+									className="h-10"
+									{...register("rua")}
+									defaultValue={profile?.rua}
+								/>
 							</div>
+							<div className="space-y-2">
+								<Label htmlFor="numero">Número</Label>
+								<Input
+									id="numero"
+									type="number"
+									className="h-10"
+									{...register("numero", { valueAsNumber: true })}
+									defaultValue={profile?.numero}
+								/>
+							</div>
+						</div>
 
+						<div className="grid grid-cols-2 gap-4">
 							<div className="space-y-2">
 								<Label htmlFor="logradouro">Logradouro</Label>
 								<Input
@@ -210,7 +208,9 @@ export function EditProfileDialog() {
 									defaultValue={profile?.cidade}
 								/>
 							</div>
+						</div>
 
+						<div className="grid grid-cols-2 gap-4">
 							<div className="space-y-2">
 								<Label htmlFor="password">Senha atual</Label>
 								<Input

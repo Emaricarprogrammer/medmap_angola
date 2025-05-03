@@ -56,31 +56,6 @@ export function SignUp() {
 		}
 	}
 
-	useEffect(() => {
-		const storedToken = localStorage.getItem("accessToken")
-
-		if (!storedToken || typeof storedToken !== "string") {
-			navigate("/auth/entrar", { replace: true })
-			return
-		}
-
-		try {
-			const { access_level } = jwtDecode<any>(storedToken)
-			if (access_level === "deposito") {
-				navigate("/deposito", { replace: true })
-			} else if (access_level === "farmacia") {
-				navigate("/farmacia", { replace: true })
-			} else if (access_level === "admin") {
-				navigate("/administrador", { replace: true })
-			} else {
-				navigate("/auth/entrar", { replace: true })
-			}
-		} catch (error) {
-			localStorage.removeItem("accessToken")
-			navigate("/auth/entrar", { replace: true })
-		}
-	}, [navigate])
-
 	return (
 		<>
 			<Helmet title="Cadastrar-se" />
