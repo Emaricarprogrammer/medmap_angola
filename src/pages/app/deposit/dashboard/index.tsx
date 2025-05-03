@@ -11,6 +11,8 @@ import { Pagination } from "@/components/general-ui/pagination"
 import { useQuery } from "@tanstack/react-query"
 import { jwtDecode } from "jwt-decode"
 import { getOrders } from "@/api/deposit/get-orders"
+import { EmptyOrdersState } from "./empty-orders"
+import { OrdersTableRowSkeleton } from "./order-skeleton"
 
 export function Dashboard() {
 	const storedToken = localStorage.getItem("accessToken")
@@ -19,7 +21,7 @@ export function Dashboard() {
 	}
 	const { id_entidade } = jwtDecode<any>(storedToken)
 
-	const { data: result } = useQuery({
+	const { data: result, isFetching } = useQuery({
 		queryKey: ["my-orders", id_entidade || 0],
 		queryFn: async () => {
 			if (!id_entidade) return
@@ -52,15 +54,25 @@ export function Dashboard() {
 						<Table className="w-full">
 							<OrdersTableHead />
 
-							<TableBody>
-								{result?.response?.map((order) => {
-									return (
-										<OrdersTableRow order={order} key={order.id_aquisicao} />
-									)
+							{isFetching &&
+								Array.from({ length: 3 }).map(() => {
+									return <OrdersTableRowSkeleton />
 								})}
+
+							<TableBody>
+								{!isFetching &&
+									result?.response?.map((order) => {
+										return (
+											<OrdersTableRow order={order} key={order.id_aquisicao} />
+										)
+									})}
 							</TableBody>
 						</Table>
 					</div>
+
+					{!isFetching && result?.response === undefined && (
+						<EmptyOrdersState />
+					)}
 
 					<Pagination
 						currentPage={1}
