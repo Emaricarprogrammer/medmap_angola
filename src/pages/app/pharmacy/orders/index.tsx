@@ -62,18 +62,18 @@ export function Orders() {
 										)
 									)}
 
-								{!result &&
+								{isFetching &&
 									Array.from({ length: 8 }).map((_, index) => {
 										return <OrderTableRowSkeleton key={index} />
 									})}
 							</TableBody>
 						</Table>
+
+						{!isFetching && result?.response === undefined && (
+							<EmptyOrdersState />
+						)}
 					</div>
 				</div>
-
-				{!isFetching && result?.response.length === undefined && (
-					<EmptyOrdersState />
-				)}
 
 				<div>
 					<Pagination

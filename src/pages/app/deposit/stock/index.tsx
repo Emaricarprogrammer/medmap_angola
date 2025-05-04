@@ -42,13 +42,13 @@ export function Stock() {
 
 			<div className="w-full">
 				<Toolbar
-					children={<Package className="text-emerald-700 h-6 w-6" />}
+					children={<Package className="text-amber-700 h-6 w-6" />}
 					legend="Stock"
 				/>
 
 				<div className="mt-10 flex items-center justify-between">
 					<h1 className="font-semibold px-1 flex items-center gap-1 text-neutral-700">
-						Adcionados Recentemente ({data?.response.length})
+						Adcionados Recentemente ({data?.response.length || 0})
 					</h1>
 
 					<RegisterMedDialog />
@@ -78,7 +78,7 @@ export function Stock() {
 						</Table>
 					</div>
 
-					{!isFetching && data?.response.length === 0 && (
+					{!isFetching && data?.response === undefined && (
 						<EmptyMedicinesState />
 					)}
 

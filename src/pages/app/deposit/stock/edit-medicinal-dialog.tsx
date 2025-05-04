@@ -6,6 +6,7 @@ import {
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
+	DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -18,7 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { format } from "date-fns"
 import { jwtDecode } from "jwt-decode"
-import { Loader2, SaveAllIcon, UploadCloud } from "lucide-react"
+import { Loader2, SaveAllIcon } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -110,6 +111,15 @@ export function EditMedDialog({ medicamento }: Props) {
 
 	return (
 		<Dialog open={modalState} onOpenChange={setModalState}>
+			<DialogTrigger asChild>
+				<Button
+					className="bg-transparent text-amber-600 hover:bg-transparent"
+					size="sm"
+				>
+					Editar
+				</Button>
+			</DialogTrigger>
+
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>
@@ -124,28 +134,18 @@ export function EditMedDialog({ medicamento }: Props) {
 				>
 					<div className="flex flex-col gap-2">
 						<label className="flex flex-col items-center justify-center h-20 px-4 border-2 border-dashed w-full rounded-lg cursor-pointer bg-neutral-50 hover:bg-neutral-100">
-							{watch("imagem") ? (
-								<div className="relative w-full h-full flex items-center justify-center">
-									<img
-										src={
-											preview
-												? URL.createObjectURL(watch("imagem"))
-												: medicamento.imagem
-										}
-										alt="Preview"
-										className="max-h-full max-w-full object-contain p-2"
-									/>
-								</div>
-							) : (
-								<div className="flex flex-col items-center justify-center pt-5 pb-6">
-									<UploadCloud className="animate-ping w-6 h-6 mb-2 text-foreground/50" />
-									<p className="text-sm text-foreground/50">
-										<span className="font-semibold">
-											Selecione a imagem do medicamento
-										</span>
-									</p>
-								</div>
-							)}
+							<div className="relative w-full h-full flex items-center justify-center">
+								<img
+									src={
+										preview
+											? URL.createObjectURL(watch("imagem"))
+											: medicamento.imagem
+									}
+									alt="Preview"
+									className="max-h-full max-w-full object-contain p-2"
+								/>
+							</div>
+
 							<input
 								type="file"
 								className="hidden"

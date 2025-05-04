@@ -33,7 +33,7 @@ export async function editMedicinal({ ...rest }: EditMedicinalBody) {
 	)
 	formData.append("id_entidade_fk", rest.id_entidade_fk)
 
-	await api.post("/entity/deposit/medicines", formData, {
+	await api.patch("/entity/deposit/medicines", formData, {
 		headers: {
 			Authorization: `Bearer ${storedToken}`,
 		},

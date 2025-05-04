@@ -9,8 +9,8 @@ export function EmptyMedicinesState() {
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.5 }}
 		>
-			<div className="bg-emerald-50 p-6 rounded-full mb-6">
-				<PackageSearch className="h-12 w-12 text-emerald-600" />
+			<div className="bg-amber-50 p-6 rounded-full mb-6">
+				<PackageSearch className="h-12 w-12 text-amber-600" />
 			</div>
 
 			<motion.h3

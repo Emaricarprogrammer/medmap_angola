@@ -139,18 +139,7 @@ export function MedicinalTableRow({ medicamento }: Props) {
 						)}
 					</Button>
 
-					<Dialog>
-						<DialogTrigger asChild>
-							<Button
-								className="bg-transparent text-amber-600 hover:bg-transparent"
-								size="sm"
-							>
-								Editar
-							</Button>
-						</DialogTrigger>
-
-						<EditMedDialog medicamento={medicamento} />
-					</Dialog>
+					<EditMedDialog medicamento={medicamento} />
 				</div>
 			</TableCell>
 		</TableRow>

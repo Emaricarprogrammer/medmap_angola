@@ -75,7 +75,7 @@ export function OrdersDetails({ order }: Props) {
 						{order?.medicamentos?.map((medicamento) => {
 							return (
 								<TableRow>
-									<TableCell>Paracetamol</TableCell>
+									<TableCell>{medicamento.nome_medicamento}</TableCell>
 									<TableCell className="text-center">
 										{medicamento.quantidade}
 									</TableCell>

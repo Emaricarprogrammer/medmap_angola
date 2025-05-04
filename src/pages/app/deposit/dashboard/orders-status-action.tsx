@@ -57,6 +57,11 @@ export function OrdersStatusAction({ status, order }: Props) {
 			})
 		},
 		onError(error: any) {
+			setAproveModalVisible(false)
+			queryClient.invalidateQueries({
+				queryKey: ["my-orders", id_entidade || 0],
+				refetchType: "active",
+			})
 			toast.error(error.response.data.message, {
 				position: "bottom-right",
 			})

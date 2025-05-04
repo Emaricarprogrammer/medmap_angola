@@ -1,5 +1,7 @@
 import { ShoppingCart } from "lucide-react"
 import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom"
 
 export function EmptyOrdersState() {
 	return (
@@ -36,7 +38,11 @@ export function EmptyOrdersState() {
 				transition={{ delay: 0.2 }}
 				whileHover={{ scale: 1.02 }}
 				whileTap={{ scale: 0.98 }}
-			></motion.div>
+			>
+				<Button className="bg-emerald-500 rounded-full">
+					<Link to="/farmacia">Começar</Link>
+				</Button>
+			</motion.div>
 		</motion.div>
 	)
 }

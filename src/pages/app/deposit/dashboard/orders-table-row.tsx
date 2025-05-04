@@ -55,7 +55,7 @@ export function OrdersTableRow({ order }: Props) {
 				{priceFormatter.format(order.total_compra)}
 			</TableCell>
 			<TableCell className="py-4 max-xl:py-2">
-				{formatDistanceToNow(new Date(order?.data_aquisicao), {
+				{formatDistanceToNow(new Date(order.data_aquisicao), {
 					locale: pt,
 				})}
 			</TableCell>
