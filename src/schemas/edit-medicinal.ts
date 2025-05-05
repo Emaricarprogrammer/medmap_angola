@@ -1,17 +1,14 @@
 import { z } from "zod"
 
 export const editMedicinalSchema = z.object({
-	imagem: z.instanceof(File).refine((file) => file.type.startsWith("image/"), {
-		message: "O arquivo deve ser uma imagem",
-	}),
-
-	nome_comercial: z.string().min(3, "Preencha este campo!"),
-	nome_generico: z.string().min(3, "Preencha este campo!"),
-	categoria_medicamento: z.string().min(3, "Preencha este campo!"),
-	origem_medicamento: z.string().min(3, "Preencha este campo!"),
-	validade_medicamento: z.string(),
-	preco_medicamento: z.number().min(1, "Preencha este campo!"),
-	quantidade_disponivel: z.number().min(1, "Preencha este campo!"),
+	categoria_medicamento: z.string().min(1, "Campo obrigatório"),
+	nome_generico: z.string().min(1, "Campo obrigatório"),
+	nome_comercial: z.string().min(1, "Campo obrigatório"),
+	origem_medicamento: z.string().min(1, "Campo obrigatório"),
+	validade_medicamento: z.string().min(1, "Campo obrigatório"),
+	preco_medicamento: z.number().min(0.01, "Valor deve ser positivo"),
+	quantidade_disponivel: z.number().min(1, "Quantidade deve ser positiva"),
+	imagem_url: z.string().url("URL inválida"),
 })
 
 export type EditMedicinalFormData = z.infer<typeof editMedicinalSchema>

@@ -1,41 +1,31 @@
 import { api } from "@/services/axios"
 
 interface EditMedicinalBody {
-	categoria_medicamento: string
-	nome_generico: string
-	nome_comercial: string
-	origem_medicamento: string
-	validade_medicamento: string
-	preco_medicamento: number
-	imagem: File
-	quantidade_disponivel: number
-	id_entidade_fk: string
+    id_medicamento: string
+    categoria_medicamento: string
+    nome_generico_medicamento: string
+    nome_comercial_medicamento: string
+    origem_medicamento: string
+    validade_medicamento: string
+    preco_medicamento: number
+    imagem_url: string
+    quantidade_disponivel_medicamento: number
 }
 
-export async function editMedicinal({ ...rest }: EditMedicinalBody) {
-	const storedToken = localStorage.getItem("accessToken")
+export async function editMedicinal(data: EditMedicinalBody) {
+    const storedToken = localStorage.getItem("accessToken")
 
-	if (!storedToken || typeof storedToken !== "string") {
-		throw new Error("Token de autenticação ausente ou inválido")
-	}
+    if (!storedToken) {
+        throw new Error("Token de autenticação ausente")
+    }
 
-	const formData = new FormData()
-	formData.append("imagem", rest.imagem)
-	formData.append("categoria_medicamento", rest.categoria_medicamento)
-	formData.append("nome_generico", rest.nome_generico)
-	formData.append("nome_comercial", rest.nome_comercial)
-	formData.append("origem_medicamento", rest.origem_medicamento)
-	formData.append("validade_medicamento", rest.validade_medicamento)
-	formData.append("preco_medicamento", rest.preco_medicamento.toString())
-	formData.append(
-		"quantidade_disponivel",
-		rest.quantidade_disponivel.toString()
-	)
-	formData.append("id_entidade_fk", rest.id_entidade_fk)
+    // Extrai o id_medicamento para usar na URL
+    const { id_medicamento, ...bodyData } = data
 
-	await api.patch("/entity/deposit/medicines", formData, {
-		headers: {
-			Authorization: `Bearer ${storedToken}`,
-		},
-	})
+    await api.patch(`/entity/deposit/medicine/${id_medicamento}`, bodyData, {
+        headers: {
+            Authorization: `Bearer ${storedToken}`,
+            "Content-Type": "application/json",
+        },
+    })
 }

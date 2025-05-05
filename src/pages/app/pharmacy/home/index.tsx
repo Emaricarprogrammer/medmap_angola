@@ -124,7 +124,7 @@ export function Home() {
 						<Pagination
 							legend="Medicamentos"
 							currentPage={1}
-							totalItem={result?.pagination.totalItems || 0}
+							totalItem={result?.pagination?.totalItems || 0}
 							perPage={4}
 						/>
 					</div>

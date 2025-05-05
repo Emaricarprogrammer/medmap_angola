@@ -24,7 +24,7 @@ export function Orders() {
 	const { updateOrdersNumber } = useContext(OrdersNumberContext)
 
 	useEffect(() => {
-		updateOrdersNumber(result?.response.length || 0)
+		updateOrdersNumber(result?.response?.length || 0)
 	}, [result?.response])
 
 	return (
