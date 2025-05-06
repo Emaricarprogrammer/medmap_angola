@@ -3,22 +3,30 @@ import { EntityType } from "./entity-type"
 import { Trash } from "lucide-react"
 
 export function EntityTableRow() {
-  return (
-    <TableRow>
-      <TableCell className="py-3 max-xl:py-2">Santa Catarina LDA</TableCell>
-      <TableCell className="py-3 max-xl:py-2">
-        <EntityType type="deposito" />
-      </TableCell>
-      <TableCell className="py-3 max-xl:py-2">02/05/1015</TableCell>
-      <TableCell className="py-3 max-xl:py-2">
-        <span
-          title="Eliminar entidade"
-          className="flex gap-2 items-center text-rose-600 cursor-pointer bg-rose-50 w-fit py-1 px-2 text-sm rounded-full"
-        >
-          <Trash className="w-4 h-4" />
-          Eliminar conta
-        </span>
-      </TableCell>
-    </TableRow>
-  )
+	return (
+		<TableRow className={`transition-colors bg-gray-50"`}>
+			<TableCell className="py-4 font-medium border-b border-gray-100">
+				Santa Catarina LDA
+			</TableCell>
+
+			<TableCell className="py-4 border-b border-gray-100">
+				<EntityType type="deposito" />
+			</TableCell>
+
+			<TableCell className="py-4 text-gray-500 border-b border-gray-100">
+				02/05/2015
+			</TableCell>
+
+			<TableCell className="py-4 border-b border-gray-100">
+				<button
+					className="
+              flex items-center gap-1 px-3 py-1 rounded-md text-sm
+              transition-all text-rose-600"
+				>
+					<Trash className="w-4 h-4" />
+					<span className="transition-opacity">Excluir</span>
+				</button>
+			</TableCell>
+		</TableRow>
+	)
 }
