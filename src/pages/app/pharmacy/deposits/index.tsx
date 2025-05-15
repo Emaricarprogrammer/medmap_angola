@@ -2,7 +2,6 @@ import { Toolbar } from "@/components/pharmacy-ui/toolbar"
 import { HandPlatter, Truck } from "lucide-react"
 import { Helmet } from "react-helmet-async"
 import { DepositCard } from "./deposit-card"
-import { Pagination } from "@/components/general-ui/pagination"
 import { useQuery } from "@tanstack/react-query"
 import { getDeposities } from "@/api/pharmacy/get-deposities"
 import { getProfile } from "@/api/general/get-profile"
@@ -118,16 +117,7 @@ export function Deposits() {
 						)}
 					</div>
 
-					<div>
-						{deposits && (
-							<Pagination
-								currentPage={deposits.pagination.currentPage || 1}
-								totalItem={deposits.pagination.totalItems || 20}
-								legend="Depósitos"
-								perPage={deposits.pagination.itemsPerPage || 3}
-							/>
-						)}
-					</div>
+
 				</div>
 			</div>
 		</>

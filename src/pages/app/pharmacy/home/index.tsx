@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async"
 
 import { Toolbar } from "@/components/pharmacy-ui/toolbar"
-import { Pagination } from "@/components/general-ui/pagination"
 
 import { House, Info, Search, SearchX } from "lucide-react"
 import { MedicinalCard } from "./medicinal-card"
@@ -120,14 +119,7 @@ export function Home() {
 							  ))}
 					</motion.div>
 
-					<div className="mb-auto">
-						<Pagination
-							legend="Medicamentos"
-							currentPage={1}
-							totalItem={result?.pagination?.totalItems || 0}
-							perPage={4}
-						/>
-					</div>
+
 				</div>
 			</div>
 		</>

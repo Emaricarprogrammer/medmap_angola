@@ -1,5 +1,4 @@
 import { Table, TableBody } from "@/components/ui/table"
-import { Pagination } from "@/components/general-ui/pagination"
 import { Toolbar } from "@/components/pharmacy-ui/toolbar"
 
 import { OrderTableRow } from "./order-table-row"
@@ -75,14 +74,7 @@ export function Orders() {
 					</div>
 				</div>
 
-				<div>
-					<Pagination
-						currentPage={result?.pagination?.currentPage || 1}
-						legend="Pedidos"
-						totalItem={result?.pagination?.totalItems || 0}
-						perPage={result?.pagination?.itemsPerPage || 8}
-					/>
-				</div>
+
 			</div>
 		</>
 	)

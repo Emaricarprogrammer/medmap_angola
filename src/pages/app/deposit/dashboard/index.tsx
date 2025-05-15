@@ -7,7 +7,6 @@ import { DashboardOverview } from "./dashboard-overview"
 
 import { Table, TableBody } from "@/components/ui/table"
 import { Toolbar } from "@/components/deposit-ui/toolbar"
-import { Pagination } from "@/components/general-ui/pagination"
 import { useQuery } from "@tanstack/react-query"
 import { jwtDecode } from "jwt-decode"
 import { getOrders } from "@/api/deposit/get-orders"
@@ -74,12 +73,6 @@ export function Dashboard() {
 						)}
 					</div>
 
-					<Pagination
-						currentPage={1}
-						totalItem={20}
-						perPage={3}
-						legend="Pedidos"
-					/>
 				</div>
 			</div>
 		</>

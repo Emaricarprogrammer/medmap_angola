@@ -119,7 +119,7 @@ export function AdminLayouth() {
             <Avatar>
               <AvatarImage src="" />
               <AvatarFallback className="bg-blue-100 font-bold text-blue-600">
-                AB
+                AD
               </AvatarFallback>
             </Avatar>
           </div>

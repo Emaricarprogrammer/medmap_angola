@@ -148,7 +148,7 @@ export function EditMedDialog({ medicamento }: Props) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-[95vw] sm:max-w-4xl rounded-lg">
+      <DialogContent className="my-14 max-w-[500px] sm:max-w-4xl rounded-lg">
         <DialogHeader className="border-b pb-4">
           <DialogTitle className="text-xl sm:text-2xl font-semibold text-gray-800">
             Editar Medicamento

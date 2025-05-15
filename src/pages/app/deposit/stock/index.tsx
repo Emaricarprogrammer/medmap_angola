@@ -3,7 +3,6 @@ import { Package } from "lucide-react"
 import { Toolbar } from "@/components/deposit-ui/toolbar"
 
 import { Table, TableBody } from "@/components/ui/table"
-import { Pagination } from "@/components/general-ui/pagination"
 import { RegisterMedDialog } from "./register-med-dialog"
 
 import { MedicinalTableRow } from "./medicinal-table-row"
@@ -37,7 +36,7 @@ export function Stock() {
 	}, [data?.response])
 
 	return (
-		<>
+		<div className="h-screen">
 			<Helmet title="Stock de Medicamentos" />
 
 			<div className="w-full">
@@ -82,14 +81,8 @@ export function Stock() {
 						<EmptyMedicinesState />
 					)}
 
-					<Pagination
-						currentPage={1}
-						legend="Medicamentos"
-						totalItem={20}
-						perPage={3}
-					/>
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }

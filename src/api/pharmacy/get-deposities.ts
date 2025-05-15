@@ -53,11 +53,11 @@ export async function getDeposities(latitude: number, longitude: number) {
 
 	try {
 		const response = await api.get<GetDepositsResponse>(
-			`/entity/pharmacy/search_deposits?latitude=${latitude}&longitude=${longitude}&distance=${10000}`,
+			`/entity/pharmacy/search_deposits?latitude=${latitude}&longitude=${longitude}&distance=${20}`,
 			{
 				headers: {
 					Authorization: `Bearer ${storedToken}`,
-				},
+				}
 			}
 		)
 		return response.data

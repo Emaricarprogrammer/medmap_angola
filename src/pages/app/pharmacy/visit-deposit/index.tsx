@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async"
 
-import { Pagination } from "@/components/general-ui/pagination"
 import { Toolbar } from "@/components/pharmacy-ui/toolbar"
 import { Input } from "@/components/ui/input"
 
@@ -151,12 +150,6 @@ export function VisitDeposit() {
 								  ))}
 						</motion.div>
 
-						<Pagination
-							legend="Medicamentos"
-							currentPage={data?.pagination?.currentPage || 0}
-							totalItem={data?.pagination?.totalItems || 0}
-							perPage={data?.pagination?.itemsPerPage || 0}
-						/>
 					</div>
 				</div>
 			</div>
