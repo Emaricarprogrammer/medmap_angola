@@ -9,7 +9,14 @@ export interface Medicamento {
 	origem: string
 	preco: number
 	quantidade_disponivel: number
-	validade: string
+	validade: Date,
+	deposito: {
+		firma_deposito: string
+		logradouro: string
+		rua: string
+		numero_rua: number
+		cidade: string
+	}
 }
 interface GetDepositResponse {
 	success: boolean

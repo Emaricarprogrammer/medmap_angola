@@ -89,7 +89,7 @@ export function DetailsDialog({ medicinal }: DetailsDialogProps) {
                   <div>
                     <p className='font-medium'>Válidade</p>
                     <p className='text-sm text-muted-foreground'>
-                      {medicinal.validade}
+                      {medicinal.validade.toLocaleDateString()}
                     </p>
                   </div>
                 </div>
