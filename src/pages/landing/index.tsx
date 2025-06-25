@@ -29,13 +29,13 @@ export function Landing() {
 						<header className='w-max max-sm:w-fit text-4xl fontxl-mono tracking-wide max-lg:text-3xl'>
 							<h1 className='max-lg:hidden'>Medicamentos ao seu alcance:</h1>
 							<h2 className='relative animate-typing overflow-hidden whitespace-nowrap max-sm:animate-pulse max-sm:overflow-visible max-sm:whitespace-normal'>
-								Encontre os Depósitos Mais Próximos
+								Encontre os Depósitos mais próximos de si
 								<span className='absolute inset-y-0 right-0 w-[2px] max-sm bg-black animate-[cursorBlink_1s_steps(2)_infinite]'></span>
 							</h2>
 						</header>
 
 						<article className='w-[800px] max-sm:max-w-xl max-sm:w-fit px-4 text-xl text-foreground/80 tracking-wide max-lg:text-lg'>
-							Nosso sistema conecta voçê aos depósitos mais próximos em poucos
+							Nosso sistema conecta você aos depósitos mais próximos em poucos
 							cliques. Pesquise pelo medicamento necessário e encontre
 							rapidamene.
 						</article>
